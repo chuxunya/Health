@@ -85,4 +85,5 @@ dependencies {
     api rootProject.ext.dependencies["fresco:fresco"]
     api rootProject.ext.dependencies["xbanner"]
     api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["design"]
 }
