@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.InquiryMainActivity">
+
+
+    <ImageView
+        android:id="@+id/inquiry_activity_iv_headpic"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@mipmap/boy"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="32dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/common_nav_message_black_n"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#ECE6E6"
+        android:layout_marginTop="70dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="76dp"
+        android:id="@+id/inquiry_keshi_recy"
+        android:background="#fff">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#ECE6E6"
+        android:layout_marginTop="125dp"
+        />
+
+    <LinearLayout
+        android:layout_marginTop="130dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/rg_title"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_title_select"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="综合"
+                android:textSize="14sp"
+                android:textColor="@drawable/botton_text_color"
+                />
+
+            <RadioButton
+                android:textColor="@drawable/botton_text_color"
+                android:id="@+id/hao"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="好评"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:textColor="@drawable/botton_text_color"
+                android:id="@+id/zishu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="咨询数"
+                android:textSize="14sp"/>
+
+            <RadioButton
+                android:textColor="@drawable/botton_text_color"
+                android:id="@+id/jiage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="价格"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/border"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/jj"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/image_ren"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+        <TextView
+            android:textColor="#000"
+            android:text="曾小贤"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:layout_below="@id/jj"
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@id/text_name"
+            android:text="主任医师"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:textSize="10sp"
+            android:layout_below="@id/jj"
+            android:id="@+id/text_zhiwu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="主任医师"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:layout_below="@id/text_name"
+            android:id="@+id/text_adrss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="好评率   98%"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:layout_below="@id/text_adrss"
+            android:id="@+id/text_haopin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@id/text_haopin"
+            android:text="服务患者数    356"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:layout_below="@id/text_adrss"
+            android:id="@+id/text_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:src="@mipmap/common_icon_more_n"
+            android:id="@+id/xiaoxi"
+            android:layout_below="@id/jj"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"/>
+
+        <LinearLayout
+            android:background="@drawable/border"
+            android:layout_below="@id/text_num"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_height="45dp">
+            <TextView
+                android:id="@+id/text_cishu"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:text="500H币/次"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:textColor="#fff"
+                android:background="#7700ff"
+                android:text="立即咨询"
+                android:id="@+id/but_zixun"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/inquiry_imagepic_recy"
+       android:layout_alignParentBottom="true"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/common_list_previous_n"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/common_information_next_n"
+            android:layout_alignParentRight="true"
+
+            />
+    </RelativeLayout>
+</RelativeLayout>

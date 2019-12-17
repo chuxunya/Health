@@ -9,10 +9,10 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [moduleName: project.getName()]
-                includeCompileClasspath = true
             }
         }
     }
@@ -47,10 +47,10 @@ dependencies {
 
     //EventBus依赖
     implementation 'org.greenrobot:eventbus:3.0.0'
-//拦截器
+    //拦截器
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 
-//添加Retrofit库的依赖
+   //添加Retrofit库的依赖
     implementation 'com.squareup.retrofit2:retrofit:2.0.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -61,8 +61,8 @@ dependencies {
 
     //让retrofit支持Rxjava2
     implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
-    api rootProject.ext.dependencies["arouter-compiler"]
-    api rootProject.ext.dependencies["arouter-api"]
+    implementation 'com.alibaba:arouter-api:1.3.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     implementation rootProject.ext.dependencies["fresco"]
     implementation rootProject.ext.dependencies["animated-base-support"]
     api rootProject.ext.dependencies["butterknife"]

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/xbanner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="200dp"
+                >
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="30dp"
+                    android:background="#3087ea"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="12dp"
+                    ></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="22dp"
+                    android:text="知识宝典"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#3087ea"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_marginTop="240dp"
+                android:background="#ECE6E6"
+                android:orientation="horizontal"
+                >
+
+                <RelativeLayout
+                    android:layout_width="170dp"
+                    android:layout_height="155dp"
+                    android:background="#fff"
+                    android:layout_marginTop="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="常见病症"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14dp"
+                        android:textColor="#1B1A1A"
+                        />
+
+                    <ImageView
+                        android:id="@+id/illness_details"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="137dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@mipmap/common_disease"
+                        />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="180dp"
+                    android:layout_height="155dp"
+                    android:background="#fff"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="常用药品"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:textColor="#1B1A1A"
+                        />
+                    <ImageView
+                        android:id="@+id/drug_details"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="137dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@mipmap/common_drugs"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="225dp"
+                android:orientation="vertical"
+                android:layout_marginTop="410dp"
+                android:background="#fff"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    >
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="30dp"
+                        android:background="#3087ea"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        ></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:text="问诊咨询"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="#3087ea"
+                        />
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/consultation_recy"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="630dp"
+                android:orientation="vertical"
+                >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#ECE6E6"
+                    ></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="30dp"
+                        android:background="#3087ea"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        ></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:text="健康评测"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="#3087ea"
+                        />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/reviews"
+                    android:layout_width="360dp"
+                    android:layout_height="160dp"
+                    android:src="@mipmap/health_assessment"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="835dp"
+                android:orientation="vertical"
+                android:background="#fff"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <View
+                        android:layout_width="5dp"
+                        android:layout_height="30dp"
+                        android:background="#3087ea"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        ></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
+                        android:text="健康咨询"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:textColor="#3087ea"
+                        />
+                </LinearLayout>
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#ECE6E6"
+                    ></View>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:id="@+id/advisory_plate_recy"/>
+                <View
+                    android:layout_marginTop="1dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#ECE6E6"
+                    ></View>
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/advisory_list_recy"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    ></RelativeLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@mipmap/boy"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="32dp"
+                android:id="@+id/boy"
+                />
+
+
+            <TextView
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:ems="16"
+                android:layout_marginLeft="55dp"
+                android:hint="病症、药品、医生姓名                              "
+                android:background="@drawable/circle_title_back"
+                android:gravity="center"
+                android:id="@+id/home_search"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/common_nav_message_white_n"
+                android:layout_marginTop="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</RelativeLayout>
