@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,8 @@ public class ConsultationNumberFrag extends BaseFragment<InquiryPresenter> imple
     int page = 1;
     @BindView(R.id.page)
     TextView page1;
+    @BindView(R.id.line)
+    LinearLayout line;
     private int deptId;
 
     @Override
@@ -105,7 +108,7 @@ public class ConsultationNumberFrag extends BaseFragment<InquiryPresenter> imple
                 good.setText("好评率 " + result.get(0).getPraise());
                 number.setText("服务患者数 " + result.get(0).getPraiseNum());
                 money.setText(result.get(0).getServicePrice() + "H币/次");
-                page1.setText(""+page);
+                page1.setText("" + page);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
                 recy.setLayoutManager(linearLayoutManager);
@@ -138,6 +141,7 @@ public class ConsultationNumberFrag extends BaseFragment<InquiryPresenter> imple
                 next.setVisibility(View.GONE);
             }
         } else {
+            line.setVisibility(View.GONE);
             Toast.makeText(getActivity(), doctorBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -153,12 +157,12 @@ public class ConsultationNumberFrag extends BaseFragment<InquiryPresenter> imple
             case R.id.up:
                 page = page - 1;
                 mPresenter.DoctorP(deptId, 3, 0, page, 4);
-                page1.setText(""+page);
+                page1.setText("" + page);
                 break;
             case R.id.next:
                 page++;
                 mPresenter.DoctorP(deptId, 3, 0, page, 4);
-                page1.setText(""+page);
+                page1.setText("" + page);
                 break;
         }
     }
