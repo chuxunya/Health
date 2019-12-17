@@ -10,9 +10,8 @@
         android:layout_height="74dp"
         android:background="@color/white">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/head"
-            app:roundedCornerRadius="50dp"
             android:layout_marginTop="32dp"
             android:layout_marginLeft="12dp"
             android:background="@mipmap/boy"
@@ -32,172 +31,19 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
-        app:tabTextColor="@color/grey"
+        app:tabTextColor="@color/darkgrey"
+        app:tabTextAppearance="@style/TabLayoutTextStyle2"
+        app:tabMode="scrollable"
         android:background="@color/white"
         android:layout_height="36dp"/>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_marginTop="1dp"
         android:background="@color/white"
-        android:layout_height="40dp"/>
-
-    <RelativeLayout
-        android:layout_marginTop="1dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            app:roundedCornerRadius="4dp"
-            android:id="@+id/doctor_img"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"/>
-
-        <TextView
-            android:id="@+id/doctor_name"
-            android:text="曾小贤"
-            android:layout_below="@id/doctor_img"
-            android:layout_marginLeft="50dp"
-            android:textSize="14sp"
-            android:layout_marginTop="9dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/doctor_work"
-            android:text="副主任医师"
-            android:layout_below="@id/doctor_img"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/doctor_name"
-            android:textSize="10sp"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/address"
-            android:text="黑龙江齐齐哈尔"
-            android:layout_below="@id/doctor_name"
-            android:layout_marginLeft="50dp"
-            android:textSize="12sp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ImageView
-            android:id="@+id/more"
-            android:src="@mipmap/common_icon_more_n"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/doctor_img"
-            android:layout_marginTop="26dp"
-            android:layout_marginRight="50dp"
-            android:layout_width="24dp"
-            android:layout_height="24dp"/>
-
-        <TextView
-            android:id="@+id/good"
-            android:text="好评率 98%"
-            android:layout_below="@id/address"
-            android:layout_marginLeft="50dp"
-            android:textSize="12sp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/service"
-            android:layout_toRightOf="@id/good"
-            android:text="患者服务数 356"
-            android:layout_below="@id/address"
-            android:layout_marginLeft="50dp"
-            android:textSize="12sp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:id="@+id/line"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="18dp"
-            android:background="@drawable/back_a">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:text="500H币/次"
-                android:gravity="center"
-                android:textSize="12sp"
-                android:layout_height="match_parent"/>
-            <Button
-                android:id="@+id/now"
-                android:text="立即咨询"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_width="98dp"
-                android:background="@color/blue"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recy_doctor"
-            android:layout_below="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="33dp"
-            android:layout_height="110dp"
-            android:layout_marginBottom="10dp"/>
-
-        <ImageView
-            android:id="@+id/next"
-            android:src="@mipmap/common_information_next_n"
-            android:layout_width="15dp"
-            android:layout_height="10dp"
-            android:layout_below="@id/line"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="49dp"
-            android:layout_marginRight="10dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recy_doctor"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:textSize="12sp"
-                android:text="3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textSize="12sp"
-                android:text="/"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:textSize="10sp"
-                android:text="33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-    </RelativeLayout>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
