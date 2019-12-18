@@ -49,6 +49,8 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     TextView number;
     @BindView(R.id.gift)
     TextView gift;
+    @BindView(R.id.recrivegift)
+    TextView recrivegift;
     @BindView(R.id.recy)
     RecyclerView recy;
     @BindView(R.id.like)
@@ -61,6 +63,8 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     TextView commitCount;
     @BindView(R.id.recy_commit)
     RecyclerView recyCommit;
+    @BindView(R.id.more)
+    TextView more;
     @BindView(R.id.price)
     TextView price;
     @BindView(R.id.go_now)
