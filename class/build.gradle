@@ -14,8 +14,8 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath true
+                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
             }
         }
     }
@@ -55,20 +55,11 @@ dependencies {
     implementation 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.5'
     implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.5'
     implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.5'
-
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
 //    # 可选，里面包含StandardVideoController的实现
     implementation 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.5'
+    //今日头条适配
+    implementation 'me.jessyan:autosize:0.9.1'
 
-    //配置retrofit2.0
-    implementation 'com.squareup.retrofit2:retrofit:+'
-    implementation 'com.squareup.retrofit2:converter-gson:+'
-
-    //Rxjava2需要依赖
-    implementation 'io.reactivex.rxjava2:rxjava:+'
-    implementation 'io.reactivex.rxjava2:rxandroid:+'
-
-    //让retrofit支持Rxjava2
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:+'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
 
 }
