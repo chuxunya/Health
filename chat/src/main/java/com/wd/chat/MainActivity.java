@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
                 tab.setupWithViewPager(pager);
                 MySickAdapter mySickAdapter = new MySickAdapter(getSupportFragmentManager(), list, result);
                 pager.setAdapter(mySickAdapter);
+                pager.setOffscreenPageLimit(list.size());
             }else {
                 Toast.makeText(this, findDepartmentBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
