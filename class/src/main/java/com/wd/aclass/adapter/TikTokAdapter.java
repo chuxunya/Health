@@ -39,6 +39,7 @@ public class TikTokAdapter extends RecyclerView.Adapter<TikTokAdapter.VideoHolde
                 .load(path)
                 .placeholder(android.R.color.white)
                 .into(holder.thumb);
+
     }
 
     @Override

@@ -2,7 +2,11 @@ package com.wd.aclass;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dueeeke.videoplayer.controller.BaseVideoController;
 import com.dueeeke.videoplayer.player.IjkVideoView;
@@ -19,6 +23,10 @@ import androidx.annotation.Nullable;
 public class TikTokController extends BaseVideoController {
 
     private ImageView thumb;
+    private ImageView video_dian;
+    private TextView video_count;
+    private CheckBox video_shou;
+
     public TikTokController(@NonNull Context context) {
         super(context);
     }
@@ -40,6 +48,23 @@ public class TikTokController extends BaseVideoController {
     protected void initView() {
         super.initView();
         thumb = mControllerView.findViewById(R.id.iv_thumb);
+        video_dian = findViewById(R.id.video_dian);
+        video_count = findViewById(R.id.video_count);
+        video_shou = findViewById(R.id.video_shou);
+
+        //收藏
+       video_shou.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+               if (b){
+                   video_shou.setBackgroundResource(R.mipmap.common_button_collection_large_n);
+               }else {
+                   video_shou.setBackgroundResource(R.mipmap.common_button_collection_large_s);
+               }
+           }
+       });
+
+
     }
 
     @Override
