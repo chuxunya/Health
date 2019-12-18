@@ -16,7 +16,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
                 includeCompileClasspath true
             }
         }
@@ -49,6 +49,7 @@ dependencies {
     //今日头条适配
     implementation 'me.jessyan:autosize:0.9.1'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
     implementation project(path: ':mylibrary')
 
 }

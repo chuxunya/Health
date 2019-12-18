@@ -6,8 +6,6 @@ package com.wd.aclass.api;
  *@Description:api
  **/
 
-
-
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 
