@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @describe(描述)：医生详情
@@ -144,7 +145,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 }
                 jieshao.setText(result.getPersonalProfile());
                 scaddress.setText(result.getGoodField());
-                commitCount.setText("("+result.getCommentNum() + "条评论)");
+                commitCount.setText("(" + result.getCommentNum() + "条评论)");
                 if (result.getCommentNum() != 0) {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PersonalActivity.this);
                     linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -152,12 +153,12 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                     List<DoctorInfoBean.ResultBean.CommentListBean> commentList = result.getCommentList();
                     CommentAdapter commentAdapter = new CommentAdapter(commentList, PersonalActivity.this);
                     recyCommit.setAdapter(commentAdapter);
-                    if (commentList.size()==3&&result.getCommentNum()>3){
+                    if (commentList.size() == 3 && result.getCommentNum() > 3) {
                         more.setVisibility(View.VISIBLE);
                         more.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(PersonalActivity.this,CommentActivity.class);
+                                Intent intent = new Intent(PersonalActivity.this, CommentActivity.class);
                                 startActivity(intent);
                             }
                         });
@@ -174,5 +175,10 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     @Override
     public void onInfoFailure(Throwable e) {
         Log.d(TAG, "onInfoFailure: " + e.getMessage().toString());
+    }
+
+    @OnClick(R.id.back)
+    public void onViewClicked() {
+        finish();
     }
 }
