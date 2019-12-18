@@ -3,6 +3,7 @@ package com.wd.chat.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +18,8 @@ import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
+
+import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -116,12 +119,24 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         if (doctorInfoBean.getStatus().equals("0000")) {
             DoctorInfoBean.ResultBean result = doctorInfoBean.getResult();
             if (result != null) {
+                price.setText(result.getServicePrice() + "H币/次");
                 Glide.with(this).load(result.getImagePic()).into(headImg);
                 name.setText(result.getDoctorName());
                 work.setText(result.getJobTitle());
                 address.setText(result.getInauguralHospital());
                 good.setText("好评率 " + result.getPraise());
                 number.setText("服务患者数 " + result.getPraiseNum());
+                List<DoctorInfoBean.ResultBean.DoctorReceiveGiftListBean> list = result.getDoctorReceiveGiftList();
+                if (!list.isEmpty()) {
+                    recrivegift.setVisibility(View.GONE);
+                    recy.setVisibility(View.VISIBLE);
+
+
+
+                } else {
+                    recrivegift.setVisibility(View.VISIBLE);
+                    recy.setVisibility(View.GONE);
+                }
 
 
             } else {
