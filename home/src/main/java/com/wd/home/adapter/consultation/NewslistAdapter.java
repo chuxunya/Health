@@ -23,12 +23,9 @@ import com.wd.home.R;
 import com.wd.home.bean.InformationListBean;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import retrofit2.http.Url;
 
 /**
  * author: 席贵
@@ -39,7 +36,7 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<InformationListBean.ResultBean> resultBeans;
     private Context context;
-    private   SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
 
     public NewslistAdapter(List<InformationListBean.ResultBean> resultBeans, Context context) {
         this.resultBeans = resultBeans;
@@ -56,10 +53,11 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
         return 2;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        switch (viewType){
+        switch (viewType) {
             case 0:
                 View inflate = LayoutInflater.from(context).inflate(R.layout.newlist_one_layout, parent, false);
                 return new Newlist_one_Holder(inflate);
@@ -70,14 +68,14 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 View inflate2 = LayoutInflater.from(context).inflate(R.layout.newlist_three_layout, parent, false);
                 return new Newlist_three_Holder(inflate2);
         }
-        return  null;
+        return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Date date = new Date(resultBeans.get(position).getReleaseTime());
         int itemViewType = getItemViewType(position);
-        switch (itemViewType){
+        switch (itemViewType) {
             case 0:
                 ((Newlist_one_Holder) holder).text_name.setText(resultBeans.get(position).getSource());
                 ((Newlist_one_Holder) holder).text_title.setText(resultBeans.get(position).getTitle());
@@ -88,7 +86,7 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         .build();
                 ((Newlist_one_Holder) holder).simple.setController(draweeController);
 
-               // Glide.with(context).load(resultBeans.get(position).getThumbnail()).into(((Newlist_one_Holder) holder).simple);
+                // Glide.with(context).load(resultBeans.get(position).getThumbnail()).into(((Newlist_one_Holder) holder).simple);
                 simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
                 ((Newlist_one_Holder) holder).text_time.setText(simpleDateFormat.format(date));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -109,9 +107,9 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                 String[] split = resultBeans.get(position).getThumbnail().split(";");
 
-               Glide.with(context).load(split[0]).into(((Newlist_two_Holder) holder).simple1);
-               Glide.with(context).load(split[1]).into(((Newlist_two_Holder) holder).simple2);
-               Glide.with(context).load(split[2]).into(((Newlist_two_Holder) holder).simple3);
+                Glide.with(context).load(split[0]).into(((Newlist_two_Holder) holder).simple1);
+                Glide.with(context).load(split[1]).into(((Newlist_two_Holder) holder).simple2);
+                Glide.with(context).load(split[2]).into(((Newlist_two_Holder) holder).simple3);
                 ((Newlist_two_Holder) holder).text_time.setText(simpleDateFormat.format(date));
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -130,17 +128,17 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ((Newlist_three_Holder) holder).text_title.setText(resultBeans.get(position).getTitle());
                 simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
                 ((Newlist_three_Holder) holder).text_time.setText(simpleDateFormat.format(date));
-                 holder.itemView.setOnClickListener(new View.OnClickListener() {
+          /*       holder.itemView.setOnClickListener(new View.OnClickListener() {
 
                     private Intent intent;
 
                     @Override
                     public void onClick(View view) {
-                      /*  intent = new Intent(context, FindInfoActivity.class);
+                      *//*  intent = new Intent(context, FindInfoActivity.class);
                         intent.putExtra("in_id", resultBeans.get(position).getId());
-                        context.startActivity(intent);*/
+                        context.startActivity(intent);*//*
                     }
-                });
+                });*/
                 break;
         }
 
@@ -148,11 +146,13 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 5;
     }
-    public class Newlist_one_Holder extends RecyclerView.ViewHolder{
+
+    public class Newlist_one_Holder extends RecyclerView.ViewHolder {
         private SimpleDraweeView simple;
         private TextView text_title, text_name, text_time;
+
         public Newlist_one_Holder(@NonNull View itemView) {
             super(itemView);
             simple = itemView.findViewById(R.id.simple);
@@ -161,9 +161,11 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             text_time = itemView.findViewById(R.id.text_time);
         }
     }
-    public class Newlist_two_Holder extends RecyclerView.ViewHolder{
+
+    public class Newlist_two_Holder extends RecyclerView.ViewHolder {
         private ImageView simple1, simple2, simple3;
         private TextView text_title, text_name, text_time;
+
         public Newlist_two_Holder(@NonNull View itemView) {
             super(itemView);
             text_time = itemView.findViewById(R.id.text_time);
@@ -174,8 +176,10 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             simple3 = itemView.findViewById(R.id.simple3);
         }
     }
-    public class Newlist_three_Holder extends RecyclerView.ViewHolder{
+
+    public class Newlist_three_Holder extends RecyclerView.ViewHolder {
         private TextView text_title, text_name, text_time;
+
         public Newlist_three_Holder(@NonNull View itemView) {
             super(itemView);
             text_title = itemView.findViewById(R.id.text_title);
@@ -183,11 +187,14 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             text_time = itemView.findViewById(R.id.text_time);
         }
     }
+
     public onClickNew onClickNew;
-    public void getOnClickNew(onClickNew onClickNew){
-        this.onClickNew =onClickNew;
+
+    public void getOnClickNew(onClickNew onClickNew) {
+        this.onClickNew = onClickNew;
     }
-    public interface onClickNew{
+
+    public interface onClickNew {
         void setOnClick(String inid);
     }
 }

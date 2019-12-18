@@ -1,5 +1,7 @@
 package com.wd.home.fragment;
 
+import android.content.Intent;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,9 +80,10 @@ public class Drug_Fragment extends BaseFragment<DiseasePresenter> implements Dis
                 mPresenter.disease(id);
             }
         });
+
     }
 
-//根据科室查询对应病症
+   //根据科室查询对应病症
     @Override
     public void disease(DiseaseBean diseaseBean) {
         result1 = diseaseBean.getResult();

@@ -2,6 +2,7 @@ package com.wd.home.adapter.consultation;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.home.R;
 import com.wd.home.bean.DiseaseBean;
+import com.wd.home.view.ConditionDetailsActivity;
 
 import java.util.List;
 
@@ -42,7 +44,16 @@ public class IllnessAdapter extends RecyclerView.Adapter {
         Viewholder1 viewholder1 = (Viewholder1) viewHolder;
         viewholder1.illness_name.setText(result1.get(i).getName());
 
+       viewholder1.illness_name.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(context, ConditionDetailsActivity.class);
+               intent.putExtra("id",result1.get(i).getId());
+               intent.putExtra("name",result1.get(i).getName());
+               context.startActivity(intent);
 
+           }
+       });
 
        /* viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

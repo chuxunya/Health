@@ -51,23 +51,23 @@ public class DiseaseBean {
          * name : 颈椎病
          */
 
-        private int departmentId;
-        private int id;
+        private String departmentId;
+        private String id;
         private String name;
 
-        public int getDepartmentId() {
+        public String getDepartmentId() {
             return departmentId;
         }
 
-        public void setDepartmentId(int departmentId) {
+        public void setDepartmentId(String departmentId) {
             this.departmentId = departmentId;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 

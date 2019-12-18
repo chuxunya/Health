@@ -11,6 +11,8 @@ import com.wd.home.R;
  * @time 2019/12/14 8:50
  */
 public class PatientcircleFragment extends BaseFragment {
+
+
     @Override
     protected BasePresenter providePresenter() {
         return null;
@@ -18,6 +20,6 @@ public class PatientcircleFragment extends BaseFragment {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.fragment_patiencircle;
+        return R.layout.patientcirclefragment;
     }
 }

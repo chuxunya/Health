@@ -26,4 +26,10 @@ public class ICantst {
     public static final String DRUGS="health/share/knowledgeBase/v1/findDrugsCategoryList";
     //根据药品类目查询常见药品
     public static final String DRUGSKNOW="health/share/knowledgeBase/v1/findDrugsKnowledgeList";
+    //查询常见病症详情
+    public static final String DISEASEKNOW="health/share/knowledgeBase/v1/findDiseaseKnowledge";
+    //查询常见药品详情
+    public static final String DRUGSKNOWLEDGE="health/share/knowledgeBase/v1/findDrugsKnowledge";
+    //资讯详情
+    public static final String INFOR="health/share/information/v1/findInformation";
 }

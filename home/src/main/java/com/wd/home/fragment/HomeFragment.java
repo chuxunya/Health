@@ -98,10 +98,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         advisory_plate_recy.setLayoutManager(linearLayoutManager);
-        //根据资讯板块查询资讯列表
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext());
-        linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
-        advisory_list_recy.setLayoutManager(linearLayoutManager2);
+
 
         //搜索
         home_search.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +214,11 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     public void informationlist(InformationListBean informationListBean) {
         resultBeans = informationListBean.getResult();
         NewslistAdapter newslistAdapter = new NewslistAdapter(resultBeans,getContext());
-       advisory_list_recy.setAdapter(newslistAdapter);
+        //根据资讯板块查询资讯列表
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext());
+        linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+        advisory_list_recy.setLayoutManager(linearLayoutManager2);
+        advisory_list_recy.setAdapter(newslistAdapter);
     }
 
     @Override
