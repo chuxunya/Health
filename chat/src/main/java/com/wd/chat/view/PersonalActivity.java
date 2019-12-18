@@ -141,8 +141,12 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                     recrivegift.setVisibility(View.VISIBLE);
                     recy.setVisibility(View.GONE);
                 }
+                jieshao.setText(result.getPersonalProfile());
+                scaddress.setText(result.getGoodField());
+                commitCount.setText("("+result.getCommentNum() + "条评论)");
+                if (result.getCommentNum() != 0) {
 
-
+                }
             } else {
                 Toast.makeText(this, doctorInfoBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
