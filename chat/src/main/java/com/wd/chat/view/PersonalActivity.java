@@ -18,9 +18,11 @@ import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
+import com.wd.chat.utils.MyGiftAdapter;
 
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,9 +132,11 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 if (!list.isEmpty()) {
                     recrivegift.setVisibility(View.GONE);
                     recy.setVisibility(View.VISIBLE);
-
-
-
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PersonalActivity.this);
+                    linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                    recy.setLayoutManager(linearLayoutManager);
+                    MyGiftAdapter myGiftAdapter = new MyGiftAdapter(list, PersonalActivity.this);
+                    recy.setAdapter(myGiftAdapter);
                 } else {
                     recrivegift.setVisibility(View.VISIBLE);
                     recy.setVisibility(View.GONE);
