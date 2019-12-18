@@ -22,4 +22,8 @@ public class ICantst {
     public static final String POPULARSEARCH="health/share/v1/popularSearch";
     //根据科室查询对应病症
     public static final String DISEASE="health/share/knowledgeBase/v1/findDiseaseCategory";
+    //药品科目分类列表查询
+    public static final String DRUGS="health/share/knowledgeBase/v1/findDrugsCategoryList";
+    //根据药品类目查询常见药品
+    public static final String DRUGSKNOW="health/share/knowledgeBase/v1/findDrugsKnowledgeList";
 }

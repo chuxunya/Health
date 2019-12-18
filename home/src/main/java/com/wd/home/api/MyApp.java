@@ -4,6 +4,8 @@ import com.bawei.lizekai.mylibrary.app.BaseApp;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DiseaseBean;
+import com.wd.home.bean.DrugsBean;
+import com.wd.home.bean.DrugsKnowBean;
 import com.wd.home.bean.HomePageSearchBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
@@ -48,5 +50,14 @@ public interface MyApp  {
     //根据科室查询对应病症
     @GET("health/share/knowledgeBase/v1/findDiseaseCategory")
     Observable<DiseaseBean> disease(@Query("departmentId") int departmentId);
+
+    //药品科目分类列表查询
+    @GET("health/share/knowledgeBase/v1/findDrugsCategoryList")
+    Observable<DrugsBean> drugscate();
+
+    //根据药品类目查询常见药品
+    @GET("health/share/knowledgeBase/v1/findDrugsKnowledgeList")
+    Observable<DrugsKnowBean> drugscateknow(@Query("drugsCategoryId") int drugsCategoryId,
+                                            @Query("page") int page, @Query("count") int count);
 
 }

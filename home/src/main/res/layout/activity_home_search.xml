@@ -91,14 +91,14 @@
                 android:textColor="@color/blue"
                 android:textSize="14sp" />
 
-          <!--  <com.zhy.view.flowlayout.TagFlowLayout
+           <com.zhy.view.flowlayout.TagFlowLayout
                 android:id="@+id/fl_topSearch"
-                android:layout_marginLeft="@dimen/dp_15"
-                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
                 app:max_select="-1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />-->
+                />
         </LinearLayout>
 
 
@@ -172,7 +172,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/blue"
             android:textSize="14sp" />
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_doctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -184,7 +184,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/blue"
             android:textSize="14sp" />
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_drug"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -196,7 +196,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="@color/blue"
             android:textSize="14sp" />
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_symptoms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

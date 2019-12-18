@@ -11,58 +11,54 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.wd.home.R;
-import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DrugsKnowBean;
+
 
 import java.util.List;
 
 
-public class ConsultationAdapter extends RecyclerView.Adapter {
-    private List<DepartmentBean.ResultBean> beans;
+public class QueryDrugAdapter extends RecyclerView.Adapter {
+    private List<DrugsKnowBean.ResultBean> result1;
     private Context context;
 
-    public ConsultationAdapter(List<DepartmentBean.ResultBean> beans, Context context) {
-        this.beans = beans;
+    public QueryDrugAdapter(List<DrugsKnowBean.ResultBean> result1, Context context) {
+        this.result1 = result1;
         this.context = context;
     }
 
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_consultation_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_querydrug_item, null);
         Viewholder1 viewholder1 = new Viewholder1(inflate);
         return viewholder1;
     }
 
     @Override
     public void onBindViewHolder( RecyclerView.ViewHolder viewHolder, final int i) {
-
         Viewholder1 viewholder1 = (Viewholder1) viewHolder;
-        viewholder1.consultation_name.setText(beans.get(i).getDepartmentName());
-        ImageRequest build = ImageRequestBuilder.newBuilderWithSource(Uri.parse(beans.get(i).getPic()))
+        viewholder1.querydrug_name.setText(result1.get(i).getName());
+
+        ImageRequest build = ImageRequestBuilder.newBuilderWithSource(Uri.parse(result1.get(i).getPicture()))
                 .build();
         DraweeController draweeController = Fresco.newDraweeControllerBuilder()
                 .setImageRequest(build)
                 .build();
-        viewholder1.simpleDraweeView.setController(draweeController);
+        viewholder1.querydrug_img.setController(draweeController);
 
-       /* viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnItemClickListener.onItemClick(i);
-            }
-        });*/
+
     }
 
     @Override
     public int getItemCount() {
-        return beans.size();
+        return result1.size();
     }
 
     private OnItemClickListener mOnItemClickListener;
@@ -77,13 +73,14 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
 
     public class Viewholder1 extends RecyclerView.ViewHolder {
 
-        private final TextView consultation_name;
-        private final SimpleDraweeView simpleDraweeView;
+
+        private final TextView querydrug_name;
+        private final SimpleDraweeView querydrug_img;
 
         public Viewholder1( View itemView) {
             super(itemView);
-            simpleDraweeView = itemView.findViewById(R.id.consultation_img);
-            consultation_name = itemView.findViewById(R.id.consultation_name);
+            querydrug_name = itemView.findViewById(R.id.querydrug_name);
+            querydrug_img = itemView.findViewById(R.id.querydrug_img);
         }
     }
 }

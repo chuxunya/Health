@@ -18,7 +18,7 @@ public interface BannerContract {
     interface Iview extends IBaseView {
         //轮播图
         void banner(BannerBean bannerBean);
-        //问诊咨询
+        //查询科室列表
         void department(DepartmentBean departmentBean);
         //查询健康资讯板块
         void information(InformationBean informationBean);
@@ -30,7 +30,7 @@ public interface BannerContract {
 
         //轮播图
         void banner(IModelICallBack iModelICallBack);
-        //问诊咨询
+        //查询科室列表
         void department(IModelICallBack iModelICallBack);
         //查询健康资讯板块
         void information(IModelICallBack iModelICallBack);
@@ -40,7 +40,7 @@ public interface BannerContract {
         interface IModelICallBack {
             //轮播图
             void banner(BannerBean bannerBean);
-            //问诊咨询
+            //查询科室列表
             void department(DepartmentBean departmentBean);
             //查询健康资讯板块
             void information(InformationBean informationBean);

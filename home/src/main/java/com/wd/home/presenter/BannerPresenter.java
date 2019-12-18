@@ -1,5 +1,7 @@
 package com.wd.home.presenter;
 
+import android.util.Log;
+
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
@@ -27,10 +29,11 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
     //轮播图
     @Override
     public void banner() {
-        bannerModel.department(new BannerContract.Imodel.IModelICallBack() {
+        bannerModel.banner(new BannerContract.Imodel.IModelICallBack() {
             @Override
             public void banner(BannerBean bannerBean) {
                 getView().banner(bannerBean);
+
             }
 
             @Override
@@ -47,10 +50,10 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
             public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
 
             }
-        }) ;
+        }); ;
     }
 
-    // //问诊咨询
+    // //查询科室列表
     @Override
     public void department() {
        bannerModel.department(new BannerContract.Imodel.IModelICallBack() {

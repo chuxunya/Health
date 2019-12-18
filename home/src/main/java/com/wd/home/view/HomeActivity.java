@@ -41,7 +41,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_home;
 
     }
 

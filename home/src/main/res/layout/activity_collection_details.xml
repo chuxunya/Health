@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.Collection_detailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+
+        <ImageView
+            android:id="@+id/collection_activity_iv_headPic"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@mipmap/boy"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="32dp"
+           android:layout_centerVertical="true"/>
+
+
+
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/common_nav_message_black_n"
+            android:layout_marginTop="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            />
+
+    </RelativeLayout>
+
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/details_rg"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <RadioButton
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_btn1"
+            android:text="常见药品"
+            android:layout_gravity="center"
+            android:layout_marginLeft="90dp"
+
+            />
+
+        <RadioButton
+            android:text="常见病症"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_btn2"
+           android:layout_gravity="center"
+            />
+
+
+
+    </RadioGroup>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_weight="9"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/details_vp"
+        ></androidx.viewpager.widget.ViewPager>
+
+
+
+</LinearLayout>

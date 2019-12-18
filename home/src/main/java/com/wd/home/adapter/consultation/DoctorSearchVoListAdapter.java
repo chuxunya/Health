@@ -1,21 +1,16 @@
-/*
 package com.wd.home.adapter.consultation;
 
 
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.wd.home.R;
 import com.wd.home.bean.HomePageSearchBean;
 
 import java.util.List;
 
 
-*/
-/*
- *@Auther:Helen
- *@Date: 19.9.16
- *@Time: 17:11:34
- *@Description:
- * *//*
+
 public class DoctorSearchVoListAdapter extends BaseQuickAdapter<HomePageSearchBean.ResultBean.DoctorSearchVoListBean, BaseViewHolder> {
 
 
@@ -28,4 +23,3 @@ public class DoctorSearchVoListAdapter extends BaseQuickAdapter<HomePageSearchBe
         helper.setText(R.id.tv_home_search_name, item.getDoctorName());
     }
 }
-*/

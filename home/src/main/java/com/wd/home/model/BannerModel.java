@@ -1,5 +1,7 @@
 package com.wd.home.model;
 
+import android.util.Log;
+
 import com.bawei.lizekai.mylibrary.utils.CommonSchedulers;
 import com.bawei.lizekai.mylibrary.utils.RetrofitManager;
 import com.wd.home.api.MyApp;
@@ -36,6 +38,7 @@ public class BannerModel implements BannerContract.Imodel {
                     @Override
                     public void onNext(BannerBean bannerBean) {
                          iModelICallBack.banner(bannerBean);
+
                     }
 
                     @Override
@@ -50,7 +53,7 @@ public class BannerModel implements BannerContract.Imodel {
                 });
     }
 
-    //问诊咨询
+    //查询科室列表
     @Override
     public void department(final IModelICallBack iModelICallBack) {
         RetrofitManager.getInstance().create(MyApp.class)
@@ -65,6 +68,7 @@ public class BannerModel implements BannerContract.Imodel {
                     @Override
                     public void onNext(DepartmentBean departmentBean) {
                         iModelICallBack.department(departmentBean);
+
                     }
 
                     @Override

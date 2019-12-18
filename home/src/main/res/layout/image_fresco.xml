@@ -9,7 +9,7 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/banner_sim"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
 </LinearLayout>

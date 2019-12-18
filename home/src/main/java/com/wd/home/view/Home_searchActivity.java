@@ -19,11 +19,15 @@ import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.google.android.material.internal.FlowLayout;
 import com.wd.home.R;
 
+import com.wd.home.adapter.consultation.DiseaseSearchVoListAdapter;
+import com.wd.home.adapter.consultation.DoctorSearchVoListAdapter;
+import com.wd.home.adapter.consultation.DrugsSearchVoListAdapter;
 import com.wd.home.adapter.consultation.RecordSQLiteOpenHelper;
 import com.wd.home.bean.HomePageSearchBean;
 import com.wd.home.bean.PopularSearchBean;
 import com.wd.home.contract.HomepageContract;
 import com.wd.home.presenter.HomePagePresenter;
+import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -38,7 +42,7 @@ import java.util.List;
  */
 public class Home_searchActivity extends BaseActivity<HomePagePresenter> implements HomepageContract.Iview {
 
-    //TagFlowLayout flTopSearch;
+    TagFlowLayout flTopSearch;
     private RecordSQLiteOpenHelper helper;
     private FlowView flSearchHistory;
     private SQLiteDatabase db;
@@ -81,14 +85,14 @@ public class Home_searchActivity extends BaseActivity<HomePagePresenter> impleme
         rvDrug =  findViewById(R.id.rv_drug);
         rvSymptoms =  findViewById(R.id.rv_symptoms);
         llSearchData =  findViewById(R.id.ll_searchData);
-        //flTopSearch =  findViewById(R.id.fl_topSearch);
-  /*      ivHomeSearch.setOnClickListener(new View.OnClickListener() {
+        flTopSearch =  findViewById(R.id.fl_topSearch);
+        ivHomeSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String keyword = etHomeSearchTitle.getText().toString();
                 search(keyword);
             }
-        });*/
+        });
         ivHomeSearchBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +104,7 @@ public class Home_searchActivity extends BaseActivity<HomePagePresenter> impleme
     @Override
     protected void initData() {
         super.initData();
-        mPresenter.homepage("好");
+        mPresenter.homepage("哈哈");
         mPresenter.popularsear();
         //记录到sqlite中
         helper = new RecordSQLiteOpenHelper(this);
@@ -126,25 +130,25 @@ public class Home_searchActivity extends BaseActivity<HomePagePresenter> impleme
             llRelevantSearchData.setVisibility(View.GONE);
 
             //创建适配器
-         //  DiseaseSearchVoListAdapter diseaseSearchVoListAdapter = new DiseaseSearchVoListAdapter(R.layout.layout_home_search_item, diseaseSearchVoList);
+           DiseaseSearchVoListAdapter diseaseSearchVoListAdapter = new DiseaseSearchVoListAdapter(R.layout.layout_home_search_item, diseaseSearchVoList);
             //设置每个item的排列方式
             rvSymptoms.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             //设置上适配器
-         //   rvSymptoms.setAdapter(diseaseSearchVoListAdapter);
+          rvSymptoms.setAdapter(diseaseSearchVoListAdapter);
 
             //创建适配器
-           // DoctorSearchVoListAdapter doctorSearchVoListAdapter = new DoctorSearchVoListAdapter(R.layout.layout_home_search_item, doctorSearchVoList);
+            DoctorSearchVoListAdapter doctorSearchVoListAdapter = new DoctorSearchVoListAdapter(R.layout.layout_home_search_item, doctorSearchVoList);
             //设置每个item的排列方式
             rvDoctor.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             //设置上适配器
-          //  rvDoctor.setAdapter(doctorSearchVoListAdapter);
+            rvDoctor.setAdapter(doctorSearchVoListAdapter);
 
-//创建适配器
-           // DrugsSearchVoListAdapter drugsSearchVoListAdapter = new DrugsSearchVoListAdapter(R.layout.layout_home_search_item, drugsSearchVoList);
+            //创建适配器
+            DrugsSearchVoListAdapter drugsSearchVoListAdapter = new DrugsSearchVoListAdapter(R.layout.layout_home_search_item, drugsSearchVoList);
             //设置每个item的排列方式
             rvDrug.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
             //设置上适配器
-           // rvDrug.setAdapter(drugsSearchVoListAdapter);
+            rvDrug.setAdapter(drugsSearchVoListAdapter);
         } else {
             rlHomeNoSearch.setVisibility(View.VISIBLE);
             llSearchData.setVisibility(View.GONE);

@@ -16,8 +16,8 @@ import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.stx.xhb.androidx.transformers.Transformer;
 import com.wd.home.R;
-import com.wd.home.adapter.consultation.AdvisoryListAdapter;
 import com.wd.home.adapter.consultation.ConsultationAdapter;
+import com.wd.home.adapter.consultation.NewslistAdapter;
 import com.wd.home.adapter.consultation.PlateListAdapter;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
@@ -26,8 +26,8 @@ import com.wd.home.bean.InformationListBean;
 import com.wd.home.contract.BannerContract;
 import com.wd.home.presenter.BannerPresenter;
 import com.wd.home.view.BannerWebViewMainActivity;
+import com.wd.home.view.Collection_detailsActivity;
 import com.wd.home.view.Home_searchActivity;
-import com.wd.home.view.InquiryMainActivity;
 import com.wd.home.view.ReviewsMainActivity;
 
 
@@ -52,7 +52,6 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     private PlateListAdapter plateListAdapter;
     private List<InformationListBean.ResultBean> resultBeans;
     private RecyclerView advisory_list_recy;
-    private AdvisoryListAdapter advisoryListAdapter;
     private TextView home_search;
     private int id;
     private ImageView illness_details;
@@ -84,6 +83,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         drug_details = getActivity().findViewById(R.id.drug_details);
         //健康评测
         reviews = getActivity().findViewById(R.id.reviews);
+
         //健康评测
         reviews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +111,22 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
             }
         });
 
+        //常见病症
+        illness_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  =new Intent(getContext(), Collection_detailsActivity.class);
+                startActivity(intent);
+            }
+        });
+        //常用药品
+        drug_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent  =new Intent(getContext(), Collection_detailsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -128,6 +144,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     public void banner(BannerBean bannerBean) {
 
         result = bannerBean.getResult();
+
         xbanner.setBannerData(R.layout.image_fresco, new AbstractList<SimpleBannerInfo>() {
             @Override
             public SimpleBannerInfo get(int index) {
@@ -149,6 +166,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
                     @Override
                     public void onItemClick(XBanner banner, Object model, View view, int position) {
                         String jumpUrl = result.get(position).getJumpUrl();
+
                         Intent intent = new Intent(getContext(), BannerWebViewMainActivity.class);
                         intent.putExtra("jumpUrl",jumpUrl);
                         startActivity(intent);
@@ -168,13 +186,13 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         beans = departmentBean.getResult();
         consultationAdapter = new ConsultationAdapter(beans,getContext());
         consultationRecy.setAdapter(consultationAdapter);
-        consultationAdapter.onItemClickListener(new ConsultationAdapter.OnItemClickListener() {
+    /*    consultationAdapter.onItemClickListener(new ConsultationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(getContext(), InquiryMainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     //查询健康资讯
@@ -198,9 +216,8 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     @Override
     public void informationlist(InformationListBean informationListBean) {
         resultBeans = informationListBean.getResult();
-        advisoryListAdapter = new AdvisoryListAdapter(getContext());
-        advisoryListAdapter.addData(resultBeans);
-        advisory_list_recy.setAdapter(advisoryListAdapter);
+        NewslistAdapter newslistAdapter = new NewslistAdapter(resultBeans,getContext());
+       advisory_list_recy.setAdapter(newslistAdapter);
     }
 
     @Override
