@@ -152,6 +152,16 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                     List<DoctorInfoBean.ResultBean.CommentListBean> commentList = result.getCommentList();
                     CommentAdapter commentAdapter = new CommentAdapter(commentList, PersonalActivity.this);
                     recyCommit.setAdapter(commentAdapter);
+                    if (commentList.size()==3&&result.getCommentNum()>3){
+                        more.setVisibility(View.VISIBLE);
+                        more.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(PersonalActivity.this,CommentActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                    }
                 }
             } else {
                 Toast.makeText(this, doctorInfoBean.getMessage(), Toast.LENGTH_SHORT).show();
