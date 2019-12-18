@@ -2,6 +2,7 @@ package com.wd.chat.view;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.wd.chat.R;
 import com.wd.chat.bean.DoctorBean;
+import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
@@ -64,6 +66,7 @@ public class PriceFrag extends BaseFragment<InquiryPresenter> implements Contrac
     @BindView(R.id.page)
     TextView page1;
     private int deptId;
+    private int doctorId;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -100,6 +103,7 @@ public class PriceFrag extends BaseFragment<InquiryPresenter> implements Contrac
         if (doctorBean.getStatus().equals("0000")) {
             List<DoctorBean.ResultBean> result = doctorBean.getResult();
             if (!result.isEmpty()) {
+                doctorId = result.get(0).getDoctorId();
                 Glide.with(getContext()).load(result.get(0).getImagePic()).into(img);
                 name.setText(result.get(0).getDoctorName() + "");
                 address.setText(result.get(0).getInauguralHospital());
@@ -126,6 +130,7 @@ public class PriceFrag extends BaseFragment<InquiryPresenter> implements Contrac
                 myAdapter.setOnCLickListener(new MyAdapter.OnCLickListener() {
                     @Override
                     public void onclick(int position) {
+                        doctorId = result.get(position).getDoctorId();
                         Glide.with(getContext()).load(result.get(position).getImagePic()).into(img);
                         name.setText(result.get(position).getDoctorName() + "");
                         address.setText(result.get(position).getInauguralHospital());
@@ -148,7 +153,17 @@ public class PriceFrag extends BaseFragment<InquiryPresenter> implements Contrac
         Log.d(TAG, "onDoctorFailure: " + e.getMessage());
     }
 
-    @OnClick({R.id.up, R.id.next})
+    @Override
+    public void onInfoSuccess(DoctorInfoBean doctorInfoBean) {
+
+    }
+
+    @Override
+    public void onInfoFailure(Throwable e) {
+
+    }
+
+    @OnClick({R.id.up, R.id.next,R.id.more})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.up:
@@ -160,6 +175,11 @@ public class PriceFrag extends BaseFragment<InquiryPresenter> implements Contrac
                 page++;
                 mPresenter.DoctorP(deptId, 4, 0, page, 4);
                 page1.setText(""+page);
+                break;
+            case R.id.more:
+                Intent intent = new Intent(getActivity(),PersonalActivity.class);
+                intent.putExtra("doctorId",doctorId);
+                startActivity(intent);
                 break;
         }
     }

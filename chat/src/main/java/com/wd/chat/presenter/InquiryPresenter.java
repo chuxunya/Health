@@ -2,6 +2,7 @@ package com.wd.chat.presenter;
 
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.wd.chat.bean.DoctorBean;
+import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.model.InquiryModel;
@@ -49,6 +50,22 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
             @Override
             public void onFailure(Throwable e) {
                 getView().onDoctorFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void InfoP(int userId, String sessionId, int doctorId) {
+        inquiryModel.InfoData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                DoctorInfoBean doctorInfoBean = (DoctorInfoBean)o;
+                getView().onInfoSuccess(doctorInfoBean);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onInfoFailure(e);
             }
         });
     }

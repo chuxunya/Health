@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.chat.bean.DoctorBean;
+import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
@@ -89,6 +90,16 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
 
     @Override
     public void onDoctorFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onInfoSuccess(DoctorInfoBean doctorInfoBean) {
+
+    }
+
+    @Override
+    public void onInfoFailure(Throwable e) {
 
     }
 }

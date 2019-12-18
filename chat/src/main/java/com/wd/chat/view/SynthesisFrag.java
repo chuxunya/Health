@@ -1,11 +1,13 @@
 package com.wd.chat.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.wd.chat.R;
 import com.wd.chat.bean.DoctorBean;
+import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
@@ -60,8 +63,11 @@ public class SynthesisFrag extends BaseFragment<InquiryPresenter> implements Con
     ImageView next;
     @BindView(R.id.page)
     TextView page1;
+    @BindView(R.id.line)
+    LinearLayout line;
     private int deptId;
     int page = 1;
+    private int doctorId;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -97,13 +103,14 @@ public class SynthesisFrag extends BaseFragment<InquiryPresenter> implements Con
         if (doctorBean.getStatus().equals("0000")) {
             List<DoctorBean.ResultBean> result = doctorBean.getResult();
             if (!result.isEmpty()) {
+                doctorId = result.get(0).getDoctorId();
                 Glide.with(getContext()).load(result.get(0).getImagePic()).into(img);
                 name.setText(result.get(0).getDoctorName() + "");
                 address.setText(result.get(0).getInauguralHospital());
                 good.setText("好评率 " + result.get(0).getPraise());
                 number.setText("服务患者数 " + result.get(0).getPraiseNum());
                 money.setText(result.get(0).getServicePrice() + "H币/次");
-                page1.setText(""+page);
+                page1.setText("" + page);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                 linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
                 recy.setLayoutManager(linearLayoutManager);
@@ -123,6 +130,7 @@ public class SynthesisFrag extends BaseFragment<InquiryPresenter> implements Con
                 myAdapter.setOnCLickListener(new MyAdapter.OnCLickListener() {
                     @Override
                     public void onclick(int position) {
+                        doctorId = result.get(position).getDoctorId();
                         Glide.with(getContext()).load(result.get(position).getImagePic()).into(img);
                         name.setText(result.get(position).getDoctorName() + "");
                         address.setText(result.get(position).getInauguralHospital());
@@ -146,18 +154,33 @@ public class SynthesisFrag extends BaseFragment<InquiryPresenter> implements Con
         Log.d(TAG, "onDoctorFailure: " + e.getMessage());
     }
 
-    @OnClick({R.id.up, R.id.next})
+    @Override
+    public void onInfoSuccess(DoctorInfoBean doctorInfoBean) {
+
+    }
+
+    @Override
+    public void onInfoFailure(Throwable e) {
+
+    }
+
+    @OnClick({R.id.up, R.id.next, R.id.more})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.up:
                 page = page - 1;
                 mPresenter.DoctorP(deptId, 1, 0, page, 4);
-                page1.setText(""+page);
+                page1.setText("" + page);
                 break;
             case R.id.next:
                 page++;
                 mPresenter.DoctorP(deptId, 1, 0, page, 4);
-                page1.setText(""+page);
+                page1.setText("" + page);
+                break;
+            case R.id.more:
+                Intent intent = new Intent(getActivity(),PersonalActivity.class);
+                intent.putExtra("doctorId",doctorId);
+                startActivity(intent);
                 break;
         }
     }
