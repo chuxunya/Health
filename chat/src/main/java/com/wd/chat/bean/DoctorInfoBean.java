@@ -9,8 +9,9 @@ import java.util.List;
  *@Description:医生详细信息
  **/
 public class DoctorInfoBean {
+
     /**
-     * result : {"badNum":0,"commentList":[],"commentNum":0,"doctorId":1,"doctorName":"张医生","doctorReceiveGiftList":[{"giftName":"鲜花","giftPic":"http://172.17.8.100/images/health/gift/gift1.jpg","meaning":"鲜花是一种认可","receiveNum":4,"worth":20},{"giftName":"奖杯","giftPic":"http://172.17.8.100/images/health/gift/gift3.jpg","meaning":"奖杯是一种荣誉","receiveNum":1,"worth":100}],"followFlag":2,"goodField":"各种儿童疑难杂症","imagePic":"http://172.17.8.100/images/health/doctor/system_image_pic/system_image2.jpg","inauguralHospital":"北京清华大学附属医院","jobTitle":"主治医师","personalProfile":"毕业于清华大学医学院，有五年的专业经验，多次获得奖项","praise":"0.00%","praiseNum":0,"serverNum":46,"servicePrice":500}
+     * result : {"badNum":28,"commentList":[{"commentTime":1575009104000,"content":"啊啊拍","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"},{"commentTime":1575008809000,"content":"啥时间到家","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"},{"commentTime":1574906149000,"content":"大巴","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"}],"commentNum":34,"doctorId":63,"doctorName":"杨帅","doctorReceiveGiftList":[{"giftName":"鲜花","giftPic":"http://172.17.8.100/images/health/gift/gift1.jpg","meaning":"鲜花是一种认可","receiveNum":3,"worth":20},{"giftName":"证书","giftPic":"http://172.17.8.100/images/health/gift/gift2.jpg","meaning":"证书是一种象征","receiveNum":2,"worth":50},{"giftName":"奖杯","giftPic":"http://172.17.8.100/images/health/gift/gift3.jpg","meaning":"奖杯是一种荣誉","receiveNum":7,"worth":100}],"followFlag":2,"goodField":"各种擅长","imagePic":"http://172.17.8.100/images/health/doctor/system_image_pic/system_image1.jpg","inauguralHospital":"北京人民医院","jobTitle":"住院医师","personalProfile":"菜鸡水平","praise":"50.00%","praiseNum":6,"serverNum":172,"servicePrice":500}
      * message : 查询成功
      * status : 0000
      */
@@ -54,21 +55,21 @@ public class DoctorInfoBean {
 
     public static class ResultBean {
         /**
-         * badNum : 0
-         * commentList : []
-         * commentNum : 0
-         * doctorId : 1
-         * doctorName : 张医生
-         * doctorReceiveGiftList : [{"giftName":"鲜花","giftPic":"http://172.17.8.100/images/health/gift/gift1.jpg","meaning":"鲜花是一种认可","receiveNum":4,"worth":20},{"giftName":"奖杯","giftPic":"http://172.17.8.100/images/health/gift/gift3.jpg","meaning":"奖杯是一种荣誉","receiveNum":1,"worth":100}]
+         * badNum : 28
+         * commentList : [{"commentTime":1575009104000,"content":"啊啊拍","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"},{"commentTime":1575008809000,"content":"啥时间到家","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"},{"commentTime":1574906149000,"content":"大巴","headPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg","nickName":"soqkWox"}]
+         * commentNum : 34
+         * doctorId : 63
+         * doctorName : 杨帅
+         * doctorReceiveGiftList : [{"giftName":"鲜花","giftPic":"http://172.17.8.100/images/health/gift/gift1.jpg","meaning":"鲜花是一种认可","receiveNum":3,"worth":20},{"giftName":"证书","giftPic":"http://172.17.8.100/images/health/gift/gift2.jpg","meaning":"证书是一种象征","receiveNum":2,"worth":50},{"giftName":"奖杯","giftPic":"http://172.17.8.100/images/health/gift/gift3.jpg","meaning":"奖杯是一种荣誉","receiveNum":7,"worth":100}]
          * followFlag : 2
-         * goodField : 各种儿童疑难杂症
-         * imagePic : http://172.17.8.100/images/health/doctor/system_image_pic/system_image2.jpg
-         * inauguralHospital : 北京清华大学附属医院
-         * jobTitle : 主治医师
-         * personalProfile : 毕业于清华大学医学院，有五年的专业经验，多次获得奖项
-         * praise : 0.00%
-         * praiseNum : 0
-         * serverNum : 46
+         * goodField : 各种擅长
+         * imagePic : http://172.17.8.100/images/health/doctor/system_image_pic/system_image1.jpg
+         * inauguralHospital : 北京人民医院
+         * jobTitle : 住院医师
+         * personalProfile : 菜鸡水平
+         * praise : 50.00%
+         * praiseNum : 6
+         * serverNum : 172
          * servicePrice : 500
          */
 
@@ -86,7 +87,7 @@ public class DoctorInfoBean {
         private int praiseNum;
         private int serverNum;
         private int servicePrice;
-        private List<?> commentList;
+        private List<CommentListBean> commentList;
         private List<DoctorReceiveGiftListBean> doctorReceiveGiftList;
 
         @Override
@@ -223,11 +224,11 @@ public class DoctorInfoBean {
             this.servicePrice = servicePrice;
         }
 
-        public List<?> getCommentList() {
+        public List<CommentListBean> getCommentList() {
             return commentList;
         }
 
-        public void setCommentList(List<?> commentList) {
+        public void setCommentList(List<CommentListBean> commentList) {
             this.commentList = commentList;
         }
 
@@ -239,12 +240,68 @@ public class DoctorInfoBean {
             this.doctorReceiveGiftList = doctorReceiveGiftList;
         }
 
+        public static class CommentListBean {
+            /**
+             * commentTime : 1575009104000
+             * content : 啊啊拍
+             * headPic : http://172.17.8.100/images/health/user/head_pic/default/default_head_5.jpg
+             * nickName : soqkWox
+             */
+
+            private long commentTime;
+            private String content;
+            private String headPic;
+            private String nickName;
+
+            @Override
+            public String toString() {
+                return "CommentListBean{" +
+                        "commentTime=" + commentTime +
+                        ", content='" + content + '\'' +
+                        ", headPic='" + headPic + '\'' +
+                        ", nickName='" + nickName + '\'' +
+                        '}';
+            }
+
+            public long getCommentTime() {
+                return commentTime;
+            }
+
+            public void setCommentTime(long commentTime) {
+                this.commentTime = commentTime;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public String getHeadPic() {
+                return headPic;
+            }
+
+            public void setHeadPic(String headPic) {
+                this.headPic = headPic;
+            }
+
+            public String getNickName() {
+                return nickName;
+            }
+
+            public void setNickName(String nickName) {
+                this.nickName = nickName;
+            }
+        }
+
         public static class DoctorReceiveGiftListBean {
             /**
              * giftName : 鲜花
              * giftPic : http://172.17.8.100/images/health/gift/gift1.jpg
              * meaning : 鲜花是一种认可
-             * receiveNum : 4
+             * receiveNum : 3
              * worth : 20
              */
 

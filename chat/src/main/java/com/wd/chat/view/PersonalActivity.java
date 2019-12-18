@@ -18,6 +18,7 @@ import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
+import com.wd.chat.utils.CommentAdapter;
 import com.wd.chat.utils.MyGiftAdapter;
 
 import java.util.List;
@@ -145,7 +146,12 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 scaddress.setText(result.getGoodField());
                 commitCount.setText("("+result.getCommentNum() + "条评论)");
                 if (result.getCommentNum() != 0) {
-
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(PersonalActivity.this);
+                    linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                    recyCommit.setLayoutManager(linearLayoutManager);
+                    List<DoctorInfoBean.ResultBean.CommentListBean> commentList = result.getCommentList();
+                    CommentAdapter commentAdapter = new CommentAdapter(commentList, PersonalActivity.this);
+                    recyCommit.setAdapter(commentAdapter);
                 }
             } else {
                 Toast.makeText(this, doctorInfoBean.getMessage(), Toast.LENGTH_SHORT).show();
