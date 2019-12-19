@@ -183,13 +183,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         beans = departmentBean.getResult();
         consultationAdapter = new ConsultationAdapter(beans,getContext());
         consultationRecy.setAdapter(consultationAdapter);
-    /*    consultationAdapter.onItemClickListener(new ConsultationAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(getContext(), InquiryMainActivity.class);
-                startActivity(intent);
-            }
-        });*/
+
     }
 
     //查询健康资讯

@@ -26,7 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * author: 席贵
  * data: 2019/12/15.
@@ -95,9 +94,7 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     @Override
                     public void onClick(View view) {
-                      /*  intent = new Intent(context, FindInfoActivity.class);
-                        intent.putExtra("in_id", resultBeans.get(position).getId());
-                        context.startActivity(intent);*/
+
                     }
                 });
                 break;

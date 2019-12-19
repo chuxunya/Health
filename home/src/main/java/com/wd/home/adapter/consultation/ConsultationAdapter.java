@@ -51,13 +51,6 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
                 .setImageRequest(build)
                 .build();
         viewholder1.simpleDraweeView.setController(draweeController);
-
-       /* viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnItemClickListener.onItemClick(i);
-            }
-        });*/
     }
 
     @Override
