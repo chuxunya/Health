@@ -7,6 +7,7 @@ import com.wd.aclass.R;
 
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -38,7 +39,7 @@ public class ThreeFragment extends BaseFragment<JiangtangPresenter> implements J
     protected void initData() {
         super.initData();
         player_three = getActivity().findViewById(R.id.player_three);
-        mPresenter.JiangVideo("435","1576651114347435","3","1","5");
+        mPresenter.JiangVideo("435","1576748581521435","3","1","5");
     }
 
     @Override
@@ -54,10 +55,23 @@ public class ThreeFragment extends BaseFragment<JiangtangPresenter> implements J
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_three.setLayoutManager(linearLayoutManager);
         player_three.setAdapter(videoAdapter);
+        //点击购买
+        videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
+            @Override
+            public void onCallBank(int id) {
+                Log.i("wodeship", "onCallBank: "+id);
+                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+            }
+        });
     }
 
     @Override
     public void AddVideo(AddVideoBean addVideoBean) {
+
+    }
+
+    @Override
+    public void BuyVideo(BuyVideoBean buyVideoBean) {
 
     }
 

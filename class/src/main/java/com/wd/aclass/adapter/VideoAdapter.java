@@ -34,6 +34,7 @@ import butterknife.OnClick;
 public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
     List<VideoBean.ResultBean> result;
     Context context;
+    private int ids;
 
 
     public VideoAdapter(List<VideoBean.ResultBean> result, Context context) {
@@ -73,6 +74,7 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         holder.video_title.setText(result.get(position).getTitle());
         holder.video_text.setText(result.get(position).getAbstracts());
 
+
         Log.i("originalUrlsss", "onBindViewHolder: "+originalUrl);
         String[] split = originalUrl.split(",");
         holder.video_view
@@ -108,19 +110,29 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         holder.qian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               new AlertDialog.Builder(context).setMessage("购买本视频将扣除500H币!")
-               .setPositiveButton("立即购买", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("购买本视频将扣除500H币!");
+                builder.setPositiveButton("立即购买", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ids = result.get(position).getId();
+                        Log.i("aposition", "onBindViewHolder: "+ ids);
+                        Toast.makeText(context, "购买成功", Toast.LENGTH_SHORT).show();
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
+                            public void onClick(View view) {
+                                setOnClickListent.onCallBank(ids);
                             }
-                        })
-                       .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialogInterface, int i) {
+                        });
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                           }
-                       }).show();
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -147,8 +159,16 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
             video_text = itemView.findViewById(R.id.video_text);
             qian = itemView.findViewById(R.id.qian);
 
-
         }
     }
 
+    public SetOnClickListent setOnClickListent;
+
+    public void setSetOnClickListent(SetOnClickListent setOnClickListent) {
+        this.setOnClickListent = setOnClickListent;
+    }
+
+    public  interface  SetOnClickListent{
+        void  onCallBank(int id);
+    }
 }

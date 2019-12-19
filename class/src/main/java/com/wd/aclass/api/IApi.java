@@ -9,6 +9,7 @@ package com.wd.aclass.api;
 
 
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 
@@ -29,4 +30,7 @@ public interface IApi {
     //收藏http://172.17.8.100/health/user/video/verify/v1/addUserVideoCollection
     @POST("health/user/video/verify/v1/addUserVideoCollection")
     Observable<AddVideoBean> addvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId);
+    //健康课堂视频购买http://172.17.8.100/health/user/video/verify/v1/videoBuy
+    @POST("health/user/video/verify/v1/videoBuy")
+    Observable<BuyVideoBean> buyvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId, @Query("price") String price);
 }

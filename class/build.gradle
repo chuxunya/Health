@@ -14,13 +14,13 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
 
 
         ndk {
-            abiFilters "armeabi","armeabi-v7a"
+            abiFilters "armeabi", "armeabi-v7a"
         }
     }
 

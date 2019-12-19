@@ -9,6 +9,7 @@ import com.wd.aclass.R;
 
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -40,7 +41,7 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
     protected void initData() {
         super.initData();
         player_two = getActivity().findViewById(R.id.player_two);
-        mPresenter.JiangVideo("435","1576651114347435","2","1","5");
+        mPresenter.JiangVideo("435","1576748581521435","2","1","5");
     }
 
     @Override
@@ -56,10 +57,23 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_two.setLayoutManager(linearLayoutManager);
         player_two.setAdapter(videoAdapter);
+        //点击购买
+        videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
+            @Override
+            public void onCallBank(int id) {
+                Log.i("wodeship", "onCallBank: "+id);
+                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+            }
+        });
     }
 
     @Override
     public void AddVideo(AddVideoBean addVideoBean) {
+
+    }
+
+    @Override
+    public void BuyVideo(BuyVideoBean buyVideoBean) {
 
     }
 

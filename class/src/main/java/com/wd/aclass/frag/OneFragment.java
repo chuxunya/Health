@@ -15,6 +15,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.wd.aclass.R;
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -45,8 +46,8 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
         super.initData();
         cb_collecte = getActivity().findViewById(R.id.cb_collecte);
         player_one = getActivity().findViewById(R.id.player_one);
-        mPresenter.JiangVideo("435","1576651114347435","1","1","10");
-        mPresenter.AddVideo("435","1576651114347435","1");
+        mPresenter.JiangVideo("435","1576748581521435","1","1","10");
+        mPresenter.AddVideo("435","1576748581521435","1");
     }
 
     @Override
@@ -62,12 +63,28 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_one.setLayoutManager(linearLayoutManager);
         player_one.setAdapter(videoAdapter);
+        //点击购买
+        videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
+            @Override
+            public void onCallBank(int id) {
+                Log.i("wodeship", "onCallBank: "+id);
+                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+            }
+        });
+    }
+
+    //收藏
+    @Override
+    public void AddVideo(AddVideoBean addVideoBean) {
 
     }
 
+    //购买
     @Override
-    public void AddVideo(AddVideoBean addVideoBean) {
-        String status1 = addVideoBean.getMessage();
+    public void BuyVideo(BuyVideoBean buyVideoBean) {
+        String message = buyVideoBean.getMessage();
+        Log.i("message", "BuyVideo: "+message);
+
 
     }
 

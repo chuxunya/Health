@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -28,7 +29,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
-public class MainActivity extends BaseActivity<JiangtangPresenter> implements JiangtangContract.Iview {
+public class VideoActivity extends BaseActivity<JiangtangPresenter> implements JiangtangContract.Iview {
 
 
     private List<VideoBean.ResultBean> result;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
 
     @Override
     protected int provideLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_video;
     }
 
     @Override
@@ -128,6 +129,11 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
 
     @Override
     public void AddVideo(AddVideoBean addVideoBean) {
+
+    }
+
+    @Override
+    public void BuyVideo(BuyVideoBean buyVideoBean) {
 
     }
 

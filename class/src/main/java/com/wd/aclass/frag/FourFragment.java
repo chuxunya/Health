@@ -1,5 +1,7 @@
 package com.wd.aclass.frag;
 
+import android.util.Log;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +10,7 @@ import com.wd.aclass.R;
 
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -35,7 +38,7 @@ public class FourFragment extends BaseFragment<JiangtangPresenter> implements Ji
     protected void initData() {
         super.initData();
         player_four = getActivity().findViewById(R.id.player_four);
-        mPresenter.JiangVideo("435","1576651114347435","4","1","10");
+        mPresenter.JiangVideo("435","1576748581521435","4","1","10");
     }
 
     @Override
@@ -50,11 +53,23 @@ public class FourFragment extends BaseFragment<JiangtangPresenter> implements Ji
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_four.setLayoutManager(linearLayoutManager);
         player_four.setAdapter(videoAdapter);
-
+        //点击购买
+        videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
+            @Override
+            public void onCallBank(int id) {
+                Log.i("wodeship", "onCallBank: "+id);
+                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+            }
+        });
     }
 
     @Override
     public void AddVideo(AddVideoBean addVideoBean) {
+
+    }
+
+    @Override
+    public void BuyVideo(BuyVideoBean buyVideoBean) {
 
     }
 
