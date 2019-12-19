@@ -24,5 +24,5 @@ public interface IApi {
     //根据视频类目查询视频列表http://172.17.8.100/health/user/video/v1/findVideoVoList?categoryId=1&page=1&count=5
     @GET("http://172.17.8.100/health/user/video/v1/findVideoVoList")
     Observable<VideoBean> jiangvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("categoryId") String categoryId, @Query("page") String page, @Query("count") String count);
-
+    //收藏http://172.17.8.100/health/user/video/verify/v1/addUserVideoCollection
 }

@@ -14,9 +14,13 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath true
                 arguments = [ AROUTER_MODULE_NAME : project.getName() ]
             }
+        }
+
+
+        ndk {
+            abiFilters "armeabi","armeabi-v7a"
         }
     }
 
@@ -30,6 +34,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
 }
 
 dependencies {
@@ -43,21 +49,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':mylibrary')
 
-    //glide依赖
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation rootProject.ext.dependencies["jiaozivideoplayer"]
+    implementation rootProject.ext.dependencies["ijkplayer"]
+    implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
+    implementation rootProject.ext.dependencies["ijkplayerexo"]
+    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
 
-//    # 必选，可兼容市面上绝大部分设备
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.5'
-
-//    # 可选，用于兼容一些其他的CPU架构
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.5'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
-//    # 可选，里面包含StandardVideoController的实现
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.5'
     //今日头条适配
     implementation 'me.jessyan:autosize:0.9.1'
 

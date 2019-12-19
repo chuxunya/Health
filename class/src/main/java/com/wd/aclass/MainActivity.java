@@ -1,5 +1,9 @@
 package com.wd.aclass;
 
+import android.animation.ObjectAnimator;
+import android.view.View;
+import android.widget.CheckBox;
+
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.aclass.bean.JiangtangBean;
@@ -29,7 +33,7 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
     private List<VideoBean.ResultBean> result;
     private TabLayout jiang_tab;
     private ViewPager video_one;
-
+    private CheckBox drop_down;
 
 
     @Override
@@ -45,6 +49,7 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
     @Override
     protected void initData() {
         super.initData();
+        drop_down = findViewById(R.id.drop_down);
         video_one = findViewById(R.id.video_vp);
         jiang_tab = findViewById(R.id.jiang_tab);
         List<Fragment> fraglist=new ArrayList<>();
@@ -83,6 +88,32 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
         });
         jiang_tab.setupWithViewPager(video_one);
 
+        /*drop_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()){
+                    case R.id.drop_down:
+                        if (drop_down.isChecked()) {
+                    float translationY = view.getTranslationY();
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, -120f);
+                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
+                    animator.setDuration(500);
+                    animator1.setDuration(500);
+                    animator.start();
+                    animator1.start();
+                } else {
+                    float translationY = view.getTranslationY();
+                    ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, 0f);
+                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
+                    animator.setDuration(500);
+                    animator1.setDuration(500);
+                    animator.start();
+                    animator1.start();
+               }
+                        break;
+                }
+            }
+        });*/
     }
 
     @Override
