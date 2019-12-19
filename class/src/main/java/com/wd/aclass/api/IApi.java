@@ -8,12 +8,14 @@ package com.wd.aclass.api;
 
 
 
+import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -25,4 +27,6 @@ public interface IApi {
     @GET("http://172.17.8.100/health/user/video/v1/findVideoVoList")
     Observable<VideoBean> jiangvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("categoryId") String categoryId, @Query("page") String page, @Query("count") String count);
     //收藏http://172.17.8.100/health/user/video/verify/v1/addUserVideoCollection
+    @POST("health/user/video/verify/v1/addUserVideoCollection")
+    Observable<AddVideoBean> addvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId);
 }

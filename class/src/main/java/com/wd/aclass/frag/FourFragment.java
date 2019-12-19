@@ -7,6 +7,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.wd.aclass.R;
 
 import com.wd.aclass.adapter.VideoAdapter;
+import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -49,6 +50,11 @@ public class FourFragment extends BaseFragment<JiangtangPresenter> implements Ji
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_four.setLayoutManager(linearLayoutManager);
         player_four.setAdapter(videoAdapter);
+
+    }
+
+    @Override
+    public void AddVideo(AddVideoBean addVideoBean) {
 
     }
 

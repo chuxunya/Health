@@ -6,6 +6,7 @@ import android.widget.CheckBox;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
+import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
         });
         jiang_tab.setupWithViewPager(video_one);
 
-        /*drop_down.setOnClickListener(new View.OnClickListener() {
+        drop_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
@@ -113,7 +114,7 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
                         break;
                 }
             }
-        });*/
+        });
     }
 
     @Override
@@ -123,6 +124,11 @@ public class MainActivity extends BaseActivity<JiangtangPresenter> implements Ji
 
     @Override
     public void JiangVideo(VideoBean videoBean) {
+    }
+
+    @Override
+    public void AddVideo(AddVideoBean addVideoBean) {
+
     }
 
     @Override

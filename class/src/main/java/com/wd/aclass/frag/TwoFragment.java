@@ -8,6 +8,7 @@ import com.wd.aclass.R;
 
 
 import com.wd.aclass.adapter.VideoAdapter;
+import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -55,6 +56,11 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_two.setLayoutManager(linearLayoutManager);
         player_two.setAdapter(videoAdapter);
+    }
+
+    @Override
+    public void AddVideo(AddVideoBean addVideoBean) {
+
     }
 
     @Override

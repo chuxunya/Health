@@ -7,6 +7,8 @@
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.dou361.ijkplayer.widget.IjkVideoView>
+
+
     <ImageView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -23,19 +25,21 @@
         android:layout_width="30dp"
         android:layout_height="30dp"/>
 
+
+
     <CheckBox
         android:id="@+id/cb_collecte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qian"
+        android:background="@drawable/video_selector_collecte"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:background="@mipmap/common_button_collection_large_n"
-        android:button="@null" />
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/qian"
+        android:button="@null"
+        android:layout_width="30dp"
+        android:layout_height="30dp"/>
     <CheckBox
         android:id="@+id/cb_barrage"
-        android:background="@mipmap/common_icon_close_live_commenting_n"
+        android:background="@drawable/video_common_icon_open_live_commenting_n"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
@@ -43,4 +47,22 @@
         android:button="@null"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
+
+    <TextView
+        android:id="@+id/video_title"
+        android:text="lly"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/video_text"
+        android:text="lly"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

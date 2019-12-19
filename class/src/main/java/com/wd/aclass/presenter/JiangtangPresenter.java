@@ -7,6 +7,7 @@ package com.wd.aclass.presenter;
  **/
 
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
+import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -35,6 +36,11 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
             }
 
             @Override
+            public void AddVideo(AddVideoBean addVideoBean) {
+
+            }
+
+            @Override
             public void onFraily(String e) {
                 getView().onFraily(e);
             }
@@ -52,6 +58,36 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
             @Override
             public void JiangVideo(VideoBean videoBean) {
                 getView().JiangVideo(videoBean);
+            }
+
+            @Override
+            public void AddVideo(AddVideoBean addVideoBean) {
+
+            }
+
+            @Override
+            public void onFraily(String e) {
+
+            }
+        });
+    }
+
+    @Override
+    public void AddVideo(String userId, String sessionId, String videoId) {
+        jiangtangModel.AddVideo(userId, sessionId, videoId, new JiangtangContract.Imodel.IModelCallBack() {
+            @Override
+            public void jiangtang(JiangtangBean jiangtangBean) {
+
+            }
+
+            @Override
+            public void JiangVideo(VideoBean videoBean) {
+
+            }
+
+            @Override
+            public void AddVideo(AddVideoBean addVideoBean) {
+                getView().AddVideo(addVideoBean);
             }
 
             @Override
