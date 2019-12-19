@@ -5,8 +5,13 @@ import com.bawei.lizekai.mylibrary.utils.CommonSchedulers;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 import com.wd.chat.utils.RetrofitManager;
 import com.wd.chat.contract.Contract;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /*
  *@auther:王可欣
@@ -61,6 +66,42 @@ public class InquiryModel implements Contract.IModel {
                     @Override
                     public void onNext(DoctorInfoBean doctorInfoBean) {
                         iContractCallBack.onSuccess(doctorInfoBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void followData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create()
+                .getfollow(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<LikeBean>() {
+                    @Override
+                    public void onNext(LikeBean likeBean) {
+                        iContractCallBack.onSuccess(likeBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void canceData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create()
+                .getcancel(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<NoLikeBean>() {
+                    @Override
+                    public void onNext(NoLikeBean noLikeBean) {
+                        iContractCallBack.onSuccess(noLikeBean);
                     }
 
                     @Override

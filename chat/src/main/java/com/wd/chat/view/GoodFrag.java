@@ -18,6 +18,8 @@ import com.wd.chat.R;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
 import com.wd.chat.utils.MyAdapter;
@@ -163,6 +165,26 @@ public class GoodFrag extends BaseFragment<InquiryPresenter> implements Contract
 
     @Override
     public void onInfoFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onfollowSuccess(LikeBean likeBean) {
+
+    }
+
+    @Override
+    public void onfollowFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void oncancelSuccess(NoLikeBean noLikeBean) {
+
+    }
+
+    @Override
+    public void oncancelFailure(Throwable e) {
 
     }
 

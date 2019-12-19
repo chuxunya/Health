@@ -3,10 +3,14 @@ package com.wd.chat.app;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /*
@@ -25,4 +29,10 @@ public interface ApiService {
     //http://172.17.8.100/health/user/inquiry/v1/findDoctorInfo查询医生明细信息
     @GET("health/user/inquiry/v1/findDoctorInfo")
     Observable<DoctorInfoBean> getInfo(@Header("userId") int userId, @Header("sessionId")String sessionId, @Query("doctorId")int doctorId);
+    //http://172.17.8.100/health/user/inquiry/verify/v1/followDoctor关注医生
+    @POST("health/user/inquiry/verify/v1/followDoctor")
+    Observable<LikeBean> getfollow(@Header("userId") int userId, @Header("sessionId")String sessionId, @Query("doctorId")int doctorId);
+    //http://172.17.8.100/health/user/inquiry/verify/v1/cancelFollow取消关注医生
+    @DELETE("health/user/inquiry/verify/v1/cancelFollow")
+    Observable<NoLikeBean> getcancel(@Header("userId") int userId, @Header("sessionId")String sessionId, @Query("doctorId")int doctorId);
 }

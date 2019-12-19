@@ -4,6 +4,8 @@ import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.model.InquiryModel;
 
@@ -66,6 +68,38 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
             @Override
             public void onFailure(Throwable e) {
                 getView().onInfoFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void followP(int userId, String sessionId, int doctorId, Contract.IModel.IContractCallBack iContractCallBack) {
+        inquiryModel.followData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                LikeBean likeBean = (LikeBean)o;
+                getView().onfollowSuccess(likeBean);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onfollowFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void canceP(int userId, String sessionId, int doctorId, Contract.IModel.IContractCallBack iContractCallBack) {
+        inquiryModel.canceData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                NoLikeBean noLikeBean = (NoLikeBean)o;
+                getView().oncancelSuccess(noLikeBean);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().oncancelFailure(e);
             }
         });
     }

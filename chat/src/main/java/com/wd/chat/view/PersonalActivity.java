@@ -1,6 +1,7 @@
 package com.wd.chat.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,8 @@ import com.wd.chat.R;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
 import com.wd.chat.utils.CommentAdapter;
@@ -76,8 +79,12 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     TextView price;
     @BindView(R.id.go_now)
     Button goNow;
+    @BindView(R.id.nolike)
+    ImageView nolike;
 
     private int doctorId;
+    private int userId;
+    private String sesssionId;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -94,7 +101,14 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         super.initData();
         Intent intent = getIntent();
         doctorId = intent.getIntExtra("doctorId", 0);
-        mPresenter.InfoP(0, null, doctorId);
+        SharedPreferences user = getSharedPreferences("user", MODE_PRIVATE);
+        userId = user.getInt("userId", 0);
+        sesssionId = user.getString("sesssionId", "");
+        if (userId != 0 && !sesssionId.isEmpty()) {
+            mPresenter.InfoP(userId, sesssionId, doctorId);
+        } else {
+            mPresenter.InfoP(0, null, doctorId);
+        }
     }
 
     @Override
@@ -177,8 +191,43 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         Log.d(TAG, "onInfoFailure: " + e.getMessage().toString());
     }
 
+    @Override
+    public void onfollowSuccess(LikeBean likeBean) {
+
+    }
+
+    @Override
+    public void onfollowFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void oncancelSuccess(NoLikeBean noLikeBean) {
+
+    }
+
+    @Override
+    public void oncancelFailure(Throwable e) {
+
+    }
+
     @OnClick(R.id.back)
     public void onViewClicked() {
         finish();
+    }
+
+    @OnClick({R.id.nolike, R.id.like})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.nolike:
+                if (userId != 0 && !sesssionId.isEmpty()) {
+
+                }else {
+                    Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.like:
+                break;
+        }
     }
 }

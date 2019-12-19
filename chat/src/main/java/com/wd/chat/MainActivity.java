@@ -1,5 +1,6 @@
 package com.wd.chat;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -9,6 +10,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
+import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.NoLikeBean;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
 import com.wd.chat.utils.MySickAdapter;
@@ -37,6 +40,10 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
     @BindView(R.id.pager)
     ViewPager pager;
     private ArrayList<String> list=new ArrayList<>();
+    String sesssionId = "1576720687367475";
+    int userId = 475;
+    private SharedPreferences.Editor edit;
+    private SharedPreferences sp;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -52,6 +59,10 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
     protected void initData() {
         super.initData();
         mPresenter.DepartmentP();
+        sp = getSharedPreferences("user", MODE_PRIVATE);
+        edit = sp.edit();
+        edit.putInt("userId",userId).commit();
+        edit.putString("sesssionId",sesssionId).commit();
     }
 
     @Override
@@ -101,6 +112,26 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
 
     @Override
     public void onInfoFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onfollowSuccess(LikeBean likeBean) {
+
+    }
+
+    @Override
+    public void onfollowFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void oncancelSuccess(NoLikeBean noLikeBean) {
+
+    }
+
+    @Override
+    public void oncancelFailure(Throwable e) {
 
     }
 }
