@@ -87,6 +87,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     private int doctorId;
     private int userId;
     private String sesssionId;
+    private int servicePrice;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -144,7 +145,8 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                     nolike.setVisibility(View.GONE);
                     like.setVisibility(View.VISIBLE);
                 }
-                price.setText(result.getServicePrice() + "H币/次");
+                servicePrice = result.getServicePrice();
+                price.setText( servicePrice + "H币/次");
                 Glide.with(this).load(result.getImagePic()).into(headImg);
                 name.setText(result.getDoctorName());
                 work.setText(result.getJobTitle());
@@ -230,22 +232,48 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
 
     @Override
     public void onNowSuccess(NowIMS nowIMS) {
+        Log.d(TAG, "onNowSuccess: "+nowIMS);
+        if (nowIMS!=null){
+            if (nowIMS.getMessage().equals("当前无问诊")){
+                mPresenter.MoneyP(userId,sesssionId);
+            }else {
+                //弹框提示您尚有咨询在进行中  去结束/取消
 
+
+            }
+        }else {
+            Toast.makeText(this, nowIMS.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onNowFailure(Throwable e) {
-
+        Log.d(TAG, "onNowFailure: "+e.getMessage());
     }
 
     @Override
     public void onMoneySuccess(MyMoneyBean myMoneyBean) {
+        Log.d(TAG, "onMoneySuccess: "+myMoneyBean);
+        if (myMoneyBean!=null){
+            int result = myMoneyBean.getResult();
+            if (result>servicePrice){
 
+                //提示扣除H币 取消/去咨询
+                //跳转到聊天页面
+
+            }else {
+                //弹框提示H币不足 去充值/取消
+
+
+            }
+        }else {
+            Toast.makeText(this, myMoneyBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onMoneyFailure(Throwable e) {
-
+        Log.d(TAG, "onMoneyFailure: "+e.getMessage());
     }
 
     @OnClick({R.id.back, R.id.nolike, R.id.like, R.id.go_now})
@@ -267,7 +295,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 }
                 break;
             case R.id.go_now:
-
+                mPresenter.NowP(userId,sesssionId);
                 break;
         }
     }
