@@ -137,6 +137,11 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         if (doctorInfoBean.getStatus().equals("0000")) {
             DoctorInfoBean.ResultBean result = doctorInfoBean.getResult();
             if (result != null) {
+                int followFlag = result.getFollowFlag();
+                if (followFlag==1){
+                    nolike.setVisibility(View.GONE);
+                    like.setVisibility(View.VISIBLE);
+                }
                 price.setText(result.getServicePrice() + "H币/次");
                 Glide.with(this).load(result.getImagePic()).into(headImg);
                 name.setText(result.getDoctorName());
@@ -193,22 +198,32 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
 
     @Override
     public void onfollowSuccess(LikeBean likeBean) {
-
+        Log.d(TAG, "onfollowSuccess: "+likeBean);
+        if(likeBean.getStatus().equals("0000")){
+            nolike.setVisibility(View.GONE);
+            like.setVisibility(View.VISIBLE);
+            Toast.makeText(this,likeBean.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onfollowFailure(Throwable e) {
-
+        Log.d(TAG, "onfollowFailure: "+e.getMessage());
     }
 
     @Override
     public void oncancelSuccess(NoLikeBean noLikeBean) {
-
+        Log.d(TAG, "oncancelSuccess: "+noLikeBean);
+        if(noLikeBean.getStatus().equals("0000")){
+            nolike.setVisibility(View.VISIBLE);
+            like.setVisibility(View.GONE);
+            Toast.makeText(this,noLikeBean.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void oncancelFailure(Throwable e) {
-
+        Log.d(TAG, "oncancelFailure: "+e.getMessage());
     }
 
     @OnClick(R.id.back)
@@ -221,12 +236,15 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         switch (view.getId()) {
             case R.id.nolike:
                 if (userId != 0 && !sesssionId.isEmpty()) {
-
+                    mPresenter.followP(userId, sesssionId, doctorId);
                 }else {
                     Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.like:
+                if (userId != 0 && !sesssionId.isEmpty()) {
+                    mPresenter.canceP(userId, sesssionId, doctorId);
+                }
                 break;
         }
     }

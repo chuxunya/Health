@@ -73,7 +73,7 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
     }
 
     @Override
-    public void followP(int userId, String sessionId, int doctorId, Contract.IModel.IContractCallBack iContractCallBack) {
+    public void followP(int userId, String sessionId, int doctorId) {
         inquiryModel.followData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
             @Override
             public void onSuccess(Object o) {
@@ -89,7 +89,7 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
     }
 
     @Override
-    public void canceP(int userId, String sessionId, int doctorId, Contract.IModel.IContractCallBack iContractCallBack) {
+    public void canceP(int userId, String sessionId, int doctorId) {
         inquiryModel.canceData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
             @Override
             public void onSuccess(Object o) {
@@ -103,5 +103,4 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
             }
         });
     }
-
 }

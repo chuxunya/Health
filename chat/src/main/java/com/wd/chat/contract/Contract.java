@@ -47,7 +47,7 @@ public interface Contract {
         void DepartmentP();
         void DoctorP(int deptId, int condition, int sortBy, int page, int count);
         void InfoP(int userId, String sessionId, int doctorId);
-        void followP(int userId, String sessionId, int doctorId, IModel.IContractCallBack iContractCallBack);
-        void canceP(int userId, String sessionId, int doctorId, IModel.IContractCallBack iContractCallBack);
+        void followP(int userId, String sessionId, int doctorId);
+        void canceP(int userId, String sessionId, int doctorId);
     }
 }
