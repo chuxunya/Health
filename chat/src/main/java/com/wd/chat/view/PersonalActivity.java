@@ -18,7 +18,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
 import com.wd.chat.utils.CommentAdapter;
@@ -138,7 +140,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
             DoctorInfoBean.ResultBean result = doctorInfoBean.getResult();
             if (result != null) {
                 int followFlag = result.getFollowFlag();
-                if (followFlag==1){
+                if (followFlag == 1) {
                     nolike.setVisibility(View.GONE);
                     like.setVisibility(View.VISIBLE);
                 }
@@ -198,53 +200,74 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
 
     @Override
     public void onfollowSuccess(LikeBean likeBean) {
-        Log.d(TAG, "onfollowSuccess: "+likeBean);
-        if(likeBean.getStatus().equals("0000")){
+        Log.d(TAG, "onfollowSuccess: " + likeBean);
+        if (likeBean.getStatus().equals("0000")) {
             nolike.setVisibility(View.GONE);
             like.setVisibility(View.VISIBLE);
-            Toast.makeText(this,likeBean.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, likeBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onfollowFailure(Throwable e) {
-        Log.d(TAG, "onfollowFailure: "+e.getMessage());
+        Log.d(TAG, "onfollowFailure: " + e.getMessage());
     }
 
     @Override
     public void oncancelSuccess(NoLikeBean noLikeBean) {
-        Log.d(TAG, "oncancelSuccess: "+noLikeBean);
-        if(noLikeBean.getStatus().equals("0000")){
+        Log.d(TAG, "oncancelSuccess: " + noLikeBean);
+        if (noLikeBean.getStatus().equals("0000")) {
             nolike.setVisibility(View.VISIBLE);
             like.setVisibility(View.GONE);
-            Toast.makeText(this,noLikeBean.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, noLikeBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void oncancelFailure(Throwable e) {
-        Log.d(TAG, "oncancelFailure: "+e.getMessage());
+        Log.d(TAG, "oncancelFailure: " + e.getMessage());
     }
 
-    @OnClick(R.id.back)
-    public void onViewClicked() {
-        finish();
+    @Override
+    public void onNowSuccess(NowIMS nowIMS) {
+
     }
 
-    @OnClick({R.id.nolike, R.id.like})
+    @Override
+    public void onNowFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onMoneySuccess(MyMoneyBean myMoneyBean) {
+
+    }
+
+    @Override
+    public void onMoneyFailure(Throwable e) {
+
+    }
+
+    @OnClick({R.id.back, R.id.nolike, R.id.like, R.id.go_now})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
             case R.id.nolike:
                 if (userId != 0 && !sesssionId.isEmpty()) {
                     mPresenter.followP(userId, sesssionId, doctorId);
-                }else {
-                    Toast.makeText(this,"请先登录",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.like:
                 if (userId != 0 && !sesssionId.isEmpty()) {
                     mPresenter.canceP(userId, sesssionId, doctorId);
                 }
+                break;
+            case R.id.go_now:
+
                 break;
         }
     }

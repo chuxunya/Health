@@ -5,7 +5,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 
 import retrofit2.http.Query;
 
@@ -31,6 +33,12 @@ public interface Contract {
 
         void oncancelSuccess(NoLikeBean noLikeBean);
         void oncancelFailure(Throwable e);
+
+        void onNowSuccess(NowIMS nowIMS);
+        void onNowFailure(Throwable e);
+
+        void onMoneySuccess(MyMoneyBean myMoneyBean);
+        void onMoneyFailure(Throwable e);
     }
     interface IModel{
         void DepartmentData(IContractCallBack iContractCallBack);
@@ -38,6 +46,8 @@ public interface Contract {
         void InfoData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
         void followData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
         void canceData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
+        void NowData( int userId,String sessionId,IContractCallBack iContractCallBack);
+        void MoneyData( int userId,String sessionId,IContractCallBack iContractCallBack);
         interface IContractCallBack{
             void onSuccess(Object o);
             void onFailure(Throwable e);
@@ -49,5 +59,7 @@ public interface Contract {
         void InfoP(int userId, String sessionId, int doctorId);
         void followP(int userId, String sessionId, int doctorId);
         void canceP(int userId, String sessionId, int doctorId);
+        void NowP(int userId, String sessionId);
+        void MoneyP(int userId, String sessionId);
     }
 }

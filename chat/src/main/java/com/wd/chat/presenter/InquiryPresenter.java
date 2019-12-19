@@ -5,7 +5,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.model.InquiryModel;
 
@@ -100,6 +102,38 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
             @Override
             public void onFailure(Throwable e) {
                 getView().oncancelFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void NowP(int userId, String sessionId) {
+        inquiryModel.NowData(userId, sessionId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                NowIMS nowIMS = (NowIMS)o;
+                getView().onNowSuccess(nowIMS);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onNowFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void MoneyP(int userId, String sessionId) {
+        inquiryModel.MoneyData(userId, sessionId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                MyMoneyBean myMoneyBean = (MyMoneyBean)o;
+                getView().onMoneySuccess(myMoneyBean);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onMoneyFailure(e);
             }
         });
     }

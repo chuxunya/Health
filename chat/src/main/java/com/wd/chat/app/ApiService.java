@@ -4,7 +4,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 
 import io.reactivex.Observable;
 import retrofit2.http.DELETE;
@@ -35,4 +37,10 @@ public interface ApiService {
     //http://172.17.8.100/health/user/inquiry/verify/v1/cancelFollow取消关注医生
     @DELETE("health/user/inquiry/verify/v1/cancelFollow")
     Observable<NoLikeBean> getcancel(@Header("userId") int userId, @Header("sessionId")String sessionId, @Query("doctorId")int doctorId);
+    //http://172.17.8.100/health/user/inquiry/verify/v1/findCurrentInquiryRecord用户查看当前问诊
+    @GET("health/user/inquiry/verify/v1/findCurrentInquiryRecord")
+    Observable<NowIMS> getNow(@Header("userId") int userId, @Header("sessionId")String sessionId);
+    //http://172.17.8.100/health/user/verify/v1/findUserWallet我的钱包
+    @GET("health/user/verify/v1/findUserWallet")
+    Observable<MyMoneyBean> getMoney(@Header("userId") int userId, @Header("sessionId")String sessionId);
 }

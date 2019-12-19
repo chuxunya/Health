@@ -6,7 +6,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 import com.wd.chat.utils.RetrofitManager;
 import com.wd.chat.contract.Contract;
 
@@ -102,6 +104,42 @@ public class InquiryModel implements Contract.IModel {
                     @Override
                     public void onNext(NoLikeBean noLikeBean) {
                         iContractCallBack.onSuccess(noLikeBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void NowData(int userId, String sessionId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create()
+                .getNow(userId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<NowIMS>() {
+                    @Override
+                    public void onNext(NowIMS nowIMS) {
+                        iContractCallBack.onSuccess(nowIMS);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void MoneyData(int userId, String sessionId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create()
+                .getMoney(userId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<MyMoneyBean>() {
+                    @Override
+                    public void onNext(MyMoneyBean myMoneyBean) {
+                        iContractCallBack.onSuccess(myMoneyBean);
                     }
 
                     @Override

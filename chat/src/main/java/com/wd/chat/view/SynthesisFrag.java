@@ -18,7 +18,9 @@ import com.wd.chat.bean.DoctorBean;
 import com.wd.chat.bean.DoctorInfoBean;
 import com.wd.chat.bean.FindDepartmentBean;
 import com.wd.chat.bean.LikeBean;
+import com.wd.chat.bean.MyMoneyBean;
 import com.wd.chat.bean.NoLikeBean;
+import com.wd.chat.bean.NowIMS;
 import com.wd.chat.contract.Contract;
 import com.wd.chat.presenter.InquiryPresenter;
 import com.wd.chat.utils.MyAdapter;
@@ -183,6 +185,26 @@ public class SynthesisFrag extends BaseFragment<InquiryPresenter> implements Con
 
     @Override
     public void oncancelFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onNowSuccess(NowIMS nowIMS) {
+
+    }
+
+    @Override
+    public void onNowFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onMoneySuccess(MyMoneyBean myMoneyBean) {
+
+    }
+
+    @Override
+    public void onMoneyFailure(Throwable e) {
 
     }
 
