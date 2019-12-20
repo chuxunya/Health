@@ -1,8 +1,10 @@
-package com.wd.imps;
+package com.wd.health;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.wd.imps.R;
 
 public class IMPSActivity extends AppCompatActivity {
 
