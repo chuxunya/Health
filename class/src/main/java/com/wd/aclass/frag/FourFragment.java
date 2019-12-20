@@ -1,11 +1,16 @@
 package com.wd.aclass.frag;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.lizekai.mylibrary.base.BaseFragment;
+import com.dueeeke.videoplayer.player.IjkVideoView;
+import com.wd.aclass.PagerLayoutManager;
 import com.wd.aclass.R;
 
 import com.wd.aclass.adapter.VideoAdapter;
@@ -22,7 +27,9 @@ import java.util.List;
 public class FourFragment extends BaseFragment<JiangtangPresenter> implements JiangtangContract.Iview {
 
     private List<VideoBean.ResultBean> result;
-
+    private CheckBox cb_collecte;
+    private VideoAdapter videoAdapter;
+    private IjkVideoView mVideoView;
     private RecyclerView player_four;
     @Override
     protected JiangtangPresenter providePresenter() {
@@ -49,25 +56,68 @@ public class FourFragment extends BaseFragment<JiangtangPresenter> implements Ji
     @Override
     public void JiangVideo(VideoBean videoBean) {
         List<VideoBean.ResultBean> result = videoBean.getResult();
-        VideoAdapter videoAdapter = new VideoAdapter(result, getActivity());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        player_four.setLayoutManager(linearLayoutManager);
+        PagerLayoutManager mLayoutManager = new PagerLayoutManager(getActivity(), OrientationHelper.VERTICAL);
+        player_four.setLayoutManager(mLayoutManager);
+        videoAdapter = new VideoAdapter(result, getActivity());
         player_four.setAdapter(videoAdapter);
         //点击购买
         videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
             @Override
             public void onCallBank(int id) {
-                Log.i("wodeship", "onCallBank: "+id);
-                mPresenter.BuyVideo( id+"","100");
+                Log.i("goumai", "onCallBank: "+id);
+                mPresenter.BuyVideo(   id+"","100");
             }
         });
         //回调收藏
         videoAdapter.setSetAddListen(new VideoAdapter.SetAddListen() {
             @Override
             public void onAddCallBack(int id) {
+                Log.i("tAddListen", "onAddCallBack: "+id);
                 mPresenter.AddVideo( id+"");
             }
         });
+        mLayoutManager.setOnViewPagerListener(new PagerLayoutManager.OnViewPagerListener() {
+            @Override
+            public void onInitComplete(View view) {
+                playVideo(0, view);
+            }
+
+            @Override
+            public void onPageSelected(int position, boolean isBottom, View view) {
+                playVideo(position, view);
+            }
+
+            @Override
+            public void onPageRelease(boolean isNext, int position, View view) {
+                int index = 0;
+                if (isNext) {
+                    index = 0;
+                } else {
+                    index = 1;
+                }
+                releaseVideo(view);
+            }
+        });
+    }
+
+    /**
+     * 播放视频
+     */
+    private void playVideo(int position, View view) {
+        if (view != null) {
+            mVideoView = view.findViewById(R.id.video_view);
+            mVideoView.start();
+        }
+    }
+
+    /**
+     * 停止播放
+     */
+    private void releaseVideo(View view) {
+        if (view != null) {
+            IjkVideoView videoView = view.findViewById(R.id.video_view);
+            videoView.stopPlayback();
+        }
     }
 
     @Override

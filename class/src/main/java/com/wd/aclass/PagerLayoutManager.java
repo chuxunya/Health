@@ -49,7 +49,7 @@ public class PagerLayoutManager extends LinearLayoutManager {
     /**
      * 滑动状态的改变
      * 缓慢拖拽-> SCROLL_STATE_DRAGGING
-     * 快速滚动-> SCROLL_STATE_SETTLING
+     * 快速滚动-> SCROLL_STATE_SETTLINGF
      * 空闲状态-> SCROLL_STATE_IDLE
      *
      * @param state

@@ -1,9 +1,13 @@
 package com.wd.aclass.frag;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
 
 import com.bawei.lizekai.mylibrary.base.BaseFragment;
 
+import com.dueeeke.videoplayer.player.IjkVideoView;
+import com.wd.aclass.PagerLayoutManager;
 import com.wd.aclass.R;
 
 
@@ -19,6 +23,7 @@ import com.wd.aclass.presenter.JiangtangPresenter;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TwoFragment extends BaseFragment<JiangtangPresenter> implements JiangtangContract.Iview {
@@ -26,7 +31,9 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
 
     private List<VideoBean.ResultBean> result;
     private RecyclerView player_two;
-
+    private CheckBox cb_collecte;
+    private VideoAdapter videoAdapter;
+    private IjkVideoView mVideoView;
     @Override
     protected JiangtangPresenter providePresenter() {
         return new JiangtangPresenter();
@@ -51,12 +58,54 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
 
     @Override
     public void JiangVideo(VideoBean videoBean) {
-        Log.i("videoBean", "JiangVideo: " + videoBean.getMessage());
-        result = videoBean.getResult();
-        VideoAdapter videoAdapter = new VideoAdapter(result, getActivity());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        player_two.setLayoutManager(linearLayoutManager);
+        List<VideoBean.ResultBean> result = videoBean.getResult();
+        PagerLayoutManager mLayoutManager = new PagerLayoutManager(getActivity(), OrientationHelper.VERTICAL);
+        player_two.setLayoutManager(mLayoutManager);
+        videoAdapter = new VideoAdapter(result, getActivity());
         player_two.setAdapter(videoAdapter);
+        mLayoutManager.setOnViewPagerListener(new PagerLayoutManager.OnViewPagerListener() {
+            @Override
+            public void onInitComplete(View view) {
+                playVideo(0, view);
+            }
+
+            @Override
+            public void onPageSelected(int position, boolean isBottom, View view) {
+                playVideo(position, view);
+            }
+
+            @Override
+            public void onPageRelease(boolean isNext, int position, View view) {
+                int index = 0;
+                if (isNext) {
+                    index = 0;
+                } else {
+                    index = 1;
+                }
+                releaseVideo(view);
+            }
+        });
+    }
+
+    /**
+     * 播放视频
+     */
+    private void playVideo(int position, View view) {
+        if (view != null) {
+            mVideoView = view.findViewById(R.id.video_view);
+            mVideoView.start();
+        }
+    }
+
+    /**
+     * 停止播放
+     */
+    private void releaseVideo(View view) {
+        if (view != null) {
+            IjkVideoView videoView = view.findViewById(R.id.video_view);
+            videoView.stopPlayback();
+        }
+
         //点击购买
         videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
             @Override
@@ -73,6 +122,7 @@ public class TwoFragment extends BaseFragment<JiangtangPresenter> implements Jia
                 mPresenter.AddVideo( id+"");
             }
         });
+
     }
 
     @Override

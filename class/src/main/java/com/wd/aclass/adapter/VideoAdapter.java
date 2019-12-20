@@ -22,7 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dou361.ijkplayer.widget.IjkVideoView;
+
+import com.dueeeke.videoplayer.player.IjkVideoView;
+import com.dueeeke.videoplayer.player.PlayerConfig;
 import com.wd.aclass.R;
 import com.wd.aclass.bean.VideoBean;
 import java.util.List;
@@ -37,10 +39,20 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
     private int ids;
     public CheckBox cb_collecte;
     public CheckBox cb_barrage;
-
+    private final PlayerConfig playerConfig;
     public VideoAdapter(List<VideoBean.ResultBean> result, Context context) {
         this.result = result;
         this.context = context;
+
+        playerConfig = new PlayerConfig.Builder()
+                .enableCache()
+                .usingSurfaceView()
+                .savingProgress()
+                .disableAudioFocus()
+                .setLooping()
+                .addToPlayerManager()
+                .build();
+
     }
 
 
@@ -78,8 +90,12 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         //视频
         Log.i("originalUrlsss", "onBindViewHolder: "+originalUrl);
         String[] split = originalUrl.split(",");
-        holder.video_view
-                .setVideoPath(split[0]);
+
+        holder.video_view.setUrl(split[0]);
+        holder.video_view.setPlayerConfig(playerConfig);
+        holder.video_view.setScreenScale(IjkVideoView.SCREEN_SCALE_CENTER_CROP);
+
+
         holder.video_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {

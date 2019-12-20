@@ -10,6 +10,12 @@ android {
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            // 显式声明支持注解
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+                includeCompileClasspath true
+            }
     }
 
     buildTypes {
@@ -17,6 +23,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
     }
 //兼容版本
     compileOptions {
@@ -82,9 +90,9 @@ dependencies {
     api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["design"]
 
-    implementation rootProject.ext.dependencies["jiaozivideoplayer"]
+   /* implementation rootProject.ext.dependencies["jiaozivideoplayer"]
     implementation rootProject.ext.dependencies["ijkplayer"]
     implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
     implementation rootProject.ext.dependencies["ijkplayerexo"]
-    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
+    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]*/
 }

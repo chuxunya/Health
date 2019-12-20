@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dou361.ijkplayer.widget.IjkVideoView
+
+    <com.dueeeke.videoplayer.player.IjkVideoView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.dou361.ijkplayer.widget.IjkVideoView>
-
-
+        android:layout_height="match_parent"/>
     <ImageView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:id="@+id/video_pause"
+        android:visibility="gone"
         android:src="@mipmap/common_icon_time_out_n"
         android:layout_width="65dp"
         android:layout_height="65dp"/>
