@@ -39,7 +39,7 @@ public class ThreeFragment extends BaseFragment<JiangtangPresenter> implements J
     protected void initData() {
         super.initData();
         player_three = getActivity().findViewById(R.id.player_three);
-        mPresenter.JiangVideo("435","1576748581521435","3","1","5");
+        mPresenter.JiangVideo( "3","1","5");
     }
 
     @Override
@@ -60,7 +60,15 @@ public class ThreeFragment extends BaseFragment<JiangtangPresenter> implements J
             @Override
             public void onCallBank(int id) {
                 Log.i("wodeship", "onCallBank: "+id);
-                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+                mPresenter.BuyVideo( id+"","100");
+            }
+        });
+        //回调收藏
+        videoAdapter.setSetAddListen(new VideoAdapter.SetAddListen() {
+            @Override
+            public void onAddCallBack(int id) {
+                Log.i("tAddListen", "onAddCallBack: "+id);
+                mPresenter.AddVideo( id+"");
             }
         });
     }

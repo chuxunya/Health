@@ -17,7 +17,8 @@ import com.wd.aclass.model.JiangtangModel;
 public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> implements JiangtangContract.IPresenter {
 
     private JiangtangModel jiangtangModel;
-
+    private String userId="435";
+    private String sessionId="1576814271003435";
     @Override
     protected void initModel() {
         jiangtangModel = new JiangtangModel();
@@ -54,7 +55,7 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
     }
 
     @Override
-    public void JiangVideo(String userId, String sessionId, String categoryId, String page, String count) {
+    public void JiangVideo(  String categoryId, String page, String count) {
         jiangtangModel.JiangVideo(userId, sessionId, categoryId, page, count, new JiangtangContract.Imodel.IModelCallBack() {
             @Override
             public void jiangtang(JiangtangBean jiangtangBean) {
@@ -84,7 +85,7 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
     }
 
     @Override
-    public void AddVideo(String userId, String sessionId, String videoId) {
+    public void AddVideo(  String videoId) {
         jiangtangModel.AddVideo(userId, sessionId, videoId, new JiangtangContract.Imodel.IModelCallBack() {
             @Override
             public void jiangtang(JiangtangBean jiangtangBean) {
@@ -114,7 +115,7 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
     }
 
     @Override
-    public void BuyVideo(String userId, String sessionId, String videoId, String price) {
+    public void BuyVideo(  String videoId, String price) {
             jiangtangModel.BuyVideo(userId, sessionId, videoId, price, new JiangtangContract.Imodel.IModelCallBack() {
                 @Override
                 public void jiangtang(JiangtangBean jiangtangBean) {

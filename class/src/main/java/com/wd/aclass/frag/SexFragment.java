@@ -38,7 +38,7 @@ public class SexFragment extends BaseFragment<JiangtangPresenter> implements Jia
     protected void initData() {
         super.initData();
         player_sex = getActivity().findViewById(R.id.player_sex);
-        mPresenter.JiangVideo("435","1576748581521435","6","1","10");
+        mPresenter.JiangVideo( "6","1","10");
     }
 
     @Override
@@ -58,7 +58,15 @@ public class SexFragment extends BaseFragment<JiangtangPresenter> implements Jia
             @Override
             public void onCallBank(int id) {
                 Log.i("wodeship", "onCallBank: "+id);
-                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+                mPresenter.BuyVideo( id+"","100");
+            }
+        });
+        //回调收藏
+        videoAdapter.setSetAddListen(new VideoAdapter.SetAddListen() {
+            @Override
+            public void onAddCallBack(int id) {
+                Log.i("tAddListen", "onAddCallBack: "+id);
+                mPresenter.AddVideo( id+"");
             }
         });
     }

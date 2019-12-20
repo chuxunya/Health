@@ -33,4 +33,6 @@ public interface IApi {
     //健康课堂视频购买http://172.17.8.100/health/user/video/verify/v1/videoBuy
     @POST("health/user/video/verify/v1/videoBuy")
     Observable<BuyVideoBean> buyvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId, @Query("price") String price);
+
+
 }

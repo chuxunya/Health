@@ -35,8 +35,8 @@ public interface JiangtangContract {
     }
     interface  IPresenter{
         void  jiangtang();
-        void  JiangVideo(String userId, String sessionId, String categoryId, String page, String count);
-        void  AddVideo(String userId, String sessionId, String videoId);
-        void  BuyVideo(String userId, String sessionId, String videoId,String price);
+        void  JiangVideo( String categoryId, String page, String count);
+        void  AddVideo( String videoId);
+        void  BuyVideo( String videoId,String price);
     }
 }

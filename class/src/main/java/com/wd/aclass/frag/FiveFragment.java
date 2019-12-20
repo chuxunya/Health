@@ -38,7 +38,7 @@ public class FiveFragment extends BaseFragment<JiangtangPresenter> implements Ji
     protected void initData() {
         super.initData();
         player_five = getActivity().findViewById(R.id.player_five);
-        mPresenter.JiangVideo("435","1576748581521435","5","1","10");
+        mPresenter.JiangVideo(  "5","1","10");
     }
 
     @Override
@@ -58,10 +58,16 @@ public class FiveFragment extends BaseFragment<JiangtangPresenter> implements Ji
             @Override
             public void onCallBank(int id) {
                 Log.i("wodeship", "onCallBank: "+id);
-                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+                mPresenter.BuyVideo( id+"","100");
             }
         });
-
+        //回调收藏
+        videoAdapter.setSetAddListen(new VideoAdapter.SetAddListen() {
+            @Override
+            public void onAddCallBack(int id) {
+                mPresenter.AddVideo( id+"");
+            }
+        });
     }
 
     @Override

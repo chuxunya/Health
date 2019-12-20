@@ -35,15 +35,15 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
     List<VideoBean.ResultBean> result;
     Context context;
     private int ids;
-
+    public CheckBox cb_collecte;
+    public CheckBox cb_barrage;
 
     public VideoAdapter(List<VideoBean.ResultBean> result, Context context) {
         this.result = result;
         this.context = context;
     }
 
-    public CheckBox cb_collecte;
-    private CheckBox cb_barrage;
+
 
 
     @NonNull
@@ -73,8 +73,9 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         //biaoti
         holder.video_title.setText(result.get(position).getTitle());
         holder.video_text.setText(result.get(position).getAbstracts());
+        ids = result.get(position).getId();
 
-
+        //视频
         Log.i("originalUrlsss", "onBindViewHolder: "+originalUrl);
         String[] split = originalUrl.split(",");
         holder.video_view
@@ -93,32 +94,19 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
             }
         });
 
-        //点击收藏
-        cb_collecte.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (cb_collecte.isChecked()) {
-                    cb_collecte.setChecked(true);
-                } else {
-                    cb_collecte.setChecked(false);
-                }
-                return false;
-            }
-        });
-
         //点击购买
         holder.qian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("购买本视频将扣除500H币!");
+                builder.setMessage("购买本视频将扣除100H币!");
                 builder.setPositiveButton("立即购买", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        ids = result.get(position).getId();
-                        Log.i("aposition", "onBindViewHolder: "+ ids);
+
+                        Log.i("apositssion", "onBindViewHolder: "+ ids);
                         Toast.makeText(context, "购买成功", Toast.LENGTH_SHORT).show();
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        holder.qian.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 setOnClickListent.onCallBank(ids);
@@ -135,7 +123,24 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
                 builder.show();
             }
         });
-
+        //点击收藏
+        cb_collecte.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b==false){
+                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_n);
+                }else {
+                    Toast.makeText(context, "收藏了", Toast.LENGTH_SHORT).show();
+                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+                    cb_collecte.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setAddListen.onAddCallBack(ids);
+                        }
+                    });
+                }
+            }
+        });
 
     }
 
@@ -150,7 +155,6 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         public IjkVideoView video_view;
         public ImageView video_pause,qian;
         public TextView video_title,video_text;
-
         public Holder(@NonNull View itemView) {
             super(itemView);
             video_view = itemView.findViewById(R.id.video_view);
@@ -161,7 +165,7 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
 
         }
     }
-
+    //回调购买
     public SetOnClickListent setOnClickListent;
 
     public void setSetOnClickListent(SetOnClickListent setOnClickListent) {
@@ -170,5 +174,15 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
 
     public  interface  SetOnClickListent{
         void  onCallBank(int id);
+    }
+    //回调收藏
+    public  SetAddListen setAddListen;
+
+    public void setSetAddListen(SetAddListen setAddListen) {
+        this.setAddListen = setAddListen;
+    }
+
+    public  interface  SetAddListen{
+        void  onAddCallBack(int id);
     }
 }

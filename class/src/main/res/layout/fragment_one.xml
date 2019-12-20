@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".frag.OneFragment">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/player_one"
         android:layout_width="match_parent"

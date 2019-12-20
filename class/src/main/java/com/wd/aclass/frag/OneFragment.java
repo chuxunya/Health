@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bawei.lizekai.mylibrary.base.BaseFragment;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.aclass.R;
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
@@ -30,6 +32,8 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
 
     private RecyclerView player_one;
     private CheckBox cb_collecte;
+    private  int one=1;
+    private VideoAdapter videoAdapter;
 
     @Override
     protected JiangtangPresenter providePresenter() {
@@ -46,8 +50,7 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
         super.initData();
         cb_collecte = getActivity().findViewById(R.id.cb_collecte);
         player_one = getActivity().findViewById(R.id.player_one);
-        mPresenter.JiangVideo("435","1576748581521435","1","1","10");
-        mPresenter.AddVideo("435","1576748581521435","1");
+        mPresenter.JiangVideo( "1","1","5");
     }
 
     @Override
@@ -58,8 +61,7 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
     @Override
     public void JiangVideo(VideoBean videoBean) {
         List<VideoBean.ResultBean> result = videoBean.getResult();
-
-        VideoAdapter videoAdapter = new VideoAdapter(result, getActivity());
+        videoAdapter = new VideoAdapter(result, getActivity());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         player_one.setLayoutManager(linearLayoutManager);
         player_one.setAdapter(videoAdapter);
@@ -67,8 +69,16 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
         videoAdapter.setSetOnClickListent(new VideoAdapter.SetOnClickListent() {
             @Override
             public void onCallBank(int id) {
-                Log.i("wodeship", "onCallBank: "+id);
-                mPresenter.BuyVideo("435","1576748581521435",id+"","100");
+                Log.i("goumai", "onCallBank: "+id);
+                mPresenter.BuyVideo(   id+"","100");
+            }
+        });
+        //回调收藏
+        videoAdapter.setSetAddListen(new VideoAdapter.SetAddListen() {
+            @Override
+            public void onAddCallBack(int id) {
+                Log.i("tAddListen", "onAddCallBack: "+id);
+                mPresenter.AddVideo( id+"");
             }
         });
     }
@@ -76,16 +86,16 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
     //收藏
     @Override
     public void AddVideo(AddVideoBean addVideoBean) {
-
+        Log.i("xxx", "AddVideo: "+addVideoBean.getMessage());
+        if (addVideoBean.getStatus().equals("0000")){
+            cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+        }
     }
 
     //购买
     @Override
     public void BuyVideo(BuyVideoBean buyVideoBean) {
-        String message = buyVideoBean.getMessage();
-        Log.i("message", "BuyVideo: "+message);
-
-
+        Log.i("buyVideoBean", "BuyVideo: "+buyVideoBean.getMessage());
     }
 
     @Override
