@@ -94,11 +94,11 @@ public class FindinformatBean {
          */
 
         private String content;
-        private int id;
+        private String id;
         private long releaseTime;
         private String source;
         private String title;
-        private int whetherCollection;
+        private String whetherCollection;
 
         public String getContent() {
             return content;
@@ -108,11 +108,11 @@ public class FindinformatBean {
             this.content = content;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -140,11 +140,11 @@ public class FindinformatBean {
             this.title = title;
         }
 
-        public int getWhetherCollection() {
+        public String getWhetherCollection() {
             return whetherCollection;
         }
 
-        public void setWhetherCollection(int whetherCollection) {
+        public void setWhetherCollection(String whetherCollection) {
             this.whetherCollection = whetherCollection;
         }
     }

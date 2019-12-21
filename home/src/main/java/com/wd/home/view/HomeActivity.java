@@ -12,6 +12,7 @@ import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.wd.home.R;
 import com.wd.home.adapter.PageAdapter;
 
+import com.wd.home.api.NoScrollViewPager;
 import com.wd.home.fragment.HomeFragment;
 import com.wd.home.fragment.PatientcircleFragment;
 import com.wd.home.fragment.SmallvideoFragment;
@@ -30,7 +31,7 @@ public class HomeActivity extends BaseActivity {
 
     private ArrayList<Fragment> list;
     private PageAdapter pageAdapter;
-    private ViewPager home_vp;
+    private NoScrollViewPager home_vp;
     private RadioGroup home_rg;
 
 

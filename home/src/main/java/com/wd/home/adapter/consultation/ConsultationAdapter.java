@@ -52,12 +52,7 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
                 .build();
         viewholder1.simpleDraweeView.setController(draweeController);
 
-       /* viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOnItemClickListener.onItemClick(i);
-            }
-        });*/
+
     }
 
     @Override
@@ -65,15 +60,13 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
         return beans.size();
     }
 
-    private OnItemClickListener mOnItemClickListener;
-
-    public void onItemClickListener(OnItemClickListener onItemClickListener){
-        this.mOnItemClickListener = onItemClickListener;
+    public void addData(List<DepartmentBean.ResultBean> result) {
+        if (result.size() > 0 && result != null){
+            result.addAll(result);
+        }
+        notifyDataSetChanged();
     }
 
-    public interface OnItemClickListener{
-        void onItemClick(int position);
-    }
 
     public class Viewholder1 extends RecyclerView.ViewHolder {
 

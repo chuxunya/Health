@@ -45,13 +45,12 @@ public class PlateListAdapter extends RecyclerView.Adapter {
         }else {
             viewholder1.platelist_name.setTextColor(Color.GRAY);
         }
-
          viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  Oneon=i;
                  notifyDataSetChanged();
-                 mOnItemClickListener.onItemClick(i);
+                 mOnItemClickListener.onItemClick(beanResult.get(i).getId());
              }
          });
 

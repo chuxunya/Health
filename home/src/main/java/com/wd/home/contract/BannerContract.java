@@ -5,6 +5,8 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.SickCircleListBean;
 
 /**
  * @name Health
@@ -24,6 +26,9 @@ public interface BannerContract {
         void information(InformationBean informationBean);
         //根据资讯板块查询资讯列表
         void informationlist(InformationListBean informationListBean);
+        //根据关键词查询病友圈
+        void keywordsearchbean(KeywordSearchBean keywordSearchBean);
+
     }
 
     interface Imodel {
@@ -36,6 +41,9 @@ public interface BannerContract {
         void information(IModelICallBack iModelICallBack);
         //根据资讯板块查询资讯列表
         void informationlist(int plateId,int page,int count,IModelICallBack iModelICallBack);
+        //根据关键词查询病友圈
+        void keywordsearchbean(String keyWord,IModelICallBack iModelICallBack);
+
 
         interface IModelICallBack {
             //轮播图
@@ -46,6 +54,9 @@ public interface BannerContract {
             void information(InformationBean informationBean);
             //根据资讯板块查询资讯列表
             void informationlist(int plateId,int page,int count,InformationListBean informationListBean);
+            //根据关键词查询病友圈
+            void keywordsearchbean(String keyWord,KeywordSearchBean keywordSearchBean);
+
         }
     }
 
@@ -54,5 +65,7 @@ public interface BannerContract {
         void department();
         void information();
         void informationlist(int plateId,int page,int count);
+        void keywordsearchbean(String keyWord);
+
     }
 }

@@ -58,7 +58,8 @@ public class Collection_detailsActivity extends BaseActivity {
         list = new ArrayList<>();
         list.add(new Drug_Fragment());
         list.add(new Illness_Fragment());
-
+        details_btn1.setTextColor(Color.BLUE);
+        details_btn2.setTextColor(Color.GRAY);
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), list);
         details_vp.setAdapter(pageAdapter);
         details_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -55,26 +55,26 @@ public class InformationListBean {
          * title : 春季预防三高，预防心脑血管疾病，不得不提到的三个“笋”子！
          */
 
-        private int id;
-        private int plateId;
+        private String id;
+        private String plateId;
         private long releaseTime;
         private String source;
         private String thumbnail;
         private String title;
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
-        public int getPlateId() {
+        public String getPlateId() {
             return plateId;
         }
 
-        public void setPlateId(int plateId) {
+        public void setPlateId(String plateId) {
             this.plateId = plateId;
         }
 

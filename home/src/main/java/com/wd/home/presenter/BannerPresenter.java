@@ -7,6 +7,8 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.SickCircleListBean;
 import com.wd.home.contract.BannerContract;
 import com.wd.home.model.BannerModel;
 
@@ -50,6 +52,13 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
             public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
 
             }
+
+            @Override
+            public void keywordsearchbean(String keyWord, KeywordSearchBean keywordSearchBean) {
+
+            }
+
+
         }); ;
     }
 
@@ -76,6 +85,13 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
            public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
 
            }
+
+           @Override
+           public void keywordsearchbean(String keyWord, KeywordSearchBean keywordSearchBean) {
+
+           }
+
+
        });
     }
     //查询健康资讯板块
@@ -101,6 +117,13 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
             public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
 
             }
+
+            @Override
+            public void keywordsearchbean(String keyWord, KeywordSearchBean keywordSearchBean) {
+
+            }
+
+
         });
     }
 
@@ -127,10 +150,48 @@ public class BannerPresenter extends BasePresenter<BannerContract.Iview> impleme
             public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
                 getView().informationlist(informationListBean);
             }
+
+            @Override
+            public void keywordsearchbean(String keyWord, KeywordSearchBean keywordSearchBean) {
+
+            }
+
+
         });
     }
 
+    //根据关键词查询病友圈
+    @Override
+    public void keywordsearchbean(String keyWord) {
+        bannerModel.keywordsearchbean(keyWord, new BannerContract.Imodel.IModelICallBack() {
+            @Override
+            public void banner(BannerBean bannerBean) {
 
+            }
+
+            @Override
+            public void department(DepartmentBean departmentBean) {
+
+            }
+
+            @Override
+            public void information(InformationBean informationBean) {
+
+            }
+
+            @Override
+            public void informationlist(int plateId, int page, int count, InformationListBean informationListBean) {
+
+            }
+
+            @Override
+            public void keywordsearchbean(String keyWord, KeywordSearchBean keywordSearchBean) {
+                getView().keywordsearchbean(keywordSearchBean);
+            }
+
+
+        });
+    }
 
 
 }
