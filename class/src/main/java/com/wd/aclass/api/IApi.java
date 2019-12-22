@@ -6,12 +6,17 @@ package com.wd.aclass.api;
  *@Description:api
  **/
 
+
+
+import com.wd.aclass.bean.AddVideoBean;
+import com.wd.aclass.bean.BuyVideoBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -22,5 +27,12 @@ public interface IApi {
     //根据视频类目查询视频列表http://172.17.8.100/health/user/video/v1/findVideoVoList?categoryId=1&page=1&count=5
     @GET("http://172.17.8.100/health/user/video/v1/findVideoVoList")
     Observable<VideoBean> jiangvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("categoryId") String categoryId, @Query("page") String page, @Query("count") String count);
+    //收藏http://172.17.8.100/health/user/video/verify/v1/addUserVideoCollection
+    @POST("health/user/video/verify/v1/addUserVideoCollection")
+    Observable<AddVideoBean> addvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId);
+    //健康课堂视频购买http://172.17.8.100/health/user/video/verify/v1/videoBuy
+    @POST("health/user/video/verify/v1/videoBuy")
+    Observable<BuyVideoBean> buyvideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId, @Query("price") String price);
+
 
 }

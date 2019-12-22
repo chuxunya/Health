@@ -17,10 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".jgActivity"></activity>
-        <activity android:name=".JMessageRegisterActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".view.PersonalActivity" />
         <activity android:name=".view.CommentActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".JMessageRegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,10 @@
 package com.wd.aclass;
+/*
+ *@auther:张安恒
+ *@Date: 2019/12/20
+ *@Time:15:47
+ *@Description:
+ **/
 
 import android.content.Context;
 import android.view.View;
@@ -7,25 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * Created by 钉某人
- * github: https://github.com/DingMouRen
- * email: naildingmouren@gmail.com
- */
-
-public class ViewPagerLayoutManager extends LinearLayoutManager {
-    private static final String TAG = "ViewPagerLayoutManager";
+public class PagerLayoutManager extends LinearLayoutManager {
     private PagerSnapHelper mPagerSnapHelper;
     private OnViewPagerListener mOnViewPagerListener;
     private RecyclerView mRecyclerView;
     private int mDrift;//位移，用来判断移动方向
 
-    public ViewPagerLayoutManager(Context context, int orientation) {
+    public PagerLayoutManager(Context context, int orientation) {
         super(context, orientation, false);
         init();
     }
 
-    public ViewPagerLayoutManager(Context context, int orientation, boolean reverseLayout) {
+    public PagerLayoutManager(Context context, int orientation, boolean reverseLayout) {
         super(context, orientation, reverseLayout);
         init();
     }
@@ -34,27 +33,25 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         mPagerSnapHelper = new PagerSnapHelper();
     }
 
-
     @Override
     public void onAttachedToWindow(RecyclerView view) {
         super.onAttachedToWindow(view);
         mPagerSnapHelper.attachToRecyclerView(view);
         this.mRecyclerView = view;
-        mRecyclerView.setOnFlingListener(null);
         mRecyclerView.addOnChildAttachStateChangeListener(mChildAttachStateChangeListener);
     }
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
-//
     }
 
     /**
      * 滑动状态的改变
      * 缓慢拖拽-> SCROLL_STATE_DRAGGING
-     * 快速滚动-> SCROLL_STATE_SETTLING
+     * 快速滚动-> SCROLL_STATE_SETTLINGF
      * 空闲状态-> SCROLL_STATE_IDLE
+     *
      * @param state
      */
     @Override
@@ -62,27 +59,32 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         switch (state) {
             case RecyclerView.SCROLL_STATE_IDLE:
                 View viewIdle = mPagerSnapHelper.findSnapView(this);
-                int positionIdle = getPosition(viewIdle);
-                if (mOnViewPagerListener != null && getChildCount() == 1) {
-                    mOnViewPagerListener.onPageSelected(positionIdle,positionIdle == getItemCount() - 1);
+                if (viewIdle != null) {
+                    int positionIdle = getPosition(viewIdle);
+                    if (mOnViewPagerListener != null && getChildCount() == 1) {
+                        mOnViewPagerListener.onPageSelected(positionIdle, positionIdle == getItemCount() - 1, viewIdle);
+                    }
                 }
                 break;
             case RecyclerView.SCROLL_STATE_DRAGGING:
                 View viewDrag = mPagerSnapHelper.findSnapView(this);
-                int positionDrag = getPosition(viewDrag);
+                if (viewDrag != null) {
+                    int positionDrag = getPosition(viewDrag);
+                }
                 break;
             case RecyclerView.SCROLL_STATE_SETTLING:
                 View viewSettling = mPagerSnapHelper.findSnapView(this);
-                int positionSettling = getPosition(viewSettling);
+                if (viewSettling != null) {
+                    int positionSettling = getPosition(viewSettling);
+                }
                 break;
-
         }
     }
 
 
-
     /**
      * 监听竖直方向的相对偏移量
+     *
      * @param dy
      * @param recycler
      * @param state
@@ -94,9 +96,9 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         return super.scrollVerticallyBy(dy, recycler, state);
     }
 
-
     /**
      * 监听水平方向的相对偏移量
+     *
      * @param dx
      * @param recycler
      * @param state
@@ -110,28 +112,55 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
 
     /**
      * 设置监听
+     *
      * @param listener
      */
-    public void setOnViewPagerListener(OnViewPagerListener listener){
+    public void setOnViewPagerListener(OnViewPagerListener listener) {
         this.mOnViewPagerListener = listener;
     }
 
     private RecyclerView.OnChildAttachStateChangeListener mChildAttachStateChangeListener = new RecyclerView.OnChildAttachStateChangeListener() {
+        /**
+         * itemView依赖Window
+         */
         @Override
         public void onChildViewAttachedToWindow(View view) {
             if (mOnViewPagerListener != null && getChildCount() == 1) {
-                mOnViewPagerListener.onInitComplete();
+                mOnViewPagerListener.onInitComplete(view);
             }
         }
 
+        /**
+         *itemView脱离Window
+         */
         @Override
         public void onChildViewDetachedFromWindow(View view) {
-            if (mDrift >= 0){
-                if (mOnViewPagerListener != null) mOnViewPagerListener.onPageRelease(true,getPosition(view));
-            }else {
-                if (mOnViewPagerListener != null) mOnViewPagerListener.onPageRelease(false,getPosition(view));
+            if (mDrift >= 0) {
+                if (mOnViewPagerListener != null)
+                    mOnViewPagerListener.onPageRelease(true, getPosition(view), view);
+            } else {
+                if (mOnViewPagerListener != null)
+                    mOnViewPagerListener.onPageRelease(false, getPosition(view), view);
             }
 
         }
     };
+    public interface OnViewPagerListener {
+        /**
+         * 初始化
+         */
+        void onInitComplete(View view);
+
+        /**
+         * 释放
+         */
+        void onPageRelease(boolean isNext, int position, View view);
+
+        /**
+         * 选中
+         */
+        void onPageSelected(int position, boolean isBottom, View view);
+    }
 }
+
+
