@@ -39,7 +39,7 @@ public class DiseaseKnowPresenter extends BasePresenter<DiseaseKnowContract.Ivie
 
     @Override
     public void drugsknowledge(String id) {
-        diseaseKnowModel.diseaseknowledge(id, new DiseaseKnowContract.Imodel.IModelICallBack() {
+        diseaseKnowModel.drugsknowledge(id, new DiseaseKnowContract.Imodel.IModelICallBack() {
             @Override
             public void diseaseknowledge(String id, DiseaseknowledgeBean diseaseknowledgeBean) {
 

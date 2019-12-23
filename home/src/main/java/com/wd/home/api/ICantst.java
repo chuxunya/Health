@@ -32,4 +32,14 @@ public class ICantst {
     public static final String DRUGSKNOWLEDGE="health/share/knowledgeBase/v1/findDrugsKnowledge";
     //资讯详情
     public static final String INFOR="health/share/information/v1/findInformation";
+    //病友圈列表展示
+    public static final String SICKCIRCLE ="health/user/sickCircle/v1/findSickCircleList";
+    //根据根据关键词查询病友圈
+    public static final String SEARCHSICK= "health/user/sickCircle/v1/searchSickCircle";
+    //查询病友圈详情
+    public static final String SICKCIRCLEINFO= "health/user/sickCircle/v1/findSickCircleInfo";
+    //病友圈发表评论
+    public static final String PUBLISH= "health/user/sickCircle/verify/v1/publishComment";
+    //查询病友圈评论列表
+    public static final String FINDSICK= "health/user/sickCircle/v1/findSickCircleCommentList";
 }

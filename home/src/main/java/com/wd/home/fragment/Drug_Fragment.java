@@ -51,7 +51,6 @@ public class Drug_Fragment extends BaseFragment<DiseasePresenter> implements Dis
         department_recy = getActivity().findViewById(R.id.department_recy);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         department_recy.setLayoutManager(linearLayoutManager);
 
 

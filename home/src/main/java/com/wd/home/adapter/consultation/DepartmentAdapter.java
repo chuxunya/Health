@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,9 +46,9 @@ public class DepartmentAdapter extends RecyclerView.Adapter {
         viewholder1.department_name.setText(result.get(i).getDepartmentName());
 
         if (Oneon==i){
-            viewholder1.department_name.setTextColor(Color.BLUE);
+            viewholder1.department_linear.setBackgroundColor(Color.WHITE);
         }else {
-            viewholder1.department_name.setTextColor(Color.GRAY);
+            viewholder1.department_linear.setBackgroundColor(Color.LTGRAY);
         }
 
         viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
@@ -79,10 +80,12 @@ public class DepartmentAdapter extends RecyclerView.Adapter {
 
 
         private final TextView department_name;
+        private final LinearLayout department_linear;
 
         public Viewholder1( View itemView) {
             super(itemView);
             department_name = itemView.findViewById(R.id.department_name);
+            department_linear = itemView.findViewById(R.id.department_linear);
         }
     }
 }

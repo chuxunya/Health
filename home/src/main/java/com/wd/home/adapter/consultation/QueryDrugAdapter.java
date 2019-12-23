@@ -2,6 +2,7 @@ package com.wd.home.adapter.consultation;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.wd.home.R;
 import com.wd.home.bean.DrugsKnowBean;
+import com.wd.home.view.ConditionDetailActivity;
+import com.wd.home.view.ConditionDetailsActivity;
 
 
 import java.util.List;
@@ -43,6 +46,7 @@ public class QueryDrugAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder( RecyclerView.ViewHolder viewHolder, final int i) {
+
         Viewholder1 viewholder1 = (Viewholder1) viewHolder;
         viewholder1.querydrug_name.setText(result1.get(i).getName());
 
@@ -53,6 +57,17 @@ public class QueryDrugAdapter extends RecyclerView.Adapter {
                 .build();
         viewholder1.querydrug_img.setController(draweeController);
 
+
+        viewholder1.querydrug_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ConditionDetailActivity.class);
+                intent.putExtra("id",result1.get(i).getId());
+                intent.putExtra("name",result1.get(i).getName());
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 

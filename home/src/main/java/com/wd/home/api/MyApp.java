@@ -2,6 +2,7 @@ package com.wd.home.api;
 
 import com.bawei.lizekai.mylibrary.app.BaseApp;
 import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.CommentCircleBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DiseaseBean;
 import com.wd.home.bean.DiseaseknowledgeBean;
@@ -12,10 +13,18 @@ import com.wd.home.bean.FindinformatBean;
 import com.wd.home.bean.HomePageSearchBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.PatientDetailsBean;
 import com.wd.home.bean.PopularSearchBean;
+import com.wd.home.bean.QueryCommentBean;
+import com.wd.home.bean.SickCircleListBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -71,9 +80,46 @@ public interface MyApp  {
     @GET("health/share/knowledgeBase/v1/findDrugsKnowledge")
     Observable<DrugsknowledgeBean> drugsknowledge(@Query("id") String id);
 
+    //病友圈列表展示
+    @GET("health/user/sickCircle/v1/findSickCircleList")
+    Observable<SickCircleListBean> sickCircleList(@Query("departmentId") int departmentId,
+                                                     @Query("page") int page,
+                                                  @Query("count") int count);
+
     //资讯详情
     @GET("health/share/information/v1/findInformation")
-    Observable<FindinformatBean> findinformation(@Query("infoId") int infoId);
+    Observable<FindinformatBean> findinformation(@Query("infoId") String infoId);
 
+
+    //根据关键词查询病友圈
+    @GET("health/user/sickCircle/v1/searchSickCircle")
+    Observable<KeywordSearchBean> keywordsearchbean(
+            @Query("keyWord") String keyWord
+    );
+
+
+    //查询病友圈详情
+    @GET("health/user/sickCircle/v1/findSickCircleInfo")
+    Observable<PatientDetailsBean> sickcircleinfo(
+            @Query("sickCircleId") int sickCircleId
+    );
+
+    //病友圈发表评论
+    @FormUrlEncoded
+    @POST("health/user/sickCircle/verify/v1/publishComment")
+    Observable<CommentCircleBean>publishcomment(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Field("sickCircleId") int sickCircleId,
+            @Field("content") String content
+    );
+
+    //查询病友圈评论列表
+    @GET("user/sickCircle/v1/findSickCircleCommentList")
+    Observable<QueryCommentBean>querycommentbean(
+            @Query("sickCircleId") int sickCircleId,
+            @Query("page") int page,
+            @Query("count") int count
+    );
 
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,11 +24,14 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.SickCircleListBean;
 import com.wd.home.contract.BannerContract;
 import com.wd.home.presenter.BannerPresenter;
 import com.wd.home.view.BannerWebViewMainActivity;
 import com.wd.home.view.Collection_detailsActivity;
 import com.wd.home.view.Home_searchActivity;
+import com.wd.home.view.InquiryMainActivity;
 import com.wd.home.view.ReviewsMainActivity;
 
 
@@ -71,6 +75,9 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     @Override
     protected void initView() {
         super.initView();
+
+        NestedScrollView nestedScrollView = getActivity().findViewById(R.id.nestview);
+        nestedScrollView.setNestedScrollingEnabled(false);
 
         xbanner = getActivity().findViewById(R.id.xbanner);
         consultationRecy = getActivity().findViewById(R.id.consultation_recy);
@@ -197,8 +204,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
 
             @Override
             public void onItemClick(int position) {
-                id = beans.get(position).getId();
-                mPresenter.informationlist(id,1,5);
+                mPresenter.informationlist(position,1,5);
             }
         });
     }
@@ -213,7 +219,15 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
         advisory_list_recy.setLayoutManager(linearLayoutManager2);
         advisory_list_recy.setAdapter(newslistAdapter);
+
+
     }
+
+    @Override
+    public void keywordsearchbean(KeywordSearchBean keywordSearchBean) {
+
+    }
+
 
     @Override
     public void onDestroyView() {

@@ -1,7 +1,6 @@
 package com.wd.login.view;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +20,6 @@ import com.wd.login.contract.LoginContract;
 import com.wd.login.presenter.LoginPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ForgetActivity extends BaseActivity<LoginPresenter> implements LoginContract.Iview {

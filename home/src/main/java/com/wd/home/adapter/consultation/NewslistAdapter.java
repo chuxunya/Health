@@ -2,6 +2,7 @@ package com.wd.home.adapter.consultation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.wd.home.R;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.view.SpyDetailsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -94,6 +96,9 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     @Override
                     public void onClick(View view) {
+                        intent = new Intent(context, SpyDetailsActivity.class);
+                        intent.putExtra("id", resultBeans.get(position).getId());
+                        context.startActivity(intent);
 
                     }
                 });
@@ -114,9 +119,9 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     @Override
                     public void onClick(View view) {
-                      /*  intent = new Intent(context, FindInfoActivity.class);
-                        intent.putExtra("in_id", resultBeans.get(position).getId());
-                        context.startActivity(intent);*/
+                        intent = new Intent(context, SpyDetailsActivity.class);
+                        intent.putExtra("id", resultBeans.get(position).getId());
+                        context.startActivity(intent);
                     }
                 });
                 break;
@@ -125,17 +130,17 @@ public class NewslistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ((Newlist_three_Holder) holder).text_title.setText(resultBeans.get(position).getTitle());
                 simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
                 ((Newlist_three_Holder) holder).text_time.setText(simpleDateFormat.format(date));
-          /*       holder.itemView.setOnClickListener(new View.OnClickListener() {
+                 holder.itemView.setOnClickListener(new View.OnClickListener() {
 
                     private Intent intent;
 
                     @Override
                     public void onClick(View view) {
-                      *//*  intent = new Intent(context, FindInfoActivity.class);
-                        intent.putExtra("in_id", resultBeans.get(position).getId());
-                        context.startActivity(intent);*//*
+                        intent = new Intent(context, SpyDetailsActivity.class);
+                        intent.putExtra("id", resultBeans.get(position).getId());
+                        context.startActivity(intent);
                     }
-                });*/
+                });
                 break;
         }
 

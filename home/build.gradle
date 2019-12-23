@@ -1,11 +1,29 @@
-apply plugin: 'com.android.application'
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId "com.wd.home"
+
+        if (!isModule.toBoolean()) {
+            applicationId "com.wd.home"
+        }
+        sourceSets {
+            main {
+                if (!isModule.toBoolean()) {
+                    manifest.srcFile 'src/main/buildModule/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/buildApp/AndroidManifest.xml'
+                }
+            }
+        }
+
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -50,5 +68,7 @@ android {
         implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
         annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
         implementation project(path: ':mylibrary')
+        implementation 'com.jakewharton:butterknife:10.2.1'
+        annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     }
 }

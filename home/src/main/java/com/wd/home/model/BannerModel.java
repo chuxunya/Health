@@ -9,6 +9,8 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.SickCircleListBean;
 import com.wd.home.contract.BannerContract;
 
 import io.reactivex.Observer;
@@ -141,4 +143,35 @@ public class BannerModel implements BannerContract.Imodel {
               });
 
     }
+
+    //根据关键词查询病友圈
+    @Override
+    public void keywordsearchbean(String keyWord, IModelICallBack iModelICallBack) {
+        RetrofitManager.getInstance().create(MyApp.class)
+                .keywordsearchbean(keyWord)
+                .compose(CommonSchedulers.<KeywordSearchBean>io2main())
+                .subscribe(new Observer<KeywordSearchBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(KeywordSearchBean keywordSearchBean) {
+                        iModelICallBack.keywordsearchbean(keyWord,keywordSearchBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+
 }

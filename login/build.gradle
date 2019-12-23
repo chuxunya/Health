@@ -63,6 +63,7 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
     //屏幕适配
     implementation 'me.jessyan:autosize:0.9.1'
+
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 }

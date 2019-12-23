@@ -41,12 +41,12 @@ public class DrugAdapter extends RecyclerView.Adapter {
         Viewholder1 viewholder1 = (Viewholder1) viewHolder;
         viewholder1.drug_name.setText(result.get(i).getName());
 
-        if (Oneon==i){
-            viewholder1.drug_name.setTextColor(Color.BLUE);
-        }else {
-            viewholder1.drug_name.setTextColor(Color.GRAY);
-        }
 
+        if (Oneon==i){
+            viewholder1.drug_name.setBackgroundColor(Color.WHITE);
+        }else {
+            viewholder1.drug_name.setBackgroundColor(Color.LTGRAY);
+        }
         viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

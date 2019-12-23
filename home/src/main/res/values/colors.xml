@@ -8,8 +8,8 @@
     <color name="red">#d92109</color>
     <color name="darkGrey">#333333</color>
     <color name="lightgreen">#4fcb9f</color>
-    <color name="gray">#999999</color>
-    <color name="silver">#dddddd</color>
+    <color name="gray">#D1CBCB</color>
+    <color name="silver">#DDDDDD</color>
     <color name="white">#ffffff</color>
     <color name="darkblue">#2972c5</color>
 </resources>

@@ -53,24 +53,24 @@ public class DrugsKnowBean {
          * picture : https://imgq.ddky.com/c/product/328654/big/z_1.jpg?t=9898&watermark%2F1%2Fimage%2FaHR0cHM6Ly9pbWdxLmRka3kuY29tL2Mvd2F0ZXJQaWMvMTA4MC5wbmc%3D%2Fdissolve%2F80%2Fgravity%2FCenter%2Fdx%2F0%2Fdy%2F0%7CimageMogr2%2Fauto-orient%2Fthumbnail%2F240x240%21%2Fquality%2F100
          */
 
-        private int drugsCategoryId;
-        private int id;
+        private String drugsCategoryId;
+        private String id;
         private String name;
         private String picture;
 
-        public int getDrugsCategoryId() {
+        public String getDrugsCategoryId() {
             return drugsCategoryId;
         }
 
-        public void setDrugsCategoryId(int drugsCategoryId) {
+        public void setDrugsCategoryId(String drugsCategoryId) {
             this.drugsCategoryId = drugsCategoryId;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
