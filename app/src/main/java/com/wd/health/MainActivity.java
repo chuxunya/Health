@@ -29,6 +29,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn)
     public void onViewClicked() {
-        ARouter.getInstance().build("/login/LoginActivity").navigation();
+        ARouter.getInstance().build("/login/LoginActivity")
+                .withString("name", "张三")
+                .navigation();
     }
 }

@@ -3,6 +3,7 @@ package com.wd.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.wd.login.bean.ForgetBean;
 import com.wd.login.bean.LoginBean;
@@ -30,7 +33,9 @@ import butterknife.OnClick;
 
 @Route(path = "/login/LoginActivity")
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.Iview {
-
+    @Autowired(name = "name")
+    public String name;
+    private static final String TAG = "LoginActivity";
     @BindView(R2.id.login_edit_email)
     EditText loginEditEmail;
     @BindView(R2.id.login_image_false)
@@ -52,6 +57,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private String rsaPwd;
     private int count=1;
 
+
     @Override
     protected LoginPresenter providePresenter() {
         return new LoginPresenter();
@@ -60,6 +66,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected int provideLayoutId() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        //路由传值跳转
+        ARouter.getInstance().inject(this);
+        Log.d("测试", "initData: "+name);
     }
 
     @Override
