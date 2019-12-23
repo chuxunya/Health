@@ -31,7 +31,7 @@ import java.util.List;
 public class SickCircleFragment extends BaseFragment<SickPresenter> implements SickContract.Iview {
 
 
-    private RecyclerView patient_recycler_sick_circle_list;
+    private XRecyclerView patient_recycler_sick_circle_list;
     private int page = 1;
     private int count1 = 10;
     private int anInt;
@@ -58,7 +58,22 @@ public class SickCircleFragment extends BaseFragment<SickPresenter> implements S
     protected void initData() {
         super.initData();
         mPresenter.sick(anInt, page, count1);
+        patient_recycler_sick_circle_list.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                page = 1;
+                mPresenter.sick(anInt, page, count1);
+                patient_recycler_sick_circle_list.refreshComplete();
+            }
 
+            @Override
+            public void onLoadMore() {
+                page++;
+                mPresenter.sick(anInt, page, count1);
+                patient_recycler_sick_circle_list.loadMoreComplete();
+
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         patient_recycler_sick_circle_list.setLayoutManager(linearLayoutManager);
@@ -74,7 +89,7 @@ public class SickCircleFragment extends BaseFragment<SickPresenter> implements S
     @Override
     public void sick(SickCircleListBean sickCircleListBean) {
         result = sickCircleListBean.getResult();
-        RecyclerSickCircleAdapter recyclerSickCircleAdapter = new RecyclerSickCircleAdapter(result,getContext());
+        RecyclerSickCircleAdapter recyclerSickCircleAdapter = new RecyclerSickCircleAdapter(result, getContext());
         patient_recycler_sick_circle_list.setAdapter(recyclerSickCircleAdapter);
         recyclerSickCircleAdapter.addData(result);
 

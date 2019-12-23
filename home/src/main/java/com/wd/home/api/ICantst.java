@@ -42,4 +42,5 @@ public class ICantst {
     public static final String PUBLISH= "health/user/sickCircle/verify/v1/publishComment";
     //查询病友圈评论列表
     public static final String FINDSICK= "health/user/sickCircle/v1/findSickCircleCommentList";
+    //
 }

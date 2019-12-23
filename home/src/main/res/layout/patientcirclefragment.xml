@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="800dp">
             </androidx.viewpager.widget.ViewPager>
-            <androidx.recyclerview.widget.RecyclerView
+            <com.jcodecraeer.xrecyclerview.XRecyclerView
                 android:visibility="gone"
                 android:layout_below="@id/bbb"
                 android:id="@+id/xiangxi_rlv"

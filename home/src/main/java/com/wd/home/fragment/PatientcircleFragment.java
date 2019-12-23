@@ -28,6 +28,7 @@ import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.google.android.material.tabs.TabLayout;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.home.R;
+import com.wd.home.adapter.KeywordSearchAdapter;
 import com.wd.home.adapter.RecyclerConsultationAdapter;
 import com.wd.home.adapter.consultation.ConsultationAdapter;
 import com.wd.home.adapter.sickcirclelist.RecyclerSickCircleAdapter;
@@ -40,6 +41,7 @@ import com.wd.home.bean.SickCircleListBean;
 import com.wd.home.contract.BannerContract;
 import com.wd.home.presenter.BannerPresenter;
 import com.wd.home.view.ObservableScrollView;
+import com.wd.home.view.PatientDetailsActivity;
 import com.wd.home.view.Patient_Circle_DetailsActivity;
 import com.wd.home.view.SearchActivity;
 
@@ -83,8 +85,10 @@ public class PatientcircleFragment extends BaseFragment<BannerPresenter> impleme
     private ViewPager patient_viewpager;
     private String departmentName;
     private int anInt;
-    private RecyclerView xiangxi_rlv;
+    private XRecyclerView xiangxi_rlv;
     private EditText patient_tv_department_keyword;
+    private KeywordSearchAdapter keywordSearchAdapter;
+    private String trim;
 
     @Override
     protected int provideLayoutId() {
@@ -140,7 +144,6 @@ public class PatientcircleFragment extends BaseFragment<BannerPresenter> impleme
     protected void initData() {
         super.initData();
         mPresenter.department();
-
         //搜索框
         patient_tv_department_keyword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -149,7 +152,7 @@ public class PatientcircleFragment extends BaseFragment<BannerPresenter> impleme
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String trim = patient_tv_department_keyword.getText().toString().trim();
+                trim = patient_tv_department_keyword.getText().toString().trim();
                 if (trim != null) {
                     mPresenter.keywordsearchbean(trim);
                 }
@@ -227,7 +230,20 @@ public class PatientcircleFragment extends BaseFragment<BannerPresenter> impleme
     //根据关键词查询病友圈
     @Override
     public void keywordsearchbean(KeywordSearchBean keywordSearchBean) {
-
+        xiangxi_rlv.setVisibility(View.VISIBLE);
+        List<KeywordSearchBean.ResultBean> result = keywordSearchBean.getResult();
+        keywordSearchAdapter = new KeywordSearchAdapter(getContext());
+        xiangxi_rlv.setAdapter(keywordSearchAdapter);
+        keywordSearchAdapter.addData(result);
+        keywordSearchAdapter.onItemClickListener(new KeywordSearchAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, int id) {
+                int sickCircleId = result.get(position).getSickCircleId();
+                Intent intent = new Intent(getContext(), PatientDetailsActivity.class);
+                intent.putExtra("sickCircleId", sickCircleId);
+                startActivity(intent);
+            }
+        });
     }
 
 

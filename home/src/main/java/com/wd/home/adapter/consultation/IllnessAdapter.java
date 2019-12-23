@@ -17,11 +17,7 @@ import com.wd.home.view.ConditionDetailsActivity;
 
 import java.util.List;
 
-/**
- * @author 2019/11/7
- * @author 20:41
- * 杨立朝
- */
+
 public class IllnessAdapter extends RecyclerView.Adapter {
     private List<DiseaseBean.ResultBean> result1;
     private Context context;
@@ -55,12 +51,12 @@ public class IllnessAdapter extends RecyclerView.Adapter {
            }
        });
 
-       /* viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
+        viewholder1.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mOnItemClickListener.onItemClick(i);
             }
-        });*/
+        });
     }
 
     @Override

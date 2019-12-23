@@ -1,26 +1,57 @@
 package com.wd.home.view;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
+import com.bumptech.glide.Glide;
 import com.wd.home.R;
+import com.wd.home.adapter.ConsultationTwoAdapter;
+import com.wd.home.adapter.DiseaAdapter;
+import com.wd.home.adapter.consultation.IllnessAdapter;
+import com.wd.home.api.ImageUtil;
+import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DiseaseBean;
+import com.wd.home.bean.InformationBean;
+import com.wd.home.bean.InformationListBean;
+import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.contract.BannerContract;
+import com.wd.home.contract.DiseaseContract;
+import com.wd.home.presenter.BannerPresenter;
+import com.wd.home.presenter.DiseasePresenter;
 
+import java.io.File;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * @name Health
@@ -28,7 +59,7 @@ import java.util.Locale;
  * @anthor 发布病友圈
  * @time 2019/12/19 18:46
  */
-public class ReleaseCirclesActivity extends BaseActivity {
+public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> implements DiseaseContract.Iview {
 
     private Switch item_switch;
     private LinearLayout linearLayout;
@@ -41,11 +72,17 @@ public class ReleaseCirclesActivity extends BaseActivity {
     private TextView release_circle_tv_endTime;
     private ImageView release_circle_iv_upload_Picture;
     private ImageView release_circle_iv_delete_Picture;
+    private RecyclerView popup_recycler_department;
+    private PopupWindow popWindow;
+    private RecyclerView popup_recycler_disease;
+    private PopupWindow popWindowDisease;
+    private int id;
+    private Button release_circle_btn_publish;
+    private TextView release_circle_tv_choose_department;
+    private TextView release_circle_tv_choose_disease;
+    private String path;
+    private MultipartBody.Part picture;
 
-    @Override
-    protected BasePresenter providePresenter() {
-        return null;
-    }
 
     @Override
     protected int provideLayoutId() {
@@ -65,6 +102,14 @@ public class ReleaseCirclesActivity extends BaseActivity {
         release_circle_tv_endTime = findViewById(R.id.release_circle_tv_endTime);
         release_circle_iv_choose_department = findViewById(R.id.release_circle_iv_choose_department);
         release_circle_iv_choose_disease = findViewById(R.id.release_circle_iv_choose_disease);
+        release_circle_btn_publish = findViewById(R.id.release_circle_btn_publish);
+        release_circle_tv_choose_department = findViewById(R.id.release_circle_tv_choose_department);
+        release_circle_tv_choose_disease = findViewById(R.id.release_circle_tv_choose_disease);
+    }
+
+    @Override
+    protected DiseasePresenter providePresenter() {
+        return new DiseasePresenter();
     }
 
     @Override
@@ -164,17 +209,20 @@ public class ReleaseCirclesActivity extends BaseActivity {
         release_circle_iv_choose_department.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // initPopWindowDepartment(v);
+                initPopWindowDepartment(v);
             }
+
+
         });
 
         //对应病症
         release_circle_iv_choose_disease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // initPopWindowDisease(v);
+                initPopWindowDisease(v);
             }
         });
+
 
         //打开相册
         release_circle_iv_upload_Picture.setOnClickListener(new View.OnClickListener() {
@@ -194,5 +242,124 @@ public class ReleaseCirclesActivity extends BaseActivity {
             }
         });
 
+    }
+    ////科室列表
+    private void initPopWindowDepartment(View v) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
+        popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
+        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+        popWindow = new PopupWindow(view,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
+        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
+        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+        popWindow.setTouchable(true);
+        popWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+        popWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
+        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
+        popWindow.showAsDropDown(v, 50, 0);
+        mPresenter.depart();
+    }
+    //根据科室查询对应病症
+    private void initPopWindowDisease(View v) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);
+        popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
+        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+        popWindowDisease = new PopupWindow(view,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popWindowDisease.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
+        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
+        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+        popWindowDisease.setTouchable(true);
+        popWindowDisease.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+        popWindowDisease.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
+        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
+        popWindowDisease.showAsDropDown(v, 50, 0);
+
+        //根据科室查询对应病症
+        mPresenter.disease(id);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //判断是不是选中图片了
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = data.getData();
+                if (uri != null) {
+                    //用一个工具类获取图片的绝对路径,我会粘到下方
+                    path = ImageUtil.getPath(this, uri);
+                    Glide.with(this).load(path)
+                            .placeholder(R.mipmap.add)
+                            .error(R.mipmap.add)
+                            .into(release_circle_iv_upload_Picture);
+                    if (path != null) {
+                        //转换为file类型
+                        File file = new File(path);
+                        //进行类型转换,因为在RetrofitService定义的是@Part MultipartBody.Part,所以要转成这样的格式
+                        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                        picture = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
+                    }
+                }
+            } else {
+                Toast.makeText(this, "取消相册", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    //科室
+    @Override
+    public void depart(DepartmentBean departmentBean) {
+        List<DepartmentBean.ResultBean> result = departmentBean.getResult();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
+        popup_recycler_department.setLayoutManager(gridLayoutManager);
+        popup_recycler_department.setAdapter(consultationTwoAdapter);
+
+        consultationTwoAdapter.onItemClickListener(new ConsultationTwoAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                id = result.get(position).getId();
+                release_circle_tv_choose_department.setText(result.get(position).getDepartmentName());
+                Toast.makeText(ReleaseCirclesActivity.this, result.get(position).getDepartmentName(), Toast.LENGTH_SHORT).show();
+                popWindow.dismiss();
+            }
+        });
+    }
+
+    //根据科室查询对应症状
+    @Override
+    public void disease(DiseaseBean diseaseBean) {
+        List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+        DiseaAdapter illnessAdapter = new DiseaAdapter(result, this);
+        popup_recycler_disease.setLayoutManager(gridLayoutManager);
+        popup_recycler_disease.setAdapter(illnessAdapter);
+        illnessAdapter.onItemClickListener(new IllnessAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                String name = result.get(position).getName();
+                release_circle_tv_choose_disease.setText(name + "");
+                popWindowDisease.dismiss();
+            }
+        });
     }
 }
