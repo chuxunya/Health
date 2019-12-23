@@ -1,19 +1,10 @@
 package com.wd.login.view;
 
-
-
-import android.util.Log;
-
-
 import javax.crypto.Cipher;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by 樊彦龙 on 2018/9/1.

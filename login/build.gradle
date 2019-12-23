@@ -1,11 +1,29 @@
-apply plugin: 'com.android.application'
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId "com.wd.login"
+
+        if (!isModule.toBoolean()) {
+            applicationId "com.wd.login"
+        }
+        sourceSets {
+            main {
+                if (!isModule.toBoolean()) {
+                    manifest.srcFile 'src/main/buildModule/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/buildApp/AndroidManifest.xml'
+                }
+            }
+        }
+
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -27,11 +45,8 @@ android {
         }
     }
     compileOptions {
-
         sourceCompatibility JavaVersion.VERSION_1_8
-
         targetCompatibility JavaVersion.VERSION_1_8
-
     }
 }
 
@@ -48,4 +63,6 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
     //屏幕适配
     implementation 'me.jessyan:autosize:0.9.1'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 }

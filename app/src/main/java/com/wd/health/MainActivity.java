@@ -1,14 +1,34 @@
 package com.wd.health;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
 
-import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.bawei.lizekai.mylibrary.base.BaseActivity;
+import com.bawei.lizekai.mylibrary.base.BasePresenter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity {
+
+    @BindView(R.id.btn)
+    Button btn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected BasePresenter providePresenter() {
+        return null;
+    }
+
+    @Override
+    protected int provideLayoutId() {
+        return R.layout.activity_main;
+    }
+
+
+    @OnClick(R.id.btn)
+    public void onViewClicked() {
+        ARouter.getInstance().build("/login/LoginActivity").navigation();
     }
 }

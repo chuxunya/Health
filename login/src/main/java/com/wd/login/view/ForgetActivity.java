@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.wd.login.LoginActivity;
 import com.wd.login.R;
+import com.wd.login.R2;
 import com.wd.login.bean.ForgetBean;
 import com.wd.login.bean.LoginBean;
 import com.wd.login.bean.RegisteredBean;
@@ -25,16 +26,15 @@ import butterknife.OnClick;
 
 public class ForgetActivity extends BaseActivity<LoginPresenter> implements LoginContract.Iview {
 
-
-    @BindView(R.id.img_back_forget)
+    @BindView(R2.id.img_back_forget)
     ImageView imgBackForget;
-    @BindView(R.id.et_forget_email)
+    @BindView(R2.id.et_forget_email)
     EditText etForgetEmail;
-    @BindView(R.id.bt_code_forget)
+    @BindView(R2.id.bt_code_forget)
     Button btCodeForget;
-    @BindView(R.id.et_forget_pwd)
+    @BindView(R2.id.et_forget_pwd)
     EditText etForgetPwd;
-    @BindView(R.id.bt_next_forget)
+    @BindView(R2.id.bt_next_forget)
     Button btNextForget;
     private String email;
     private String code;
@@ -106,27 +106,24 @@ public class ForgetActivity extends BaseActivity<LoginPresenter> implements Logi
 
 
 
-    @OnClick({R.id.img_back_forget, R.id.bt_code_forget, R.id.bt_next_forget})
+    @OnClick({R2.id.img_back_forget, R2.id.bt_code_forget, R2.id.bt_next_forget})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_back_forget:
-                Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.bt_code_forget:
-                email = etForgetEmail.getText().toString().trim();
-                mPresenter.postSendPresenter(email);
-                break;
-            case R.id.bt_next_forget:
-                String trim = etForgetEmail.getText().toString().trim();
-                code = etForgetPwd.getText().toString().trim();
-                if (TextUtils.isEmpty(trim)||TextUtils.isEmpty(code)){
-                    Toast.makeText(this, "邮箱或验证码为空", Toast.LENGTH_SHORT).show();
-                }else {
-                    mPresenter.postCheckCodePresenter(trim, code);
-                }
-                break;
+        int id = view.getId();
+        if (id == R.id.img_back_forget) {
+            Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else if (id == R.id.bt_code_forget) {
+            email = etForgetEmail.getText().toString().trim();
+            mPresenter.postSendPresenter(email);
+        } else if (id == R.id.bt_next_forget) {
+            String trim = etForgetEmail.getText().toString().trim();
+            code = etForgetPwd.getText().toString().trim();
+            if (TextUtils.isEmpty(trim) || TextUtils.isEmpty(code)) {
+                Toast.makeText(this, "邮箱或验证码为空", Toast.LENGTH_SHORT).show();
+            } else {
+                mPresenter.postCheckCodePresenter(trim, code);
+            }
         }
     }
 }
