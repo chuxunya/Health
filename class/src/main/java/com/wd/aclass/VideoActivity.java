@@ -94,26 +94,24 @@ public class VideoActivity extends BaseActivity<JiangtangPresenter> implements J
         drop_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()){
-                    case R.id.drop_down:
-                        if (drop_down.isChecked()) {
-                    float translationY = view.getTranslationY();
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, -120f);
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
-                    animator.setDuration(500);
-                    animator1.setDuration(500);
-                    animator.start();
-                    animator1.start();
-                } else {
-                    float translationY = view.getTranslationY();
-                    ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, 0f);
-                    ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
-                    animator.setDuration(500);
-                    animator1.setDuration(500);
-                    animator.start();
-                    animator1.start();
-               }
-                        break;
+                if (view.getId() == R.id.drop_down) {
+                    if (drop_down.isChecked()) {
+                        float translationY = view.getTranslationY();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, -120f);
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
+                        animator.setDuration(500);
+                        animator1.setDuration(500);
+                        animator.start();
+                        animator1.start();
+                    } else {
+                        float translationY = view.getTranslationY();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(jiang_tab, "translationY", translationY, 0f);
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
+                        animator.setDuration(500);
+                        animator1.setDuration(500);
+                        animator.start();
+                        animator1.start();
+                    }
                 }
             }
         });

@@ -40,6 +40,7 @@ dependencies {
     implementation project(path: ':mylibrary')
     if (isModule.toBoolean()) {
         implementation project(':login')
+        implementation project(':class')
     }
 
 }
