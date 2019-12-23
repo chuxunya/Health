@@ -8,6 +8,7 @@ import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.BuyVideoBean;
+import com.wd.aclass.bean.DanmuBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -134,6 +135,11 @@ public class VideoActivity extends BaseActivity<JiangtangPresenter> implements J
 
     @Override
     public void BuyVideo(BuyVideoBean buyVideoBean) {
+
+    }
+
+    @Override
+    public void Danmu(DanmuBean danmuBean) {
 
     }
 

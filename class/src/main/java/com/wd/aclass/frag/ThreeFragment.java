@@ -12,6 +12,7 @@ import com.wd.aclass.R;
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.BuyVideoBean;
+import com.wd.aclass.bean.DanmuBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -129,6 +130,11 @@ public class ThreeFragment extends BaseFragment<JiangtangPresenter> implements J
 
     @Override
     public void BuyVideo(BuyVideoBean buyVideoBean) {
+
+    }
+
+    @Override
+    public void Danmu(DanmuBean danmuBean) {
 
     }
 

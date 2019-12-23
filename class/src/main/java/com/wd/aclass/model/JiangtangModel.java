@@ -12,6 +12,7 @@ import com.bawei.lizekai.mylibrary.utils.RetrofitManager;
 import com.wd.aclass.api.IApi;
 import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.BuyVideoBean;
+import com.wd.aclass.bean.DanmuBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -82,6 +83,24 @@ public class JiangtangModel implements JiangtangContract.Imodel {
                     @Override
                     public void onNext(BuyVideoBean buyVideoBean) {
                         iModelCallBack.BuyVideo(buyVideoBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallBack.onFraily(e.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void Danmu(String userId, String sessionId, String videoId, String content, IModelCallBack iModelCallBack) {
+        RetrofitManager.getInstance().create(IApi.class)
+                .danmu(userId,sessionId,videoId,content)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<DanmuBean>() {
+                    @Override
+                    public void onNext(DanmuBean danmuBean) {
+                        iModelCallBack.Danmu(danmuBean);
                     }
 
                     @Override
