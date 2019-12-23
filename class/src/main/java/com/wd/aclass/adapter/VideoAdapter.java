@@ -54,10 +54,6 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
                 .build();
 
     }
-
-
-
-
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,17 +61,6 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         cb_collecte = inflate.findViewById(R.id.cb_collecte);
         cb_barrage = inflate.findViewById(R.id.cb_barrage);
 
-        cb_barrage.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (cb_barrage.isChecked()) {
-                    cb_barrage.setChecked(true);
-                } else {
-                    cb_barrage.setChecked(false);
-                }
-                return false;
-            }
-        });
         return new Holder(inflate);
     }
 
@@ -94,6 +79,7 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         holder.video_view.setUrl(split[0]);
         holder.video_view.setPlayerConfig(playerConfig);
         holder.video_view.setScreenScale(IjkVideoView.SCREEN_SCALE_CENTER_CROP);
+
 
 
         holder.video_view.setOnTouchListener(new View.OnTouchListener() {
@@ -157,7 +143,22 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
                 }
             }
         });
-
+        cb_barrage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b==false){
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
+                }else {
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
+                    cb_barrage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setDanListen.onDanCallBack(ids);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     @Override
@@ -201,4 +202,16 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
     public  interface  SetAddListen{
         void  onAddCallBack(int id);
     }
+    //回调弹幕
+
+    public  SetDanListen setDanListen;
+
+    public void setSetDanListen(SetDanListen setDanListen) {
+        this.setDanListen = setDanListen;
+    }
+
+    public  interface  SetDanListen{
+        void  onDanCallBack(int id);
+    }
+
 }

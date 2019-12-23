@@ -22,6 +22,7 @@ import com.wd.aclass.R;
 import com.wd.aclass.adapter.VideoAdapter;
 import com.wd.aclass.bean.AddVideoBean;
 import com.wd.aclass.bean.BuyVideoBean;
+import com.wd.aclass.bean.DanmuBean;
 import com.wd.aclass.bean.JiangtangBean;
 import com.wd.aclass.bean.VideoBean;
 import com.wd.aclass.contract.JiangtangContract;
@@ -86,6 +87,14 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
                 mPresenter.AddVideo( id+"");
             }
         });
+        //回调弹幕
+        videoAdapter.setSetDanListen(new VideoAdapter.SetDanListen() {
+            @Override
+            public void onDanCallBack(int id) {
+
+            }
+        });
+
         mLayoutManager.setOnViewPagerListener(new PagerLayoutManager.OnViewPagerListener() {
             @Override
             public void onInitComplete(View view) {
@@ -146,6 +155,11 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
     @Override
     public void BuyVideo(BuyVideoBean buyVideoBean) {
         Log.i("buyVideoBean", "BuyVideo: "+buyVideoBean.getMessage());
+    }
+
+    @Override
+    public void Danmu(DanmuBean danmuBean) {
+
     }
 
     @Override
