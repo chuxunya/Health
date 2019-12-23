@@ -19,7 +19,7 @@ public class JiangtangPresenter extends BasePresenter<JiangtangContract.Iview> i
 
     private JiangtangModel jiangtangModel;
     private String userId="435";
-    private String sessionId="1576814271003435";
+    private String sessionId="1577085403344435";
     @Override
     protected void initModel() {
         jiangtangModel = new JiangtangModel();

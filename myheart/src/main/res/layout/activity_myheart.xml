@@ -210,9 +210,9 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/my_icon_wallet_n"/>
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/my_icon_wallet_n" />
 
                 <TextView
                     android:layout_width="wrap_content"

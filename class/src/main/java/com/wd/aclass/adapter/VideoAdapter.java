@@ -81,7 +81,6 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
         holder.video_view.setScreenScale(IjkVideoView.SCREEN_SCALE_CENTER_CROP);
 
 
-
         holder.video_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -95,7 +94,36 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
                 return false;
             }
         });
+        //点击收藏
+        cb_collecte.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b==false){
+                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_n);
+                }else {
+                    Toast.makeText(context, "收藏了", Toast.LENGTH_SHORT).show();
+                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+                    cb_collecte.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            setAddListen.onAddCallBack(ids);
+                        }
+                    });
+                }
+            }
+        });
 
+        cb_barrage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b==false){
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
+                }else {
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
+
+                }
+            }
+        });
         //点击购买
         holder.qian.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,40 +153,7 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
                 builder.show();
             }
         });
-        //点击收藏
-        cb_collecte.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b==false){
-                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_n);
-                }else {
-                    Toast.makeText(context, "收藏了", Toast.LENGTH_SHORT).show();
-                    cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
-                    cb_collecte.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            setAddListen.onAddCallBack(ids);
-                        }
-                    });
-                }
-            }
-        });
-        cb_barrage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b==false){
-                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
-                }else {
-                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
-                    cb_barrage.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            setDanListen.onDanCallBack(ids);
-                        }
-                    });
-                }
-            }
-        });
+
     }
 
     @Override
@@ -204,7 +199,7 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
     }
     //回调弹幕
 
-    public  SetDanListen setDanListen;
+ /*   public  SetDanListen setDanListen;
 
     public void setSetDanListen(SetDanListen setDanListen) {
         this.setDanListen = setDanListen;
@@ -212,6 +207,6 @@ public class VideoAdapter extends RecyclerView .Adapter<VideoAdapter.Holder> {
 
     public  interface  SetDanListen{
         void  onDanCallBack(int id);
-    }
+    }*/
 
 }

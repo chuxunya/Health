@@ -87,13 +87,6 @@ public class OneFragment extends BaseFragment<JiangtangPresenter> implements Jia
                 mPresenter.AddVideo( id+"");
             }
         });
-        //回调弹幕
-        videoAdapter.setSetDanListen(new VideoAdapter.SetDanListen() {
-            @Override
-            public void onDanCallBack(int id) {
-
-            }
-        });
 
         mLayoutManager.setOnViewPagerListener(new PagerLayoutManager.OnViewPagerListener() {
             @Override
