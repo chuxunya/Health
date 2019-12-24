@@ -1,18 +1,35 @@
-apply plugin: 'com.android.application'
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
-
-
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
-
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId "com.wd.aclass"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+
+        if (!isModule.toBoolean()) {
+            applicationId "com.wd.aclass"
+        }
+        sourceSets {
+            main {
+                if (!isModule.toBoolean()) {
+                    manifest.srcFile 'src/main/buildModule/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/buildApp/AndroidManifest.xml'
+                }
+            }
+        }
+
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -52,17 +69,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':mylibrary')
 
-    /*implementation rootProject.ext.dependencies["jiaozivideoplayer"]
-    implementation rootProject.ext.dependencies["ijkplayer"]
-    implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
-    implementation rootProject.ext.dependencies["ijkplayerexo"]
-    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]*/
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
+    implementation project(path: ':mylibrary')
 
     //今日头条适配
     implementation 'me.jessyan:autosize:0.9.1'
-
 
     // 必选，可兼容市面上绝大部分设备
     implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.4'
@@ -74,4 +86,7 @@ dependencies {
     implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.4'
     implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.4'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
 }

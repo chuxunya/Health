@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wd.health.custom.SwipeMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/find_img"
+            android:layout_width="65dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="78dp"/>
+
+        <TextView
+            android:text="lly"
+            android:textSize="14dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/find_img"
+            android:id="@+id/find_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="lly"
+            android:textSize="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/find_name"
+            android:id="@+id/find_guan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="lly"
+            android:textSize="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/find_name"
+            android:layout_toRightOf="@id/find_img"
+            android:id="@+id/find_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/find_nice"
+            android:text="lly"
+            android:textSize="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/find_address"
+            android:layout_toRightOf="@id/find_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/find_count"
+            android:text="lly"
+            android:textSize="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@id/find_address"
+            android:layout_toRightOf="@id/find_nice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/quxiao"
+                android:layout_marginTop="1dp"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:background="#FD0505"
+                android:text="取    消    关    注"
+                android:layout_width="40dp"
+                android:layout_height="98dp"/>
+        </RelativeLayout>
+    </com.wd.health.custom.SwipeMenu>
+</LinearLayout>

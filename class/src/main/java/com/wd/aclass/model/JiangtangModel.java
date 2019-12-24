@@ -42,7 +42,7 @@ public class JiangtangModel implements JiangtangContract.Imodel {
     public void JiangVideo(String userId, String sessionId, String categoryId, String page, String count, final IModelCallBack iModelCallBack) {
         RetrofitManager.getInstance().create(IApi.class)
                 .jiangvideo(userId,sessionId,categoryId,page,count)
-                .compose(CommonSchedulers.io2main())
+                .compose(CommonSchedulers.<VideoBean>io2main())
                 .subscribe(new CommonObserver<VideoBean>() {
                     @Override
                     public void onNext(VideoBean videoBean) {
