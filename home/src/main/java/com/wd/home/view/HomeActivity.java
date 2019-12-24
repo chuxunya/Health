@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 
 import com.wd.home.R;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 * fragment
 * 席贵
 * */
-
+@Route(path = "/home/view/HomeActivity")
 public class HomeActivity extends BaseActivity {
 
 

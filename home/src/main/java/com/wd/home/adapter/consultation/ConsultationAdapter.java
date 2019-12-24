@@ -51,7 +51,12 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
                 .setImageRequest(build)
                 .build();
         viewholder1.simpleDraweeView.setController(draweeController);
-
+        viewholder1.simpleDraweeView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setOnClickListener.onClick(beans.get(i).getId());
+            }
+        });
 
     }
 
@@ -78,5 +83,15 @@ public class ConsultationAdapter extends RecyclerView.Adapter {
             simpleDraweeView = itemView.findViewById(R.id.consultation_img);
             consultation_name = itemView.findViewById(R.id.consultation_name);
         }
+    }
+
+    SetOnClickListener setOnClickListener;
+
+    public void setSetOnClickListener(SetOnClickListener setOnClickListener) {
+        this.setOnClickListener = setOnClickListener;
+    }
+
+    public interface SetOnClickListener{
+        void onClick(int id);
     }
 }

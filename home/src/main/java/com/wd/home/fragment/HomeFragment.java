@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.androidx.XBanner;
@@ -190,7 +191,14 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         beans = departmentBean.getResult();
         consultationAdapter = new ConsultationAdapter(beans,getContext());
         consultationRecy.setAdapter(consultationAdapter);
-
+        consultationAdapter.setSetOnClickListener(new ConsultationAdapter.SetOnClickListener() {
+            @Override
+            public void onClick(int id) {
+                ARouter.getInstance().build("/chat/MainActivity")
+                        .withInt("id", id)
+                        .navigation();
+            }
+        });
     }
 
     //查询健康资讯
