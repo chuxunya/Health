@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.FindDoctorActivity"></activity>
+        <activity android:name=".activity.MyBuyVideoActivity"></activity>
+        <activity android:name=".activity.FavoriteMainActivity" />
+        <activity android:name=".activity.MywalletActivity" />
+        <activity android:name=".activity.FindDoctorActivity" />
         <activity android:name=".MyhearthMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

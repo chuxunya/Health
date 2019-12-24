@@ -39,6 +39,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -49,4 +50,18 @@ dependencies {
     implementation 'me.jessyan:autosize:0.9.1'
     //图片导包
     implementation 'com.dyhdyh.support:glide:1.0.0'
+    // 必选，可兼容市面上绝大部分设备
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.4'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.4'
+
+    // 可选，用于兼容一些其他的 CPU 架构
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.4'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.4'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.4'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.4'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+
 }

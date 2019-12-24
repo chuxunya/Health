@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+
+    <com.dueeeke.videoplayer.player.IjkVideoView
+        android:layout_alignParentTop="true"
+        android:id="@+id/myadapter_video_ijkplayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+    </com.dueeeke.videoplayer.player.IjkVideoView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bought"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:id="@+id/bought"
+        android:layout_alignParentTop="true"
+        />
+
+
+    <ImageView
+        android:id="@+id/adapter_vvideo_start_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/common_icon_time_out_n"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        >
+
+        <TextView
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_buynum"
+            android:layout_marginLeft="20dp"
+            />
+
+
+        <TextView
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_createtime"
+            android:layout_marginLeft="230dp"
+            />
+
+
+        <TextView
+            android:textSize="10dp"
+            android:layout_alignParentRight="true"
+            android:text="删除"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_del"
+            android:layout_marginLeft="280dp"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

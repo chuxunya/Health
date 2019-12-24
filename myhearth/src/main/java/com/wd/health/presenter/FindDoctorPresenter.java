@@ -58,7 +58,7 @@ public class FindDoctorPresenter extends BasePresenter<FindDoctorContract.Iview>
 
             @Override
             public void onFraily(String e) {
-
+            getView().onFraily(e);
             }
         });
     }

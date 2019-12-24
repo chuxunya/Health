@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Scroller;
 
 /*
- *@Auther:Helen
+ *@Auther:Helen   滑动删除
  *@Date: 19.9.25
  *@Time: 19:03:08
  *@Description:

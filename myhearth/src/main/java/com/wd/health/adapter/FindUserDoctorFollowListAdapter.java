@@ -19,12 +19,6 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * @author 2019/11/14
- * @author 20:29
- * 杨立朝
- * 查询我的关注适配器
- */
 public class FindUserDoctorFollowListAdapter extends RecyclerView.Adapter {
     private List<FindDoctorBean.ResultBean> result;
       private Context context;

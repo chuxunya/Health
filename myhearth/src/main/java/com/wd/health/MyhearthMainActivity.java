@@ -9,7 +9,9 @@ import android.widget.ImageView;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
+import com.wd.health.activity.FavoriteMainActivity;
 import com.wd.health.activity.FindDoctorActivity;
+import com.wd.health.activity.MyBuyVideoActivity;
 
 /**
  *@describe(描述)：myheart  我的关注
@@ -20,7 +22,7 @@ import com.wd.health.activity.FindDoctorActivity;
 public class MyhearthMainActivity extends BaseActivity {
 
 
-    private ImageView attention;
+    private ImageView attention,favorite,myvideo;
 
     @Override
     protected BasePresenter providePresenter() {
@@ -36,6 +38,8 @@ public class MyhearthMainActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         attention = findViewById(R.id.attention);
+        favorite = findViewById(R.id.favorite);
+        myvideo = findViewById(R.id.myvideo);
     }
 
     @Override
@@ -46,6 +50,20 @@ public class MyhearthMainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MyhearthMainActivity.this, FindDoctorActivity.class));
+            }
+        });
+        //我的收藏
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, FavoriteMainActivity.class));
+            }
+        });
+        //我购买的视频
+        myvideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, MyBuyVideoActivity.class));
             }
         });
     }
