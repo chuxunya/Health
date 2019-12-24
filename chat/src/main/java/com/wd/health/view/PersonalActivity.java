@@ -304,7 +304,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 //弹框提示H币不足 去充值/取消
                 View inflate = View.inflate(PersonalActivity.this, R.layout.alertdialoglayout, null);
                 TextView textView = inflate.findViewById(R.id.text_data);
-                textView.setText("H币补足500,充值再来吧!");
+                textView.setText("H币不足500,充值再来吧!");
                 Button button1=inflate.findViewById(R.id.button_qd);
                 Button button2=inflate.findViewById(R.id.button_qx);
                 button1.setText("去充值");
