@@ -1,7 +1,9 @@
 package com.wd.health.view;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,9 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bumptech.glide.Glide;
 import com.wd.health.R;
+import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.FindDepartmentBean;
@@ -27,9 +33,8 @@ import com.wd.health.utils.MyGiftAdapter;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -81,6 +86,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     Button goNow;
     @BindView(R.id.nolike)
     ImageView nolike;
+
 
     private int doctorId;
     private int userId;
@@ -144,7 +150,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                     like.setVisibility(View.VISIBLE);
                 }
                 servicePrice = result.getServicePrice();
-                price.setText( servicePrice + "H币/次");
+                price.setText(servicePrice + "H币/次");
                 Glide.with(this).load(result.getImagePic()).into(headImg);
                 name.setText(result.getDoctorName());
                 work.setText(result.getJobTitle());
@@ -230,48 +236,108 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
 
     @Override
     public void onNowSuccess(NowIMS nowIMS) {
-        Log.d(TAG, "onNowSuccess: "+nowIMS);
-        if (nowIMS!=null){
-            if (nowIMS.getMessage().equals("当前无问诊")){
-                mPresenter.MoneyP(userId,sesssionId);
-            }else {
+        Log.d(TAG, "onNowSuccess: " + nowIMS);
+        if (nowIMS != null) {
+            if (nowIMS.getMessage().equals("当前无问诊")) {
+                mPresenter.MoneyP(userId, sesssionId);
+            } else {
                 //弹框提示您尚有咨询在进行中  去结束/取消
+            if (nowIMS.getMessage().equals("当前无问诊")) {
 
-
+            }else {
+                View inflate = View.inflate(PersonalActivity.this, R.layout.alertdialoglayout, null);
+                TextView textView = inflate.findViewById(R.id.text_data);
+                textView.setText("您尚有咨询在进行中请先关闭在开始新的咨询");
+                Button button1=inflate.findViewById(R.id.button_qd);
+                Button button2=inflate.findViewById(R.id.button_qx);
+                button1.setText("去结束");
+                button2.setText("取消");
+                AlertDialog alertDialog = new AlertDialog.Builder(PersonalActivity.this)
+                        .setView(inflate)
+                        .create();
+                alertDialog.show();
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.cancel();
+                    }
+                });
             }
-        }else {
+            }
+        } else {
             Toast.makeText(this, nowIMS.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onNowFailure(Throwable e) {
-        Log.d(TAG, "onNowFailure: "+e.getMessage());
+        Log.d(TAG, "onNowFailure: " + e.getMessage());
     }
 
     @Override
     public void onMoneySuccess(MyMoneyBean myMoneyBean) {
-        Log.d(TAG, "onMoneySuccess: "+myMoneyBean);
-        if (myMoneyBean!=null){
+        Log.d(TAG, "onMoneySuccess: " + myMoneyBean);
+        if (myMoneyBean != null) {
             int result = myMoneyBean.getResult();
-            if (result>servicePrice){
-
+            if (result > servicePrice) {
+                View inflate = View.inflate(PersonalActivity.this, R.layout.alertdialoglayout, null);
+                TextView textView = inflate.findViewById(R.id.text_data);
+                textView.setText("本次咨询将扣除500H币");
+                Button button1=inflate.findViewById(R.id.button_qd);
+                Button button2=inflate.findViewById(R.id.button_qx);
+                button1.setText("去咨询");
+                button2.setText("取消");
+                AlertDialog alertDialog = new AlertDialog.Builder(PersonalActivity.this)
+                        .setView(inflate)
+                        .create();
+                alertDialog.show();
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.cancel();
+                    }
+                });
                 //提示扣除H币 取消/去咨询
                 //跳转到聊天页面
 
-            }else {
+            } else {
                 //弹框提示H币不足 去充值/取消
-
-
+                View inflate = View.inflate(PersonalActivity.this, R.layout.alertdialoglayout, null);
+                TextView textView = inflate.findViewById(R.id.text_data);
+                textView.setText("H币补足500,充值再来吧!");
+                Button button1=inflate.findViewById(R.id.button_qd);
+                Button button2=inflate.findViewById(R.id.button_qx);
+                button1.setText("去充值");
+                button2.setText("取消");
+                AlertDialog alertDialog = new AlertDialog.Builder(PersonalActivity.this)
+                        .setView(inflate)
+                        .create();
+                alertDialog.show();
+                button2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alertDialog.cancel();
+                    }
+                });
             }
-        }else {
+        } else {
             Toast.makeText(this, myMoneyBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onMoneyFailure(Throwable e) {
-        Log.d(TAG, "onMoneyFailure: "+e.getMessage());
+        Log.d(TAG, "onMoneyFailure: " + e.getMessage());
+    }
+
+    @Override
+    public void onConsultDoctorSuccess(ConsultDoctorBean bean) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+
     }
 
     @OnClick({R.id.back, R.id.nolike, R.id.like, R.id.go_now})
@@ -293,7 +359,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 }
                 break;
             case R.id.go_now:
-                mPresenter.NowP(userId,sesssionId);
+                mPresenter.NowP(userId, sesssionId);
                 break;
         }
     }

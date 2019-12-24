@@ -30,9 +30,9 @@
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab"
         app:tabIndicatorHeight="0dp"
         app:tabSelectedTextColor="@color/blue"
+        android:id="@+id/tab"
         android:layout_width="wrap_content"
         android:layout_marginTop="4dp"
         app:tabTextColor="@color/darkgrey"

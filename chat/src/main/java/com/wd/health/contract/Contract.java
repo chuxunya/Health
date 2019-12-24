@@ -1,6 +1,7 @@
 package com.wd.health.contract;
 
 import com.bawei.lizekai.mylibrary.base.IBaseView;
+import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.FindDepartmentBean;
@@ -37,15 +38,19 @@ public interface Contract {
 
         void onMoneySuccess(MyMoneyBean myMoneyBean);
         void onMoneyFailure(Throwable e);
+
+        void onConsultDoctorSuccess(ConsultDoctorBean bean);
+        void onFailure(Throwable e);
     }
     interface IModel{
         void DepartmentData(IContractCallBack iContractCallBack);
-        void DoctorData(int deptId,int condition,int sortBy,int page,int count,IContractCallBack iContractCallBack);
-        void InfoData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
-        void followData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
-        void canceData( int userId,String sessionId,int doctorId,IContractCallBack iContractCallBack);
-        void NowData( int userId,String sessionId,IContractCallBack iContractCallBack);
-        void MoneyData( int userId,String sessionId,IContractCallBack iContractCallBack);
+        void DoctorData(int deptId, int condition, int sortBy, int page, int count, IContractCallBack iContractCallBack);
+        void InfoData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack);
+        void followData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack);
+        void canceData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack);
+        void NowData(int userId, String sessionId, IContractCallBack iContractCallBack);
+        void MoneyData(int userId, String sessionId, IContractCallBack iContractCallBack);
+        void ConsultDoctorData(String userId, String sessionId, String doctorId, IContractCallBack iContractCallBack);
         interface IContractCallBack{
             void onSuccess(Object o);
             void onFailure(Throwable e);
@@ -59,5 +64,6 @@ public interface Contract {
         void canceP(int userId, String sessionId, int doctorId);
         void NowP(int userId, String sessionId);
         void MoneyP(int userId, String sessionId);
+        void ConsultDoctorP(String userId, String sessionId, String doctorId);
     }
 }

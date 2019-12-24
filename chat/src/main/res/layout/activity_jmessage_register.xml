@@ -13,9 +13,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginBottom="41dp"
         android:ems="10"
-
         app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintStart_toStartOf="@+id/editText2" />
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        android:text="lzk6"
+        />
 
     <EditText
         android:id="@+id/editText2"
@@ -23,10 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="185dp"
         android:ems="10"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="123456"
+        />
 
     <Button
         android:id="@+id/button"

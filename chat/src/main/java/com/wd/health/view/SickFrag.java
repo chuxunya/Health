@@ -13,6 +13,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.FindDepartmentBean;
@@ -68,6 +69,13 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     @BindView(R.id.page)
     TextView page1;
 
+    /*@BindView(R.id.tablayout)
+    TabLayout tab;
+    @BindView(R.id.pager)
+    NoScrollViewPager pager;*/
+
+    /*private ArrayList<String> list;
+    private ArrayList<Fragment> list1;*/
     private int departmentId;
     private int position;
     int page = 1;
@@ -250,6 +258,17 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     public void onMoneyFailure(Throwable e) {
 
     }
+
+    @Override
+    public void onConsultDoctorSuccess(ConsultDoctorBean bean) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+
+    }
+
     @OnClick({R.id.up, R.id.next, R.id.more})
     public void onViewClicked(View view) {
         switch (view.getId()) {

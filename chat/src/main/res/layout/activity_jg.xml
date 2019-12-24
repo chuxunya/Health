@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".jgActivity">
+    tools:context=".JgActivity"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_marginTop="20dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/sim_wenzhen_fanhui"
+            android:padding="10dp"
+            android:background="@mipmap/common_icon_back_black_n"
+            />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="迪丽热巴"
+            android:layout_marginTop="20dp"
+            android:id="@+id/title_name"
+            android:textSize="16sp"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ></androidx.recyclerview.widget.RecyclerView>
+    <include layout="@layout/include_reply_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="79dp"
-        android:text="发送"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        />
+
+</LinearLayout>

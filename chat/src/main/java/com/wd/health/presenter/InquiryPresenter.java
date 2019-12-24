@@ -137,4 +137,19 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
             }
         });
     }
+
+    @Override
+    public void ConsultDoctorP(String userId, String sessionId, String doctorId) {
+        inquiryModel.ConsultDoctorData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                getView().onDoctorSuccess((DoctorBean) o);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onFailure(e);
+            }
+        });
+    }
 }

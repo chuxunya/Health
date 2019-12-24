@@ -2,6 +2,7 @@ package com.wd.health.model;
 
 import com.bawei.lizekai.mylibrary.utils.CommonObserver;
 import com.bawei.lizekai.mylibrary.utils.CommonSchedulers;
+import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.FindDepartmentBean;
@@ -137,6 +138,22 @@ public class InquiryModel implements Contract.IModel {
                     @Override
                     public void onNext(MyMoneyBean myMoneyBean) {
                         iContractCallBack.onSuccess(myMoneyBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void ConsultDoctorData(String userId, String sessionId, String doctorId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create().getConsultDoctor(userId,sessionId,doctorId).compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<ConsultDoctorBean>() {
+                    @Override
+                    public void onNext(ConsultDoctorBean bean) {
+                        iContractCallBack.onSuccess(bean);
                     }
 
                     @Override

@@ -1,5 +1,6 @@
 package com.wd.health;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,7 +58,7 @@ public class JMessageRegisterActivity extends AppCompatActivity {
                         Log.i("login1",i+"");
                         Log.i("login1",s);
                         if (i==0){
-                            Toast.makeText(JMessageRegisterActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(JMessageRegisterActivity.this,JgActivity.class));
                         }else {
                             Toast.makeText(JMessageRegisterActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
                         }

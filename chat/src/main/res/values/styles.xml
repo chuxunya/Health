@@ -6,8 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-
     </style>
 
     <style name="TabLayoutTextStyle">
@@ -16,4 +14,12 @@
     <style name="TabLayoutTextStyle2">
         <item name="android:textSize">@dimen/textsize</item>
     </style>
+
+    <style name="text_subhead_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_title</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
 </resources>
