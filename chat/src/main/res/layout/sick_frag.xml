@@ -7,16 +7,12 @@
     android:background="@color/back">
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
+        app:tabIndicatorHeight="0dp"
         android:background="@color/white"
         android:layout_width="match_parent"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         android:layout_height="40dp"/>
-    <!--<com.wd.chat.view.NoScrollViewPager
-        android:id="@+id/pager"
-        android:layout_marginTop="1dp"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>-->
+
     <LinearLayout
         android:layout_marginTop="1dp"
         android:background="@color/white"
@@ -24,7 +20,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <RelativeLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">

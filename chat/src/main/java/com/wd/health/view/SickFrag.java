@@ -68,13 +68,6 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     @BindView(R.id.page)
     TextView page1;
 
-    /*@BindView(R.id.tablayout)
-    TabLayout tab;
-    @BindView(R.id.pager)
-    NoScrollViewPager pager;*/
-
-    /*private ArrayList<String> list;
-    private ArrayList<Fragment> list1;*/
     private int departmentId;
     private int position;
     int page = 1;
@@ -93,11 +86,7 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     @Override
     protected void initView() {
         super.initView();
-        /*list = new ArrayList<>();
-        list.add("综合");
-        list.add("好评");
-        list.add("咨询数");
-        list.add("价格");*/
+
         tablayout.addTab(tablayout.newTab().setText("综合"));
         tablayout.addTab(tablayout.newTab().setText("好评"));
         tablayout.addTab(tablayout.newTab().setText("咨询数"));

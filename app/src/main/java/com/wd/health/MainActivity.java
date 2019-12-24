@@ -8,7 +8,6 @@ import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
