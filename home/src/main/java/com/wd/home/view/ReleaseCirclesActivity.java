@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -36,9 +39,12 @@ import com.wd.home.api.ImageUtil;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DiseaseBean;
+import com.wd.home.bean.DoTaskBean;
 import com.wd.home.bean.InformationBean;
 import com.wd.home.bean.InformationListBean;
 import com.wd.home.bean.KeywordSearchBean;
+import com.wd.home.bean.ReleasePatientsBean;
+import com.wd.home.bean.UploadPatientBean;
 import com.wd.home.contract.BannerContract;
 import com.wd.home.contract.DiseaseContract;
 import com.wd.home.presenter.BannerPresenter;
@@ -46,8 +52,10 @@ import com.wd.home.presenter.DiseasePresenter;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -82,6 +90,14 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
     private TextView release_circle_tv_choose_disease;
     private String path;
     private MultipartBody.Part picture;
+    private EditText release_circle_et_title;
+    private EditText release_circle_et_detail;
+    private EditText release_circle_et_treatmentHospital;
+    private EditText release_circle_et_treatmentProcess;
+    private TextView release_circle_tv_startTime;
+    private String sessionId = "1577171191460446";
+    private int userId = 446;
+    private int sickCircleId;
 
 
     @Override
@@ -105,6 +121,11 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
         release_circle_btn_publish = findViewById(R.id.release_circle_btn_publish);
         release_circle_tv_choose_department = findViewById(R.id.release_circle_tv_choose_department);
         release_circle_tv_choose_disease = findViewById(R.id.release_circle_tv_choose_disease);
+        release_circle_et_title = findViewById(R.id.release_circle_et_title);
+        release_circle_et_detail = findViewById(R.id.release_circle_et_detail);
+        release_circle_tv_startTime = findViewById(R.id.release_circle_tv_startTime);
+        release_circle_et_treatmentHospital = findViewById(R.id.release_circle_et_treatmentHospital);
+        release_circle_et_treatmentProcess = findViewById(R.id.release_circle_et_treatmentProcess);
     }
 
     @Override
@@ -242,6 +263,82 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
             }
         });
 
+        release_circle_btn_publish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //标题
+                String title = release_circle_et_title.getText().toString().trim();
+                //病症详情
+                String detail = release_circle_et_detail.getText().toString().trim();
+                //病症描述
+                String disease = release_circle_tv_choose_disease.getText().toString().trim();
+                //治疗医院
+                String treatmentHospital = release_circle_et_treatmentHospital.getText().toString().trim();
+                //治疗开始时间 格式’2018-3-26’
+                String treatmentStartTime = release_circle_tv_startTime.getText().toString().trim();
+                //	治疗结束时间 格式’2018-6-26’
+                String treatmentEndTime = release_circle_tv_endTime.getText().toString().trim();
+
+                String treatmentProcess = release_circle_et_treatmentProcess.getText().toString().trim();
+
+                if (TextUtils.isEmpty(title)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "标题不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(detail)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "请输入病症详情", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(disease)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "病症描述", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(disease)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "病症描述", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(treatmentStartTime)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "请选择治疗开始时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(treatmentEndTime)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "请选择治疗结束时间", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(treatmentHospital)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "请输入治疗医院", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(treatmentProcess)) {
+                    Toast.makeText(ReleaseCirclesActivity.this, "治疗过程描述", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("title", title);
+                map.put("departmentId", id);
+                map.put("disease", disease);
+                map.put("detail", detail);
+                map.put("treatmentHospital", treatmentHospital);
+                map.put("treatmentStartTime", treatmentStartTime);
+                map.put("treatmentEndTime", treatmentEndTime);
+                map.put("treatmentProcess", treatmentProcess);
+                map.put("amount", 0);
+                //调发布圈子接口
+                mPresenter.publishsick(userId, sessionId, map);
+                mPresenter.uploadsick(userId, sessionId, sickCircleId, picture);
+
+
+            }
+        });
+
     }
     ////科室列表
     private void initPopWindowDepartment(View v) {
@@ -296,7 +393,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
         mPresenter.disease(id);
     }
 
-    @Override
+  /*  @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //判断是不是选中图片了
@@ -322,7 +419,7 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
                 Toast.makeText(this, "取消相册", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
     //科室
     @Override
     public void depart(DepartmentBean departmentBean) {
@@ -361,5 +458,47 @@ public class ReleaseCirclesActivity extends BaseActivity<DiseasePresenter> imple
                 popWindowDisease.dismiss();
             }
         });
+    }
+
+    //发布照片
+    @Override
+    public void uploadsick(UploadPatientBean uploadPatientBean) {
+        if (uploadPatientBean.getStatus().equals("0000")) {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+            //做任务
+            mPresenter.dotask(userId, sessionId, 1003);
+
+            finish();
+        } else {
+            Toast.makeText(this, uploadPatientBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //发布病友圈
+    @Override
+    public void publishsick(ReleasePatientsBean releasePatientsBean) {
+        if (releasePatientsBean.getStatus().equals("0000")) {
+            Toast.makeText(this, releasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+            sickCircleId = releasePatientsBean.getResult();
+
+            if (picture != null) {
+                mPresenter.uploadsick(userId, sessionId, sickCircleId, picture);
+            } else {
+                //做任务
+               mPresenter.dotask(userId, sessionId, 1003);
+
+                finish();
+            }
+        } else {
+            Toast.makeText(this, releasePatientsBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void dotask(DoTaskBean doTaskBean) {
+        if (doTaskBean.getStatus().equals("0000")) {
+            Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
+            mPresenter.uploadsick(userId, sessionId, sickCircleId, picture);
+        }
     }
 }

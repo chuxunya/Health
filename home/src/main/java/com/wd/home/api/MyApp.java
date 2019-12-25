@@ -6,6 +6,7 @@ import com.wd.home.bean.CommentCircleBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DiseaseBean;
 import com.wd.home.bean.DiseaseknowledgeBean;
+import com.wd.home.bean.DoTaskBean;
 import com.wd.home.bean.DrugsBean;
 import com.wd.home.bean.DrugsKnowBean;
 import com.wd.home.bean.DrugsknowledgeBean;
@@ -17,14 +18,22 @@ import com.wd.home.bean.KeywordSearchBean;
 import com.wd.home.bean.PatientDetailsBean;
 import com.wd.home.bean.PopularSearchBean;
 import com.wd.home.bean.QueryCommentBean;
+import com.wd.home.bean.ReleasePatientsBean;
 import com.wd.home.bean.SickCircleListBean;
+import com.wd.home.bean.UploadPatientBean;
+
+import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -120,6 +129,31 @@ public interface MyApp  {
             @Query("sickCircleId") int sickCircleId,
             @Query("page") int page,
             @Query("count") int count
+    );
+
+    //上传用户病友圈相关图片
+    @Multipart
+    @POST("health/user/sickCircle/verify/v1/uploadSickCirclePicture")
+    Observable<UploadPatientBean> uploadsick(@Header("userId") int userId,
+                                                @Header("sessionId") String sessionId,
+                                                @Query("sickCircleId") int sickCircleId,
+                                                @Part MultipartBody.Part part);
+
+    //发布病友圈
+    @POST("health/user/sickCircle/verify/v1/publishSickCircle")
+    Observable<ReleasePatientsBean> publishsick(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Body Map<String ,Object> map
+    );
+
+
+    //做任务
+    @POST("health/user/verify/v1/doTask")
+    Observable<DoTaskBean> dotask(
+            @Header("userId")       int userId,
+            @Header("sessionId")    String sessionId,
+            @Query("taskId")        int taskId
     );
 
 }
