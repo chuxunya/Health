@@ -18,12 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-
 /**
- * @author 2019/11/7
- * @author 9:54
- * 杨立朝
- */
+ *@describe(描述)：AdvisoryAdapter 健康咨询
+ *@data（日期）: 2019/12/25
+ *@time（时间）: 9:12
+ *@author（作者）: 张安恒
+ **/
+
 public class AdvisoryAdapter extends RecyclerView.Adapter {
     private List<AddInfoCollectBean.ResultBean> result;
     private Context context;

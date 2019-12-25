@@ -19,11 +19,12 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * date:2019/11/15
- * author:孙杰健(fdg)
- * function:根据视频类目查询视频列表
- */
+ /**
+  *@describe(描述)：VideoVoListAdapter 根据视频类目查询视频列表
+  *@data（日期）: 2019/12/25
+  *@time（时间）: 9:14
+  *@author（作者）: 张安恒
+  **/
 public class VideoVoListAdapter extends RecyclerView.Adapter {
     private List<VideoInfoBean.ResultBean> result;
     private Context context;

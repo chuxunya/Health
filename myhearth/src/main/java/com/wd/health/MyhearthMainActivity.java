@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
@@ -12,6 +13,10 @@ import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.wd.health.activity.FavoriteMainActivity;
 import com.wd.health.activity.FindDoctorActivity;
 import com.wd.health.activity.MyBuyVideoActivity;
+import com.wd.health.activity.MywalletActivity;
+import com.wd.health.bean.AddSignBean;
+import com.wd.health.contract.MyHertContract;
+import com.wd.health.presenter.MyHertPresenter;
 
 /**
  *@describe(描述)：myheart  我的关注
@@ -19,15 +24,12 @@ import com.wd.health.activity.MyBuyVideoActivity;
  *@time（时间）: 15:57
  *@author（作者）: 张安恒
  **/
-public class MyhearthMainActivity extends BaseActivity {
+public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implements MyHertContract.Iview {
 
 
-    private ImageView attention,favorite,myvideo;
+    private ImageView attention,favorite,myvideo,my_money;
+    private Button mine_activity_btn_sign_in;
 
-    @Override
-    protected BasePresenter providePresenter() {
-        return null;
-    }
 
     @Override
     protected int provideLayoutId() {
@@ -40,6 +42,13 @@ public class MyhearthMainActivity extends BaseActivity {
         attention = findViewById(R.id.attention);
         favorite = findViewById(R.id.favorite);
         myvideo = findViewById(R.id.myvideo);
+        my_money = findViewById(R.id.my_money);
+        mine_activity_btn_sign_in = findViewById(R.id.mine_activity_btn_sign_in);
+    }
+
+    @Override
+    protected MyHertPresenter providePresenter() {
+        return new MyHertPresenter();
     }
 
     @Override
@@ -66,5 +75,25 @@ public class MyhearthMainActivity extends BaseActivity {
                 startActivity(new Intent(MyhearthMainActivity.this, MyBuyVideoActivity.class));
             }
         });
+        //我的钱包
+        my_money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, MywalletActivity.class));
+            }
+        });
+        //签到
+        mine_activity_btn_sign_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //做签到任务
+              mPresenter.Addsign();
+            }
+        });
+    }
+
+    @Override
+    public void addsign(AddSignBean addSignBean) {
+
     }
 }

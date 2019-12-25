@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/wallet_item_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="问诊咨询"
+            android:textColor="#333333"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/wallet_item_time"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#999999"
+            android:text="2018.11.18"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/wallet_item_consumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/blue"/>
+    <TextView
+        android:id="@+id/wallet_item_consumption2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/colorAccent"/>
+
+</RelativeLayout>

@@ -61,11 +61,11 @@
                 android:layout_width="58dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/btn_mashanglogin"
-                android:layout_centerVertical="true"
                 android:text="登录"
-                android:textColor="#3087ea"/>
+                android:textColor="#3087ea" />
 
             <Button
                 android:id="@+id/mine_activity_btn_sign_in"
@@ -210,6 +210,7 @@
                 android:layout_centerHorizontal="true">
 
                 <ImageView
+                    android:id="@+id/my_money"
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/my_icon_wallet_n" />

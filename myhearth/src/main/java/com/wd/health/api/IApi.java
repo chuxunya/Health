@@ -11,10 +11,12 @@ package com.wd.health.api;
 
 
 import com.wd.health.bean.AddInfoCollectBean;
+import com.wd.health.bean.AddSignBean;
 import com.wd.health.bean.ConsultationBean;
 import com.wd.health.bean.DeInfoBean;
 import com.wd.health.bean.DeleVideoInfoBean;
 import com.wd.health.bean.FindDoctorBean;
+import com.wd.health.bean.FindUserCRBean;
 import com.wd.health.bean.FindquanBean;
 import com.wd.health.bean.MyBuyVideoBean;
 import com.wd.health.bean.MyWalletBean;
@@ -25,6 +27,7 @@ import io.reactivex.Observable;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 
@@ -59,5 +62,11 @@ public interface IApi {
     //删除购买健康课堂视频://http://172.17.8.100/health/user/verify/v1/deleteVideoBuy
     @DELETE("health/user/verify/v1/deleteVideoBuy")
     Observable<MydeleVideoBean> mydeletevideo(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("videoId") String videoId);
+    //查询用户消费记录:http://172.17.8.100/health/user/verify/v1/findUserConsumptionRecordList
+    @GET("health/user/verify/v1/findUserConsumptionRecordList")
+    Observable<FindUserCRBean> findusercr(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") String page, @Query("count") String count);
+    //用户签到:http://172.17.8.100/health/user/verify/v1/addSign
+    @POST("health/user/verify/v1/addSign")
+    Observable<AddSignBean> addsign(@Header("userId") String userId, @Header("sessionId") String sessionId);
 
 }

@@ -18,7 +18,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-
+/**
+ *@describe(描述)：MyVideoAdapter  我的视频
+ *@data（日期）: 2019/12/25
+ *@time（时间）: 9:15
+ *@author（作者）: 张安恒
+ **/
 public class MyVideoAdapter extends RecyclerView.Adapter {
     private List<MyBuyVideoBean.ResultBean> result;
     private Context context;
