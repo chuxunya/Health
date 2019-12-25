@@ -16,6 +16,7 @@ import com.wd.health.bean.ConsultationBean;
 import com.wd.health.bean.DeInfoBean;
 import com.wd.health.bean.DeleVideoInfoBean;
 import com.wd.health.bean.FindDoctorBean;
+import com.wd.health.bean.FindMyAdoptedCommentListBean;
 import com.wd.health.bean.FindUserCRBean;
 import com.wd.health.bean.FindquanBean;
 import com.wd.health.bean.MyBuyVideoBean;
@@ -68,5 +69,8 @@ public interface IApi {
     //用户签到:http://172.17.8.100/health/user/verify/v1/addSign
     @POST("health/user/verify/v1/addSign")
     Observable<AddSignBean> addsign(@Header("userId") String userId, @Header("sessionId") String sessionId);
+    //查询我的被采纳的建议:http://172.17.8.100/health/user/verify/v1/findMyAdoptedCommentList
+    @GET("health/user/verify/v1/findMyAdoptedCommentList")
+    Observable<FindMyAdoptedCommentListBean> findyijian(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") String page, @Query("count") String count);
 
 }

@@ -187,8 +187,8 @@
 
                 <ImageView
                     android:id="@+id/file"
-                    android:layout_width="29dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/my_icon_file_n" />
 
                 <TextView
@@ -211,8 +211,8 @@
 
                 <ImageView
                     android:id="@+id/my_money"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/my_icon_wallet_n" />
 
                 <TextView
@@ -263,15 +263,15 @@
 
                 <ImageView
                     android:id="@+id/yijian"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/my_icon_advice_n"/>
+                    android:layout_width="22dp"
+                    android:layout_height="29dp"
+                    android:background="@drawable/my_icon_advice_n" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="被采纳的建议"
-                    android:textSize="10dp"
+                    android:textSize="8dp"
                     android:layout_marginTop="10dp"
                     android:textColor="#333333"/>
 
@@ -309,7 +309,7 @@
 
                 <ImageView
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_height="28dp"
                     android:background="@drawable/my_icon_circle_n"/>
 
                 <TextView

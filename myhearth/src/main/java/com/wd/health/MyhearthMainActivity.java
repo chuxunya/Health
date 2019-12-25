@@ -12,6 +12,7 @@ import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
 import com.wd.health.activity.FavoriteMainActivity;
 import com.wd.health.activity.FindDoctorActivity;
+import com.wd.health.activity.FindyijianActivity;
 import com.wd.health.activity.MyBuyVideoActivity;
 import com.wd.health.activity.MywalletActivity;
 import com.wd.health.bean.AddSignBean;
@@ -27,7 +28,7 @@ import com.wd.health.presenter.MyHertPresenter;
 public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implements MyHertContract.Iview {
 
 
-    private ImageView attention,favorite,myvideo,my_money;
+    private ImageView attention,favorite,myvideo,my_money,yijian;
     private Button mine_activity_btn_sign_in;
 
 
@@ -44,6 +45,7 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
         myvideo = findViewById(R.id.myvideo);
         my_money = findViewById(R.id.my_money);
         mine_activity_btn_sign_in = findViewById(R.id.mine_activity_btn_sign_in);
+        yijian = findViewById(R.id.yijian);
     }
 
     @Override
@@ -80,6 +82,13 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MyhearthMainActivity.this, MywalletActivity.class));
+            }
+        });
+        //查询我的被采纳的建议
+        yijian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, FindyijianActivity.class));
             }
         });
         //签到

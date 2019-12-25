@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MyBuyVideoActivity"></activity>
+        <activity android:name=".activity.FindyijianActivity"></activity>
+        <activity android:name=".activity.MyBuyVideoActivity" />
         <activity android:name=".activity.FavoriteMainActivity" />
         <activity android:name=".activity.MywalletActivity" />
         <activity android:name=".activity.FindDoctorActivity" />

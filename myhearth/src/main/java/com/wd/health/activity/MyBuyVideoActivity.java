@@ -62,6 +62,7 @@ public class MyBuyVideoActivity extends BaseActivity<MyBuyVideoPresenter> implem
         myvideo_recy.setLayoutManager(linearLayoutManager);
     }
 
+    //购买视频
     @Override
     public void mybuyvideo(MyBuyVideoBean myBuyVideoBean) {
         Log.i("xmyBuyVideoBean", "mybuyvideo: " + myBuyVideoBean.getMessage());
@@ -70,6 +71,7 @@ public class MyBuyVideoActivity extends BaseActivity<MyBuyVideoPresenter> implem
             MyVideoAdapter myVideoAdapter = new MyVideoAdapter(result, this);
             myvideo_recy.setAdapter(myVideoAdapter);
 
+            //删除视频
             myVideoAdapter.onItemClickListener(new MyVideoAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {

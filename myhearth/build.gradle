@@ -64,5 +64,4 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
 
-
 }
