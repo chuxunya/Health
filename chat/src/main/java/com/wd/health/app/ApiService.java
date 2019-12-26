@@ -1,6 +1,7 @@
 package com.wd.health.app;
 
 import com.wd.health.bean.ConsultDoctorBean;
+import com.wd.health.bean.CurrentInquiryRecordBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.FindDepartmentBean;
@@ -8,9 +9,13 @@ import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
 import com.wd.health.bean.NoLikeBean;
 import com.wd.health.bean.NowIMS;
+import com.wd.health.bean.PushMessagedBean;
+import com.wd.health.bean.RecordListBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -47,4 +52,15 @@ public interface ApiService {
     Observable<MyMoneyBean> getMoney(@Header("userId") int userId, @Header("sessionId") String sessionId);
     @PUT("user/inquiry/verify/v1/consultDoctor")
     Observable<ConsultDoctorBean> getConsultDoctor(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("doctorId") String doctorId);
+    //查询历史问诊聊天记录
+    @GET("health/user/inquiry/verify/v1/findInquiryRecordList")
+    Observable<RecordListBean> getRecordList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("inquiryId") String inquiryId, @Query("page") String page, @Query("count") String count);
+    //问诊-发送消息（文本消息）
+    @FormUrlEncoded
+    @POST("health/user/inquiry/verify/v1/pushMessage")
+    Observable<PushMessagedBean>getPushMessage(@Header("userId") String userId, @Header("sessionId") String sessionId, @Field("inquiryId") String inquiryId, @Field("content") String content, @Field("type") String type, @Field("doctorId") String doctorId);
+    //用户查看当前问诊
+    @GET("health/user/inquiry/verify/v1/findCurrentInquiryRecord")
+    Observable<CurrentInquiryRecordBean>getCurrentInquiryRecord(@Header("userId") String userId, @Header("sessionId") String sessionId);
+
 }

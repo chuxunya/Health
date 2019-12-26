@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
     @BindView(R.id.pager)
     ViewPager pager;
     private ArrayList<String> list=new ArrayList<>();
-    String sesssionId = "1577168903380475";
+    String sesssionId = "1577352181185475";
     int userId = 475;
     private SharedPreferences.Editor edit;
     private SharedPreferences sp;

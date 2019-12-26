@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/sim_liao_imagedocior"
+        android:layout_alignParentRight="true"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/button_corners_blue"
+        android:text="可以的，藿香正气药水"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:paddingTop="7dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/sim_liao_imagedocior"
+        android:id="@+id/text_liao2docior"
+
+        />
+</RelativeLayout>

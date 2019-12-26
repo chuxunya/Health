@@ -26,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="迪丽热巴"
             android:layout_marginTop="20dp"
             android:id="@+id/title_name"
             android:textSize="16sp"
@@ -34,13 +33,25 @@
             />
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_record"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:fitsSystemWindows="true"
         ></androidx.recyclerview.widget.RecyclerView>
-    <include layout="@layout/include_reply_layout"
+    <LinearLayout
+        android:id="@+id/line_jg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:orientation="vertical"
+        >
+
+        <include layout="@layout/include_reply_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>

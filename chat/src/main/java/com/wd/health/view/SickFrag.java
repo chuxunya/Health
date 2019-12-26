@@ -94,7 +94,11 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     @Override
     protected void initView() {
         super.initView();
-
+        /*list = new ArrayList<>();
+        list.add("综合");
+        list.add("好评");
+        list.add("咨询数");
+        list.add("价格");*/
         tablayout.addTab(tablayout.newTab().setText("综合"));
         tablayout.addTab(tablayout.newTab().setText("好评"));
         tablayout.addTab(tablayout.newTab().setText("咨询数"));
@@ -129,7 +133,6 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
 
             }
         });
-
     }
 
     @Override
@@ -156,7 +159,7 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     public void onDoctorSuccess(DoctorBean doctorBean) {
         Log.d(TAG, "onDoctorSuccess: " + doctorBean);
         if (doctorBean.getStatus().equals("0000")) {
-            List<DoctorBean.ResultBean> result = doctorBean.getResult();
+            final List<DoctorBean.ResultBean> result = doctorBean.getResult();
             if (!result.isEmpty()) {
                 doctorId = result.get(0).getDoctorId();
                 Glide.with(getContext()).load(result.get(0).getImagePic()).into(img);

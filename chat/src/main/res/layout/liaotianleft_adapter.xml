@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/sim_liao_zphuanzhe"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@drawable/button_corners_blue"
+        android:text="上火吃什么药"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:layout_marginTop="30dp"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/text_liao1huanzhe"
+        android:layout_toRightOf="@id/sim_liao_zphuanzhe"
+        />
+</RelativeLayout>
