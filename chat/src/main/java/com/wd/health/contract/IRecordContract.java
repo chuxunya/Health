@@ -19,6 +19,7 @@ public interface IRecordContract {
         void onFailure(Throwable e);
     }
     interface IRecordModel{
+
         void getCurrentInquiryRecorData(String userId, String sessionId, ICurrentInquiryRecorModelCallback iCurrentInquiryRecorModelCallback);
         interface ICurrentInquiryRecorModelCallback{
             void onCurrentInquiryRecorSuccess(CurrentInquiryRecordBean bean);
