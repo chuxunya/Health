@@ -308,6 +308,7 @@
                 android:layout_alignParentRight="true">
 
                 <ImageView
+                    android:id="@+id/mysick"
                     android:layout_width="30dp"
                     android:layout_height="28dp"
                     android:background="@drawable/my_icon_circle_n"/>

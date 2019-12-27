@@ -14,6 +14,7 @@ import com.wd.health.activity.FavoriteMainActivity;
 import com.wd.health.activity.FindDoctorActivity;
 import com.wd.health.activity.FindyijianActivity;
 import com.wd.health.activity.MyBuyVideoActivity;
+import com.wd.health.activity.MySickActivity;
 import com.wd.health.activity.MywalletActivity;
 import com.wd.health.bean.AddSignBean;
 import com.wd.health.contract.MyHertContract;
@@ -28,7 +29,7 @@ import com.wd.health.presenter.MyHertPresenter;
 public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implements MyHertContract.Iview {
 
 
-    private ImageView attention,favorite,myvideo,my_money,yijian;
+    private ImageView attention,favorite,myvideo,my_money,yijian,mysick;
     private Button mine_activity_btn_sign_in;
 
 
@@ -46,6 +47,7 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
         my_money = findViewById(R.id.my_money);
         mine_activity_btn_sign_in = findViewById(R.id.mine_activity_btn_sign_in);
         yijian = findViewById(R.id.yijian);
+        mysick = findViewById(R.id.mysick);
     }
 
     @Override
@@ -89,6 +91,14 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MyhearthMainActivity.this, FindyijianActivity.class));
+            }
+        });
+
+        //我的朋友圈
+        mysick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, MySickActivity.class));
             }
         });
         //签到

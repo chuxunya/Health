@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 
 import com.wd.health.adapter.FindUserDoctorFollowListAdapter;
@@ -26,10 +27,10 @@ import java.util.List;
  **/
 public class FindDoctorActivity extends BaseActivity<FindDoctorPresenter> implements FindDoctorContract.Iview {
 
-    private RecyclerView attention_recy;
+    private XRecyclerView attention_recy;
     private RelativeLayout guanzhukong;
     private FindUserDoctorFollowListAdapter findUserDoctorFollowListAdapter;
-
+    private  int a=1;
     @Override
     protected FindDoctorPresenter providePresenter() {
         return new FindDoctorPresenter();
@@ -49,6 +50,24 @@ public class FindDoctorActivity extends BaseActivity<FindDoctorPresenter> implem
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         attention_recy.setLayoutManager(linearLayoutManager);
+
+        attention_recy.setLoadingMoreEnabled(true);
+        attention_recy.setPullRefreshEnabled(true);
+        attention_recy.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                 a=1;
+                mPresenter.FindDoctor(a+"","7");
+                attention_recy.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+                a++;
+                mPresenter.FindDoctor(a+"","7");
+                 attention_recy.loadMoreComplete();
+            }
+        });
     }
 
 

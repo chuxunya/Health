@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.adapter.AdvisoryAdapter;
 import com.wd.health.bean.AddInfoCollectBean;
@@ -30,7 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
  **/
 
 public class CircleFragment extends BaseFragment <AddInfoPresenter> implements AddInfoContract.Iview {
-    private RecyclerView advisory_recy;
+    private XRecyclerView advisory_recy;
     private ImageView quxiao;
     private RelativeLayout zixunkong;
     private List<AddInfoCollectBean.ResultBean> result;
@@ -38,6 +39,7 @@ public class CircleFragment extends BaseFragment <AddInfoPresenter> implements A
     private String sessionId;
     private int infoId;
     private AdvisoryAdapter advisoryAdapter;
+    private  int a=1;
 
     @Override
     protected AddInfoPresenter providePresenter() {
@@ -65,6 +67,24 @@ public class CircleFragment extends BaseFragment <AddInfoPresenter> implements A
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         advisory_recy.setLayoutManager(linearLayoutManager);
+
+        advisory_recy.setLoadingMoreEnabled(true);
+        advisory_recy.setPullRefreshEnabled(true);
+        advisory_recy.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                a=1;
+                mPresenter.AddInfoCollect("1","7");;
+                advisory_recy.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+                a++;
+                mPresenter.AddInfoCollect("1","7");
+                advisory_recy.loadMoreComplete();
+            }
+        });
     }
 
     @Override
@@ -78,7 +98,6 @@ public class CircleFragment extends BaseFragment <AddInfoPresenter> implements A
         advisoryAdapter.onItemClickListener(new AdvisoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Toast.makeText(getContext(), "点击了条目", Toast.LENGTH_SHORT).show();
                 infoId = result.get(position).getInfoId();
                 mPresenter.DeleInfo(infoId+"");
                 advisoryAdapter.notifyDataSetChanged();
@@ -94,7 +113,7 @@ public class CircleFragment extends BaseFragment <AddInfoPresenter> implements A
     public void findvideo(VideoInfoBean videoInfoBean) {
 
     }
-
+  //删除
     @Override
     public void deleteinfo(DeInfoBean deInfoBean) {
         if (deInfoBean.getStatus().equals("0000")){

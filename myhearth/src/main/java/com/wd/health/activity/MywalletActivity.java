@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.wd.health.R;
 import com.wd.health.adapter.RecyclerUserCRAdapter;
 import com.wd.health.bean.FindUserCRBean;
@@ -28,10 +29,10 @@ import java.util.List;
 public class MywalletActivity extends BaseActivity<MyWalletPresenter> implements MyWalletContract.Iview {
 
     private TextView hbi;
-    private RecyclerView mywallet_recycler;
+    private XRecyclerView mywallet_recycler;
     private List<FindUserCRBean.ResultBean> userCRResult;
     private RecyclerUserCRAdapter recyclerUserCRAdapter;
-
+    private  int a=1;
     @Override
     protected MyWalletPresenter providePresenter() {
         return new MyWalletPresenter();
@@ -54,6 +55,24 @@ public class MywalletActivity extends BaseActivity<MyWalletPresenter> implements
         super.initView();
         hbi = findViewById(R.id.hbi);
         mywallet_recycler = findViewById(R.id.mywallet_recycler);
+
+        mywallet_recycler.setLoadingMoreEnabled(true);
+        mywallet_recycler.setPullRefreshEnabled(true);
+        mywallet_recycler.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                a=1;
+                mPresenter.FindUserRC(a+"","5");
+                mywallet_recycler.refreshComplete();
+            }
+
+            @Override
+            public void onLoadMore() {
+                a++;
+                mPresenter.FindUserRC(a+"","5");
+                mywallet_recycler.loadMoreComplete();
+            }
+        });
     }
 
     //查询用户余额

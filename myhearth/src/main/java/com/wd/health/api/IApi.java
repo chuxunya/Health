@@ -20,6 +20,8 @@ import com.wd.health.bean.FindMyAdoptedCommentListBean;
 import com.wd.health.bean.FindUserCRBean;
 import com.wd.health.bean.FindquanBean;
 import com.wd.health.bean.MyBuyVideoBean;
+import com.wd.health.bean.MySickCircleCommentListBean;
+import com.wd.health.bean.MySickCircleListBean;
 import com.wd.health.bean.MyWalletBean;
 import com.wd.health.bean.MydeleVideoBean;
 import com.wd.health.bean.VideoInfoBean;
@@ -73,4 +75,12 @@ public interface IApi {
     @GET("health/user/verify/v1/findMyAdoptedCommentList")
     Observable<FindMyAdoptedCommentListBean> findyijian(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") String page, @Query("count") String count);
 
+    //我的病友圈
+    //http://172.17.8.100/health/user/sickCircle/verify/v1/findMySickCircleList?page=1&count=5
+    @GET("health/user/sickCircle/verify/v1/findMySickCircleList")
+    Observable<MySickCircleListBean> getMySickCircleList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") String page, @Query("count") String count);
+    //查询我的病友圈帖子的评论列表
+    //http://172.17.8.100/health/user/sickCircle/verify/v1/findMySickCircleCommentList?sickCircleId=1796&page=1&count=5
+    @GET("health/user/sickCircle/verify/v1/findMySickCircleCommentList")
+    Observable<MySickCircleCommentListBean> getMySickCircleCommentList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("sickCircleId") String sickCircleId, @Query("page") String page, @Query("count") String count);
 }

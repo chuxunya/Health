@@ -105,9 +105,9 @@
         android:layout_width="fill_parent"
         android:layout_height="6sp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/mywallet_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
 </LinearLayout>

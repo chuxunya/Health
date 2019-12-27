@@ -62,6 +62,7 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.0'
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
-
+/*Xrecyclerview*/
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
 
 }

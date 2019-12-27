@@ -35,11 +35,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/advisory_recy"
-            ></androidx.recyclerview.widget.RecyclerView>
+            ></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
 
     </RelativeLayout>
