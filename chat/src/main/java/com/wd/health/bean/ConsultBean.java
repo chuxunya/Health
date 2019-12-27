@@ -1,13 +1,12 @@
 package com.wd.health.bean;
+
 /*
- *@auther:李泽楷
- *@Date: 2019/12/23
- *@Time:19:00
- *@Description:${DESCRIPTION}
+ *@auther:王可欣
+ *@Date: 2019/12/27
+ *@Time:9:52
+ *@Description:问诊医生
  **/
-
-public class ConsultDoctorBean {
-
+public class ConsultBean {
     /**
      * doctorUserName : FG2VzIP7uV0pYbZXAfJ/QWe5Ptq1ra6Zsyo8vjksNww5f6Yxo58AeaTbmVAVyh9N5VpDtB1/CL7YRS9hx0tWyMI+qsUaFmXaQIndA67hxisqHIJNYEzHQL2ib5EZWaXOsgDkbEpFporcmrKrGpLlnzO+OgUO7/Fm9RTFPjzSnJI=
      * message : 查询成功
@@ -20,7 +19,7 @@ public class ConsultDoctorBean {
 
     @Override
     public String toString() {
-        return "ConsultDoctorBean{" +
+        return "ConsultBean{" +
                 "doctorUserName='" + doctorUserName + '\'' +
                 ", message='" + message + '\'' +
                 ", status='" + status + '\'' +

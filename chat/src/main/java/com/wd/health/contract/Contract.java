@@ -1,9 +1,11 @@
 package com.wd.health.contract;
 
 import com.bawei.lizekai.mylibrary.base.IBaseView;
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -39,8 +41,11 @@ public interface Contract {
         void onMoneySuccess(MyMoneyBean myMoneyBean);
         void onMoneyFailure(Throwable e);
 
-        void onConsultDoctorSuccess(ConsultDoctorBean bean);
-        void onFailure(Throwable e);
+        void onConsultDoctorSuccess(ConsultBean bean);
+        void onConsultDoctorFailure(Throwable e);
+
+        void onEndDoctorSuccess(EndBean bean);
+        void onEndDoctorFailure(Throwable e);
     }
     interface IModel{
         void DepartmentData(IContractCallBack iContractCallBack);
@@ -50,7 +55,8 @@ public interface Contract {
         void canceData(int userId, String sessionId, int doctorId, IContractCallBack iContractCallBack);
         void NowData(int userId, String sessionId, IContractCallBack iContractCallBack);
         void MoneyData(int userId, String sessionId, IContractCallBack iContractCallBack);
-        void ConsultDoctorData(String userId, String sessionId, String doctorId, IContractCallBack iContractCallBack);
+        void ConsultDoctorData(String userId, String sessionId, int doctorId, IContractCallBack iContractCallBack);
+        void EndDoctorData(String userId, String sessionId, int recordId, IContractCallBack iContractCallBack);
         interface IContractCallBack{
             void onSuccess(Object o);
             void onFailure(Throwable e);
@@ -64,6 +70,7 @@ public interface Contract {
         void canceP(int userId, String sessionId, int doctorId);
         void NowP(int userId, String sessionId);
         void MoneyP(int userId, String sessionId);
-        void ConsultDoctorP(String userId, String sessionId, String doctorId);
+        void ConsultDoctorP(String userId, String sessionId, int doctorId);
+        void EndDoctorData(String userId, String sessionId, int recordId);
     }
 }

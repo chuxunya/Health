@@ -1,8 +1,10 @@
 package com.wd.health.presenter;
 
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -139,16 +141,32 @@ public class InquiryPresenter extends BasePresenter<Contract.IView> implements C
     }
 
     @Override
-    public void ConsultDoctorP(String userId, String sessionId, String doctorId) {
+    public void ConsultDoctorP(String userId, String sessionId, int doctorId) {
         inquiryModel.ConsultDoctorData(userId, sessionId, doctorId, new Contract.IModel.IContractCallBack() {
             @Override
             public void onSuccess(Object o) {
-                getView().onDoctorSuccess((DoctorBean) o);
+                ConsultBean consultBean = (ConsultBean)o;
+                getView().onConsultDoctorSuccess(consultBean);
             }
 
             @Override
             public void onFailure(Throwable e) {
-                getView().onFailure(e);
+                getView().onConsultDoctorFailure(e);
+            }
+        });
+    }
+
+    @Override
+    public void EndDoctorData(String userId, String sessionId, int recordId) {
+        inquiryModel.EndDoctorData(userId, sessionId, recordId, new Contract.IModel.IContractCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                getView().onEndDoctorSuccess((EndBean) o);
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                getView().onEndDoctorFailure(e);
             }
         });
     }

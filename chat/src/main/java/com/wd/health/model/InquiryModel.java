@@ -2,9 +2,11 @@ package com.wd.health.model;
 
 import com.bawei.lizekai.mylibrary.utils.CommonObserver;
 import com.bawei.lizekai.mylibrary.utils.CommonSchedulers;
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -148,12 +150,30 @@ public class InquiryModel implements Contract.IModel {
     }
 
     @Override
-    public void ConsultDoctorData(String userId, String sessionId, String doctorId, IContractCallBack iContractCallBack) {
-        RetrofitManager.getInstance().create().getConsultDoctor(userId,sessionId,doctorId).compose(CommonSchedulers.io2main())
-                .subscribe(new CommonObserver<ConsultDoctorBean>() {
+    public void ConsultDoctorData(String userId, String sessionId, int doctorId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create().getSult(userId,sessionId,doctorId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<ConsultBean>() {
                     @Override
-                    public void onNext(ConsultDoctorBean bean) {
-                        iContractCallBack.onSuccess(bean);
+                    public void onNext(ConsultBean consultBean) {
+                        iContractCallBack.onSuccess(consultBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iContractCallBack.onFailure(e);
+                    }
+                });
+    }
+
+    @Override
+    public void EndDoctorData(String userId, String sessionId, int recordId, IContractCallBack iContractCallBack) {
+        RetrofitManager.getInstance().create().getEnd(userId,sessionId,recordId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<EndBean>() {
+                    @Override
+                    public void onNext(EndBean endBean) {
+                        iContractCallBack.onSuccess(endBean);
                     }
 
                     @Override

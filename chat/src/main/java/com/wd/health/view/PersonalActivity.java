@@ -17,10 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bumptech.glide.Glide;
+import com.wd.health.JgActivity;
 import com.wd.health.R;
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -92,6 +95,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     private int userId;
     private String sesssionId;
     private int servicePrice;
+    private DoctorInfoBean.ResultBean result;
 
     @Override
     protected InquiryPresenter providePresenter() {
@@ -142,7 +146,7 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     public void onInfoSuccess(DoctorInfoBean doctorInfoBean) {
         Log.d(TAG, "onInfoSuccess: " + doctorInfoBean);
         if (doctorInfoBean.getStatus().equals("0000")) {
-            DoctorInfoBean.ResultBean result = doctorInfoBean.getResult();
+            result = doctorInfoBean.getResult();
             if (result != null) {
                 int followFlag = result.getFollowFlag();
                 if (followFlag == 1) {
@@ -262,6 +266,13 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                         alertDialog.cancel();
                     }
                 });
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mPresenter.EndDoctorData(userId+"",sesssionId,nowIMS.getResult().getRecordId());
+                        alertDialog.cancel();
+                    }
+                });
             }
             }
         } else {
@@ -299,6 +310,14 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 });
                 //提示扣除H币 取消/去咨询
                 //跳转到聊天页面
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        mPresenter.ConsultDoctorP(userId+"",sesssionId,doctorId);
+
+                    }
+                });
 
             } else {
                 //弹框提示H币不足 去充值/取消
@@ -331,14 +350,30 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     }
 
     @Override
-    public void onConsultDoctorSuccess(ConsultDoctorBean bean) {
+    public void onConsultDoctorSuccess(ConsultBean bean) {
+        Log.d("aaa", "onConsultDoctorSuccess: "+bean.toString());
+        if (bean.getStatus().equals("0000")){
+            Intent intent = new Intent(PersonalActivity.this,JgActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onConsultDoctorFailure(Throwable e) {
 
     }
 
     @Override
-    public void onFailure(Throwable e) {
+    public void onEndDoctorSuccess(EndBean bean) {
+        Log.d(TAG, "onEndDoctorSuccess: "+bean.toString());
+        Toast.makeText(this,bean.getMessage(),Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onEndDoctorFailure(Throwable e) {
 
     }
+
 
     @OnClick({R.id.back, R.id.nolike, R.id.like, R.id.go_now})
     public void onViewClicked(View view) {
@@ -364,10 +399,4 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

@@ -1,9 +1,11 @@
 package com.wd.health.app;
 
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.CurrentInquiryRecordBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -50,8 +52,9 @@ public interface ApiService {
     //http://172.17.8.100/health/user/verify/v1/findUserWallet我的钱包
     @GET("health/user/verify/v1/findUserWallet")
     Observable<MyMoneyBean> getMoney(@Header("userId") int userId, @Header("sessionId") String sessionId);
-    @PUT("user/inquiry/verify/v1/consultDoctor")
-    Observable<ConsultDoctorBean> getConsultDoctor(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("doctorId") String doctorId);
+    //http://172.17.8.100/health/user/inquiry/verify/v1/consultDoctor问诊医生
+    @PUT("health/user/inquiry/verify/v1/consultDoctor")
+    Observable<ConsultBean> getSult(@Header("userId") String userId, @Header("sessionId") String sessionId,@Query("doctorId")int doctorId);
     //查询历史问诊聊天记录
     @GET("health/user/inquiry/verify/v1/findInquiryRecordList")
     Observable<RecordListBean> getRecordList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("inquiryId") String inquiryId, @Query("page") String page, @Query("count") String count);
@@ -62,5 +65,7 @@ public interface ApiService {
     //用户查看当前问诊
     @GET("health/user/inquiry/verify/v1/findCurrentInquiryRecord")
     Observable<CurrentInquiryRecordBean>getCurrentInquiryRecord(@Header("userId") String userId, @Header("sessionId") String sessionId);
-
-}
+    //http://172.17.8.100/health/user/inquiry/verify/v1/endInquiry结束问诊
+    @PUT("health/user/inquiry/verify/v1/endInquiry")
+    Observable<EndBean> getEnd(@Header("userId") String userId, @Header("sessionId") String sessionId,@Query("recordId")int recordId);
+   }

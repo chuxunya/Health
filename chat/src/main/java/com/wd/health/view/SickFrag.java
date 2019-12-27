@@ -13,9 +13,11 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
+import com.wd.health.bean.EndBean;
 import com.wd.health.bean.FindDepartmentBean;
 import com.wd.health.bean.LikeBean;
 import com.wd.health.bean.MyMoneyBean;
@@ -263,12 +265,22 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     }
 
     @Override
-    public void onConsultDoctorSuccess(ConsultDoctorBean bean) {
+    public void onConsultDoctorSuccess(ConsultBean bean) {
 
     }
 
     @Override
-    public void onFailure(Throwable e) {
+    public void onConsultDoctorFailure(Throwable e) {
+
+    }
+
+    @Override
+    public void onEndDoctorSuccess(EndBean bean) {
+
+    }
+
+    @Override
+    public void onEndDoctorFailure(Throwable e) {
 
     }
 

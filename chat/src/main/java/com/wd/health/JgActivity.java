@@ -3,6 +3,7 @@ package com.wd.health;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,7 +32,10 @@ import com.wd.health.bean.PushMessagedBean;
 import com.wd.health.bean.RecordListBean;
 import com.wd.health.contract.IRecordContract;
 import com.wd.health.presenter.IRecordContractPresenter;
+import com.wd.health.utils.RsaCoder;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +80,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
     @BindView(R.id.line_jg)
     LinearLayout lineJg;
     private List<RecordListBean.ResultBean> result;
-    String id="1577352181185475";
+    /*String id="1577416781763475";*/
     Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -93,6 +97,9 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
     };
     private RecordAdapter adapter;
     private CurrentInquiryRecordBean.ResultBean result1;
+    private int userId;
+    private String sesssionId;
+    private String s;
 
     @Override
     protected IRecordContractPresenter providePresenter() {
@@ -107,6 +114,18 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
     @Override
     protected void initData() {
         super.initData();
+        SharedPreferences user = getSharedPreferences("user", MODE_PRIVATE);
+        userId = user.getInt("userId", 0);
+        sesssionId = user.getString("sesssionId", "");
+
+        try {
+            String jgpwd = RsaCoder.decryptByPublicKey("Ulljg1biEvGM7p6u82IEqmFuqQw24JwfBBr3XMzzQEV1NhChkPsw2xoS+ePiuh7SfXASBPGe25RNgl3Vmf0Wz5VGbhdNsHtjXLQsjf/TI3AsEh1TS/pqUmHg78eVnSonV4CTyvQECfmM7roSCcTjcvLyVvvMcYcngtDVch6ff4c=");
+            s = MD5(jgpwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -133,8 +152,8 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
             }
         });
         JMessageClient.registerEventReceiver(this);
-        mPresenter.getCurrentInquiryRecorPresenter("475", id);
-        JMessageClient.login("tdmOYx294617378", "e10adc3949ba59abbe56e057f20f883e", new BasicCallback() {
+        mPresenter.getCurrentInquiryRecorPresenter(userId+"", sesssionId);
+        JMessageClient.login("CRMBNechu0117", s, new BasicCallback() {
             @Override
             public void gotResult(int i, String s) {
                 Log.i(TAG, "gotResult: "+s);
@@ -154,7 +173,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
             if (bean.getResult() != null) {
                 titleName.setText(bean.getResult().getDoctorName());
                 result1 = bean.getResult();
-                mPresenter.getRecordListPresenter("475", id, bean.getResult().getRecordId() + "", "1", "50");
+                mPresenter.getRecordListPresenter(userId+"", sesssionId, bean.getResult().getRecordId() + "", "1", "50");
 
             }
         } else {
@@ -166,7 +185,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
     public void onPushMessageSuccess(PushMessagedBean bean) {
         if (bean.getStatus().equals("0000")){
             if (bean.getMessage().equals("推送成功")){
-                mPresenter.getRecordListPresenter("475", id, result1.getRecordId() + "", "1", "50");
+                mPresenter.getRecordListPresenter(userId+"", sesssionId, result1.getRecordId() + "", "1", "50");
                 editText.setText("");
             }
         }else {
@@ -209,13 +228,6 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
         Logger.i(TAG, "onFailure: " + e.toString());
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     //弹出键盘
     public static void showSoftInput(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -236,7 +248,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
         TextContent content = new TextContent(s);
         cn.jpush.im.android.api.model.Message sendMessage = conversation.createSendMessage(content);
         JMessageClient.sendMessage(sendMessage);
-        mPresenter.getPushMessagePresenter("475", id,result1.getRecordId()+"",s,1+"",result1.getDoctorId()+"");
+        mPresenter.getPushMessagePresenter(userId+"", sesssionId,result1.getRecordId()+"",s,1+"",result1.getDoctorId()+"");
     }
     //接受消息的事件
     public void onEventMainThread(MessageEvent event) {
@@ -247,7 +259,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
                 TextContent textContent = (TextContent) message.getContent();
                 String text = textContent.getText();
                 Logger.i(TAG, "onEventMainThread: "+text);
-                mPresenter.getRecordListPresenter("475", id, result1.getRecordId() + "", "1", "50");
+                mPresenter.getRecordListPresenter(userId+"", sesssionId, result1.getRecordId() + "", "1", "50");
                 break;
         }
     }
@@ -255,6 +267,30 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
         Intent notificationIntent = new Intent(this, JgActivity.class);
         this.startActivity(notificationIntent);// 自定义跳转到指定页面
     }
+
+    public static String MD5(String sourceStr) {
+        String result = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sourceStr.getBytes());
+            byte b[] = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            result = buf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        return result;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -19,11 +19,7 @@
         <activity android:name=".JgActivity"
             android:windowSoftInputMode="adjustResize"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".JMessageRegisterActivity" >
 
@@ -31,7 +27,11 @@
         <activity android:name=".view.PersonalActivity" />
         <activity android:name=".view.CommentActivity" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
