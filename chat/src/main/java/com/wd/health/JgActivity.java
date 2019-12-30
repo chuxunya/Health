@@ -58,29 +58,29 @@ import cn.jpush.im.api.BasicCallback;
 
 public class JgActivity extends BaseActivity<IRecordContractPresenter> implements IRecordContract.IRecordView {
 
-    @BindView(R.id.emotion_voice)
+    @BindView(R2.id.emotion_voice)
     ImageView emotionVoice;
-    @BindView(R.id.edit_text)
+    @BindView(R2.id.edit_text)
     EditText editText;
-    @BindView(R.id.voice_text)
+    @BindView(R2.id.voice_text)
     TextView voiceText;
-    @BindView(R.id.emotion_button)
+    @BindView(R2.id.emotion_button)
     ImageView emotionButton;
-    @BindView(R.id.emotion_add)
+    @BindView(R2.id.emotion_add)
     ImageView emotionAdd;
-    @BindView(R.id.emotion_fa)
+    @BindView(R2.id.emotion_fa)
     ImageView emotionFa;
     public static final String TAG = "JgActivity";
-    @BindView(R.id.sim_wenzhen_fanhui)
+    @BindView(R2.id.sim_wenzhen_fanhui)
     SimpleDraweeView simWenzhenFanhui;
-    @BindView(R.id.title_name)
+    @BindView(R2.id.title_name)
     TextView titleName;
-    @BindView(R.id.recy_record)
+    @BindView(R2.id.recy_record)
     RecyclerView recyRecord;
-    @BindView(R.id.line_jg)
+    @BindView(R2.id.line_jg)
     LinearLayout lineJg;
     private List<RecordListBean.ResultBean> result;
-    /*String id="1577416781763475";*/
+
     Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -241,7 +241,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
 
     }
 
-    @OnClick(R.id.emotion_fa)
+    @OnClick(R2.id.emotion_fa)
     public void onClick() {
         String s = editText.getText().toString();
         Conversation conversation = Conversation.createSingleConversation(result1.getUserName(), "b5f102cc307091e167ce52e0");

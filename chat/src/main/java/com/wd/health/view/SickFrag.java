@@ -13,6 +13,7 @@ import com.bawei.lizekai.mylibrary.base.BaseFragment;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
@@ -42,42 +43,35 @@ import butterknife.OnClick;
  **/
 public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract.IView {
     private static final String TAG = "SickFrag";
-    @BindView(R.id.tablayout)
+    @BindView(R2.id.tablayout)
     TabLayout tablayout;
-    @BindView(R.id.img)
+    @BindView(R2.id.img)
     ImageView img;
-    @BindView(R.id.name)
+    @BindView(R2.id.name)
     TextView name;
-    @BindView(R.id.work)
+    @BindView(R2.id.work)
     TextView work;
-    @BindView(R.id.address)
+    @BindView(R2.id.address)
     TextView address;
-    @BindView(R.id.good)
+    @BindView(R2.id.good)
     TextView good;
-    @BindView(R.id.number)
+    @BindView(R2.id.number)
     TextView number;
-    @BindView(R.id.more)
+    @BindView(R2.id.more)
     ImageView more;
-    @BindView(R.id.money)
+    @BindView(R2.id.money)
     TextView money;
-    @BindView(R.id.btn_go)
+    @BindView(R2.id.btn_go)
     Button btnGo;
-    @BindView(R.id.up)
+    @BindView(R2.id.up)
     ImageView up;
-    @BindView(R.id.recy)
+    @BindView(R2.id.recy)
     RecyclerView recy;
-    @BindView(R.id.next)
+    @BindView(R2.id.next)
     ImageView next;
-    @BindView(R.id.page)
+    @BindView(R2.id.page)
     TextView page1;
 
-    /*@BindView(R.id.tablayout)
-    TabLayout tab;
-    @BindView(R.id.pager)
-    NoScrollViewPager pager;*/
-
-    /*private ArrayList<String> list;
-    private ArrayList<Fragment> list1;*/
     private int departmentId;
     private int position;
     int page = 1;
@@ -96,11 +90,7 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
     @Override
     protected void initView() {
         super.initView();
-        /*list = new ArrayList<>();
-        list.add("综合");
-        list.add("好评");
-        list.add("咨询数");
-        list.add("价格");*/
+
         tablayout.addTab(tablayout.newTab().setText("综合"));
         tablayout.addTab(tablayout.newTab().setText("好评"));
         tablayout.addTab(tablayout.newTab().setText("咨询数"));
@@ -284,84 +274,44 @@ public class SickFrag extends BaseFragment<InquiryPresenter> implements Contract
 
     }
 
-    @OnClick({R.id.up, R.id.next, R.id.more})
+    @OnClick({R2.id.up, R2.id.next, R2.id.more})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.up:
-                page = page - 1;
-                if (position==0){
-                    mPresenter.DoctorP(departmentId, 1, 0, page, 3);
-                }
-                if (position==1){
-                    mPresenter.DoctorP(departmentId, 2, 0, page, 3);
-                }
-                if (position==2){
-                    mPresenter.DoctorP(departmentId, 3, 0, page, 3);
-                }
-                if (position==3){
-                    mPresenter.DoctorP(departmentId, 4, 0, page, 3);
-                }
-                page1.setText("" + page);
-                break;
-            case R.id.next:
-                page++;
-                if (position==0){
-                    mPresenter.DoctorP(departmentId, 1, 0, page, 3);
-                }
-                if (position==1){
-                    mPresenter.DoctorP(departmentId, 2, 0, page, 3);
-                }
-                if (position==2){
-                    mPresenter.DoctorP(departmentId, 3, 0, page, 3);
-                }
-                if (position==3){
-                    mPresenter.DoctorP(departmentId, 4, 0, page, 3);
-                }
-                page1.setText("" + page);
-                break;
-            case R.id.more:
-                Intent intent = new Intent(getActivity(),PersonalActivity.class);
-                intent.putExtra("doctorId",doctorId);
-                startActivity(intent);
-                break;
+        int id = view.getId();
+        if (id == R.id.up) {
+            page = page - 1;
+            if (position == 0) {
+                mPresenter.DoctorP(departmentId, 1, 0, page, 3);
+            }
+            if (position == 1) {
+                mPresenter.DoctorP(departmentId, 2, 0, page, 3);
+            }
+            if (position == 2) {
+                mPresenter.DoctorP(departmentId, 3, 0, page, 3);
+            }
+            if (position == 3) {
+                mPresenter.DoctorP(departmentId, 4, 0, page, 3);
+            }
+            page1.setText("" + page);
+        } else if (id == R.id.next) {
+            page++;
+            if (position == 0) {
+                mPresenter.DoctorP(departmentId, 1, 0, page, 3);
+            }
+            if (position == 1) {
+                mPresenter.DoctorP(departmentId, 2, 0, page, 3);
+            }
+            if (position == 2) {
+                mPresenter.DoctorP(departmentId, 3, 0, page, 3);
+            }
+            if (position == 3) {
+                mPresenter.DoctorP(departmentId, 4, 0, page, 3);
+            }
+            page1.setText("" + page);
+        } else if (id == R.id.more) {
+            Intent intent = new Intent(getActivity(), PersonalActivity.class);
+            intent.putExtra("doctorId", doctorId);
+            startActivity(intent);
         }
     }
-    /*list1 = new ArrayList<>();
-        list1.add(new SynthesisFrag());
-        list1.add(new GoodFrag());
-        list1.add(new ConsultationNumberFrag());
-        list1.add(new PriceFrag());
-
-        pager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
-            @NonNull
-            @Override
-            public Fragment getItem(int position) {
-                return list1.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return list1.size();
-            }
-
-            @Nullable
-            @Override
-            public CharSequence getPageTitle(int position) {
-                return list.get(position);
-            }
-        });
-        tab.setupWithViewPager(pager);
-
-    }
-
-    @Override
-    protected void initData() {
-        super.initData();
-        Bundle arguments = getArguments();
-        int departmentId = arguments.getInt("departmentId");
-        SharedPreferences sp = getActivity().getSharedPreferences("departmentId", Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sp.edit();
-        edit.putInt("id",departmentId).commit();
-    }*/
 
 }

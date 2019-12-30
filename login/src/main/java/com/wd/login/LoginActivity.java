@@ -79,8 +79,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void onLoginSuccess(LoginBean data) {
         String message = data.getMessage();
-
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        if (message.equals("登录成功")){
+            ARouter.getInstance().build("/home/view/HomeActivity")
+
+                    .navigation();
+        }
     }
 
     @Override

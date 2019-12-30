@@ -19,6 +19,7 @@ import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bumptech.glide.Glide;
 import com.wd.health.JgActivity;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.ConsultBean;
 import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
@@ -49,45 +50,45 @@ import butterknife.OnClick;
 public class PersonalActivity extends BaseActivity<InquiryPresenter> implements Contract.IView {
 
     private static final String TAG = "PersonalActivity";
-    @BindView(R.id.back)
+    @BindView(R2.id.back)
     ImageView back;
-    @BindView(R.id.rela)
+    @BindView(R2.id.rela)
     RelativeLayout rela;
-    @BindView(R.id.head_img)
+    @BindView(R2.id.head_img)
     ImageView headImg;
-    @BindView(R.id.name)
+    @BindView(R2.id.name)
     TextView name;
-    @BindView(R.id.work)
+    @BindView(R2.id.work)
     TextView work;
-    @BindView(R.id.address)
+    @BindView(R2.id.address)
     TextView address;
-    @BindView(R.id.good)
+    @BindView(R2.id.good)
     TextView good;
-    @BindView(R.id.number)
+    @BindView(R2.id.number)
     TextView number;
-    @BindView(R.id.gift)
+    @BindView(R2.id.gift)
     TextView gift;
-    @BindView(R.id.recrivegift)
+    @BindView(R2.id.recrivegift)
     TextView recrivegift;
-    @BindView(R.id.recy)
+    @BindView(R2.id.recy)
     RecyclerView recy;
-    @BindView(R.id.like)
+    @BindView(R2.id.like)
     ImageView like;
-    @BindView(R.id.jieshao)
+    @BindView(R2.id.jieshao)
     TextView jieshao;
-    @BindView(R.id.scaddress)
+    @BindView(R2.id.scaddress)
     TextView scaddress;
-    @BindView(R.id.commit_count)
+    @BindView(R2.id.commit_count)
     TextView commitCount;
-    @BindView(R.id.recy_commit)
+    @BindView(R2.id.recy_commit)
     RecyclerView recyCommit;
-    @BindView(R.id.more)
+    @BindView(R2.id.more)
     TextView more;
-    @BindView(R.id.price)
+    @BindView(R2.id.price)
     TextView price;
-    @BindView(R.id.go_now)
+    @BindView(R2.id.go_now)
     Button goNow;
-    @BindView(R.id.nolike)
+    @BindView(R2.id.nolike)
     ImageView nolike;
 
 
@@ -375,27 +376,23 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
     }
 
 
-    @OnClick({R.id.back, R.id.nolike, R.id.like, R.id.go_now})
+    @OnClick({R2.id.back, R2.id.nolike, R2.id.like, R2.id.go_now})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.back:
-                finish();
-                break;
-            case R.id.nolike:
-                if (userId != 0 && !sesssionId.isEmpty()) {
-                    mPresenter.followP(userId, sesssionId, doctorId);
-                } else {
-                    Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.like:
-                if (userId != 0 && !sesssionId.isEmpty()) {
-                    mPresenter.canceP(userId, sesssionId, doctorId);
-                }
-                break;
-            case R.id.go_now:
-                mPresenter.NowP(userId, sesssionId);
-                break;
+        int id = view.getId();
+        if (id == R.id.back) {
+            finish();
+        } else if (id == R.id.nolike) {
+            if (userId != 0 && !sesssionId.isEmpty()) {
+                mPresenter.followP(userId, sesssionId, doctorId);
+            } else {
+                Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.like) {
+            if (userId != 0 && !sesssionId.isEmpty()) {
+                mPresenter.canceP(userId, sesssionId, doctorId);
+            }
+        } else if (id == R.id.go_now) {
+            mPresenter.NowP(userId, sesssionId);
         }
     }
 

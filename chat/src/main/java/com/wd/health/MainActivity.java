@@ -36,13 +36,13 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity<InquiryPresenter> implements Contract.IView {
 
     private static final String TAG = "MainActivity";
-    @BindView(R.id.head)
+    @BindView(R2.id.head)
     ImageView head;
-    @BindView(R.id.message)
+    @BindView(R2.id.message)
     ImageView message;
-    @BindView(R.id.tab)
+    @BindView(R2.id.tab)
     TabLayout tab;
-    @BindView(R.id.pager)
+    @BindView(R2.id.pager)
     ViewPager pager;
     private ArrayList<String> list=new ArrayList<>();
     String sesssionId = "1577416781763475";

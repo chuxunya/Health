@@ -61,7 +61,7 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
     private int id;
     private ImageView illness_details;
     private ImageView drug_details;
-    private ImageView reviews;
+    private ImageView reviews,boy;
 
     @Override
     protected BannerPresenter providePresenter() {
@@ -85,6 +85,14 @@ public class HomeFragment extends BaseFragment<BannerPresenter> implements Banne
         advisory_plate_recy = getActivity().findViewById(R.id.advisory_plate_recy);
         advisory_list_recy = getActivity().findViewById(R.id.advisory_list_recy);
         home_search = getActivity().findViewById(R.id.home_search);
+        boy=getActivity().findViewById(R.id.boy);
+        boy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/login/LoginActivity")
+                        .navigation();
+            }
+        });
         //常见病症
         illness_details = getActivity().findViewById(R.id.illness_details);
         //常用药品

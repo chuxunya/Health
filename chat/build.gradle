@@ -1,11 +1,30 @@
-apply plugin: 'com.android.application'
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'com.jakewharton.butterknife'
+} else {
+    apply plugin: 'com.android.application'
+}
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId "com.wd.health"
+
+        if (!isModule.toBoolean()) {
+            applicationId "com.wd.health"
+        }
+        sourceSets {
+            main {
+                if (!isModule.toBoolean()) {
+                    manifest.srcFile 'src/main/buildModule/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/buildApp/AndroidManifest.xml'
+                }
+            }
+        }
+
+
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -26,7 +45,7 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
         manifestPlaceholders = [
-                JPUSH_PKGNAME: applicationId,
+                JPUSH_PKGNAME: "com.wd.health",
                 JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
