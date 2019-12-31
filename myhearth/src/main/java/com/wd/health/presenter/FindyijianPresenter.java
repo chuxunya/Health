@@ -13,7 +13,7 @@ import com.wd.health.model.FindyijianModel;
 
 public class FindyijianPresenter extends BasePresenter<FindyijianContract.Iview> implements FindyijianContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
 
     private FindyijianModel findyijianModel;
 

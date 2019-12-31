@@ -13,10 +13,16 @@ package com.wd.health.api;
 import com.wd.health.bean.AddInfoCollectBean;
 import com.wd.health.bean.AddSignBean;
 import com.wd.health.bean.ConsultationBean;
+import com.wd.health.bean.CurrentInquiryRecordBean;
 import com.wd.health.bean.DeInfoBean;
+import com.wd.health.bean.DeleDangBean;
 import com.wd.health.bean.DeleVideoInfoBean;
+import com.wd.health.bean.EndInquiryBean;
+import com.wd.health.bean.EvaluationInquiryBean;
 import com.wd.health.bean.FindDoctorBean;
+import com.wd.health.bean.FindHistoryBean;
 import com.wd.health.bean.FindMyAdoptedCommentListBean;
+import com.wd.health.bean.FindUserArchivesBean;
 import com.wd.health.bean.FindUserCRBean;
 import com.wd.health.bean.FindquanBean;
 import com.wd.health.bean.MyBuyVideoBean;
@@ -25,12 +31,17 @@ import com.wd.health.bean.MySickCircleListBean;
 import com.wd.health.bean.MyWalletBean;
 import com.wd.health.bean.MydeleVideoBean;
 import com.wd.health.bean.VideoInfoBean;
+import com.wd.health.bean.XiuBean;
+
+import java.util.HashMap;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 
@@ -83,4 +94,32 @@ public interface IApi {
     //http://172.17.8.100/health/user/sickCircle/verify/v1/findMySickCircleCommentList?sickCircleId=1796&page=1&count=5
     @GET("health/user/sickCircle/verify/v1/findMySickCircleCommentList")
     Observable<MySickCircleCommentListBean> getMySickCircleCommentList(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("sickCircleId") String sickCircleId, @Query("page") String page, @Query("count") String count);
+
+    //查看历史问诊http://172.17.8.100/health/user/inquiry/verify/v1/findHistoryInquiryRecord
+    @GET("health/user/inquiry/verify/v1/findHistoryInquiryRecord")
+    Observable<FindHistoryBean> findhistory(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("page") String page, @Query("count") String count);
+
+    //用户查看当前问诊:http://172.17.8.100/health/user/inquiry/verify/v1/findCurrentInquiryRecord
+    @GET("health/user/inquiry/verify/v1/findCurrentInquiryRecord")
+    Observable<CurrentInquiryRecordBean> current(@Header("userId") String userId, @Header("sessionId") String sessionId);
+
+    //结束问诊:http://172.17.8.100/health/user/inquiry/verify/v1/endInquiry
+    @PUT("health/user/inquiry/verify/v1/endInquiry")
+    Observable<EndInquiryBean> overinquiry(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("recordId") String recordId);
+
+
+    //用户评论问诊服务http://172.17.8.100/health/user/inquiry/verify/v1/evaluationInquiry
+    @PUT("health/user/inquiry/verify/v1/evaluationInquiry")
+    Observable<EvaluationInquiryBean> evaluation(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("inquiryRecordId") String inquiryRecordId, @Query("doctorId") String doctorId, @Query("evaluate") String evaluate, @Query("majorDegree") String majorDegree,@Query("satisfactionDegree") String satisfactionDegree);
+    //用户查看自己的档案http://172.17.8.100/health/user/verify/v1/findUserArchives
+    @GET("health/user/verify/v1/findUserArchives")
+    Observable<FindUserArchivesBean> finddang(@Header("userId") String userId, @Header("sessionId") String sessionId);
+    //删除用户档案http://172.17.8.100/health/user/verify/v1/deleteUserArchives
+    @GET("health/user/verify/v1/health/user/verify/v1/deleteUserArchives")
+    Observable<DeleDangBean> deledang(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("archivesId") String archivesId);
+
+    //修改用户档案:http://172.17.8.100/health/user/verify/v1/updateUserArchives
+    @PUT("health/user/verify/v1/updateUserArchives")
+    Observable<XiuBean> xiuuser(@Header("userId") String userId, @Header("sessionId") String sessionId, @Body HashMap<String,String> map);
+
 }

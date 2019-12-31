@@ -14,7 +14,7 @@ import com.wd.health.model.FindDoctorModel;
 
 public class FindDoctorPresenter extends BasePresenter<FindDoctorContract.Iview> implements FindDoctorContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
 
     private FindDoctorModel findDoctorModel;
 

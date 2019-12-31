@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MySickCircleCommentActivity"></activity>
+        <activity android:name=".activity.MyxiufileActivity"></activity>
+        <activity android:name=".activity.MyaddfileActivity" />
+        <activity android:name=".activity.MyfileActivity" />
+        <activity android:name=".activity.TheCurrentPhysicianVisitsActivity" />
+        <activity android:name=".activity.EvaluationInquiryMainActivity" />
+        <activity android:name=".activity.MyHistoryActivity" />
+        <activity android:name=".activity.MySickCircleCommentActivity" />
         <activity android:name=".activity.MySickActivity" />
         <activity android:name=".activity.FindyijianActivity" />
         <activity android:name=".activity.MyBuyVideoActivity" />

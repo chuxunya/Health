@@ -13,7 +13,7 @@ import com.wd.health.model.MyHertModel;
 
 public class MyHertPresenter extends BasePresenter<MyHertContract.Iview> implements MyHertContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
     private MyHertModel myHertModel;
 
     @Override

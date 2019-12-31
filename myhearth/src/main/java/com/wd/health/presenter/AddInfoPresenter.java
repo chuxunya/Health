@@ -17,7 +17,7 @@ import com.wd.health.model.AddInfoModel;
 
 public class AddInfoPresenter extends BasePresenter<AddInfoContract.Iview> implements AddInfoContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
 
     private AddInfoModel addInfoModel;
 

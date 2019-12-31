@@ -14,7 +14,7 @@ import com.wd.health.model.MyBuyVideoModel;
 
 public class MyBuyVideoPresenter extends BasePresenter<MyBuyVideoContract.Iview> implements MyBuyVideoContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
 
     private MyBuyVideoModel myBuyVideoModel;
 

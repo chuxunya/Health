@@ -57,8 +57,8 @@ public class MySickCircleCommentActivity extends BaseActivity<MySickPresenter> i
         Intent intent = getIntent();
         //int sickCircleId = intent.getIntExtra("sickCircleId", 0);
         String sickCircleId = intent.getStringExtra("sickCircleId");
-        Log.i("pppppppxxxpppppppxxx", "initData:"+sickCircleId);
-        mPresenter.MySickCircleCommentList("1","1","5");
+        Log.i("ppppppp", "initData:"+sickCircleId);
+        mPresenter.MySickCircleCommentList("5","1","5");
     }
 
     @Override

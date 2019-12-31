@@ -14,7 +14,7 @@ import com.wd.health.model.MySickModel;
 
 public class MySickPresenter extends BasePresenter<MySickContract.Iview> implements MySickContract.IPresenter {
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
     private MySickModel mySickModel;
 
     @Override

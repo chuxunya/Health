@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.bawei.lizekai.mylibrary.base.BasePresenter;
@@ -14,8 +15,11 @@ import com.wd.health.activity.FavoriteMainActivity;
 import com.wd.health.activity.FindDoctorActivity;
 import com.wd.health.activity.FindyijianActivity;
 import com.wd.health.activity.MyBuyVideoActivity;
+import com.wd.health.activity.MyHistoryActivity;
 import com.wd.health.activity.MySickActivity;
+import com.wd.health.activity.MyfileActivity;
 import com.wd.health.activity.MywalletActivity;
+import com.wd.health.activity.TheCurrentPhysicianVisitsActivity;
 import com.wd.health.bean.AddSignBean;
 import com.wd.health.contract.MyHertContract;
 import com.wd.health.presenter.MyHertPresenter;
@@ -29,8 +33,9 @@ import com.wd.health.presenter.MyHertPresenter;
 public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implements MyHertContract.Iview {
 
 
-    private ImageView attention,favorite,myvideo,my_money,yijian,mysick;
+    private ImageView attention,favorite,myvideo,my_money,yijian,mysick,file;
     private Button mine_activity_btn_sign_in;
+    private RelativeLayout myhistory,now_wenzhen;
 
 
     @Override
@@ -48,6 +53,9 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
         mine_activity_btn_sign_in = findViewById(R.id.mine_activity_btn_sign_in);
         yijian = findViewById(R.id.yijian);
         mysick = findViewById(R.id.mysick);
+        myhistory = findViewById(R.id.myhistory);
+        now_wenzhen = findViewById(R.id.now_wenzhen);
+        file = findViewById(R.id.file);
     }
 
     @Override
@@ -101,6 +109,28 @@ public class MyhearthMainActivity extends BaseActivity<MyHertPresenter> implemen
                 startActivity(new Intent(MyhearthMainActivity.this, MySickActivity.class));
             }
         });
+        //查看历史问诊
+        myhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, MyHistoryActivity.class));
+            }
+        });
+        //查看当前问诊
+        now_wenzhen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, TheCurrentPhysicianVisitsActivity.class));
+            }
+        });
+        //用户查看自己的档案
+        file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyhearthMainActivity.this, MyfileActivity.class));
+            }
+        });
+
         //签到
         mine_activity_btn_sign_in.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="评价问诊服务"
+        android:textSize="20dp"
+        />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#E251585C"
+        android:layout_marginTop="40dp"
+        ></View>
+
+    <View
+        android:layout_width="7dp"
+        android:layout_height="40dp"
+        android:background="#E2159AE6"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        ></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="70dp"
+        android:text="文字评价"
+        android:textSize="25dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="170dp"
+        android:text="（送H币）"
+        />
+
+    <EditText
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:hint="请输入您对医生的评价"
+        android:id="@+id/evaluate"
+        android:background="@null"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#E251585C"
+        android:layout_marginTop="300dp"
+        ></View>
+
+    <View
+        android:layout_width="7dp"
+        android:layout_height="40dp"
+        android:background="#E2159AE6"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="50dp"
+        ></View>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="星级评价"
+        android:textSize="25dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="70dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="医生专业度"
+        android:textSize="15dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="50dp"
+        />
+
+
+    <RatingBar
+
+        android:id="@+id/majorDegree"
+        style="?android:attr/ratingBarStyleSmall"
+        android:progressBackgroundTint="#C47C7B7B"
+        android:progressTint="#66ccff"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="150dp"
+
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="服务满意度"
+        android:textSize="15dp"
+        android:layout_marginTop="422dp"
+        android:layout_marginLeft="50dp"
+        />
+
+
+    <RatingBar
+        android:id="@+id/satisfactionDegree"
+        style="?android:attr/ratingBarStyleSmall"
+        android:progressBackgroundTint="#C47C7B7B"
+        android:progressTint="#66ccff"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="422dp"
+        android:layout_marginLeft="150dp"
+
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#E251585C"
+        android:layout_marginTop="472dp"
+
+        ></View>
+
+    <Button
+        android:background="@drawable/button_circle_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:id="@+id/evaluation_back"
+        android:textColor="#fff"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="60dp"
+        />
+
+    <Button
+        android:background="@drawable/button_circle_shape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="完成"
+        android:id="@+id/evaluation_finish"
+        android:textColor="#fff"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="200dp"
+        />
+</RelativeLayout>

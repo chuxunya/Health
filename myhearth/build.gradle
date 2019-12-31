@@ -65,4 +65,5 @@ dependencies {
 /*Xrecyclerview*/
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
 
+
 }

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+     >
+
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <ImageView
+            android:id="@+id/iv_theCurrentPhysicianVisits_back"
+            android:layout_centerVertical="true"
+            android:src="@drawable/common_icon_back_black_n"
+            android:layout_width="16dp"
+            android:layout_height="16dp"/>
+        <TextView
+            android:text="当前问诊"
+            android:textSize="16dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorDark"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_thereIsCurrentlyAConsultation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="6dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="60dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/sdv_doctor_headPortrait"
+            android:layout_width="211dp"
+            android:layout_height="268dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_currentDoctorInformation"
+            android:layout_width="match_parent"
+            android:layout_height="132dp"
+            android:layout_above="@id/rl_currentStatusOfConsultation"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="36dp"
+            android:background="#fff">
+
+            <TextView
+                android:id="@+id/tv_doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="曾小贤"
+                android:textColor="#333333"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_doctor_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_doctor_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="副主任医师"
+                android:textColor="#333333"
+                android:textSize="10dp" />
+
+            <TextView
+
+                android:id="@+id/tv_doctor_subjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_doctor_position"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="小儿科"
+                android:textColor="#333333"
+                android:textSize="10dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_doctor_subjects"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="问诊时间"
+                    android:textColor="#333333"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_interrogationTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="0000-00-00"
+                    android:textColor="#333333"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_currentStatusOfConsultation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:paddingLeft="60dp"
+            android:paddingRight="60dp">
+
+            <TextView
+                android:id="@+id/tv_continueToInterrogation"
+                android:layout_width="84dp"
+                android:layout_height="34dp"
+                android:background="@drawable/button_circle_shape"
+                android:gravity="center"
+                android:text="继续问诊"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/btn_theEndOfTheInterrogation"
+                android:layout_width="84dp"
+                android:layout_height="34dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/button_circle_shape"
+                android:gravity="center"
+                android:text="结束问诊"
+                android:textColor="@color/white"
+                android:textSize="14dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_noConsultationAtPresent"
+        android:layout_marginTop="6dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/no_message"
+            android:layout_marginTop="150dp"
+            android:layout_width="126dp"
+            android:layout_height="135dp"/>
+        <TextView
+            android:text="当前暂无问诊"
+            android:layout_marginTop="315dp"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

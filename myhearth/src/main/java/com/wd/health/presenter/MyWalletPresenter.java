@@ -16,7 +16,7 @@ public class MyWalletPresenter extends BasePresenter<MyWalletContract.Iview> imp
 
     private MyWalletModel myWalletModel;
     private String userId="435";
-    private String sessionId="1577085403344435";
+    private String sessionId="1577693387272435";
 
     @Override
     protected void initModel() {
