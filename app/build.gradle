@@ -41,8 +41,8 @@ dependencies {
     if (isModule.toBoolean()) {
         implementation project(':login')
         implementation project(':class')
-        implementation project(':home')/*
-        implementation project(':chat')*/
+        implementation project(':home')
+        implementation project(':chat')
     }
 
 }

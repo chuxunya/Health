@@ -1,14 +1,16 @@
-package com.wd.health;
+package com.wd.health.view;
 
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 import com.google.android.material.tabs.TabLayout;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.ConsultBean;
-import com.wd.health.bean.ConsultDoctorBean;
 import com.wd.health.bean.DoctorBean;
 import com.wd.health.bean.DoctorInfoBean;
 import com.wd.health.bean.EndBean;
@@ -33,7 +35,8 @@ import butterknife.BindView;
  * @time（时间）: 9:39
  * @author（作者）: xin
  **/
-public class MainActivity extends BaseActivity<InquiryPresenter> implements Contract.IView {
+@Route(path = "/chat/MainActivity")
+public class ChatActivity extends BaseActivity<InquiryPresenter> implements Contract.IView {
 
     private static final String TAG = "MainActivity";
     @BindView(R2.id.head)
@@ -45,7 +48,7 @@ public class MainActivity extends BaseActivity<InquiryPresenter> implements Cont
     @BindView(R2.id.pager)
     ViewPager pager;
     private ArrayList<String> list=new ArrayList<>();
-    String sesssionId = "1577416781763475";
+    String sesssionId = "1578295072077475";
     int userId = 475;
     private SharedPreferences.Editor edit;
     private SharedPreferences sp;

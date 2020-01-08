@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.health.bean.RecordListBean;
 
 import java.util.List;
@@ -83,9 +84,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.sim_liao_zphuanzhe)
+        @BindView(R2.id.sim_liao_zphuanzhe)
         SimpleDraweeView simLiaoZphuanzhe;
-        @BindView(R.id.text_liao1huanzhe)
+        @BindView(R2.id.text_liao1huanzhe)
         TextView textLiao1huanzhe;
 
         public MyHolder(@NonNull View itemView) {
@@ -95,9 +96,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     class MyHolder2 extends RecyclerView.ViewHolder {
-        @BindView(R.id.sim_liao_imagedocior)
+        @BindView(R2.id.sim_liao_imagedocior)
         SimpleDraweeView simLiaoImagedocior;
-        @BindView(R.id.text_liao2docior)
+        @BindView(R2.id.text_liao2docior)
         TextView textLiao2docior;
         public MyHolder2(@NonNull View itemView) {
             super(itemView);

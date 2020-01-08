@@ -81,8 +81,30 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         String message = data.getMessage();
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         if (message.equals("登录成功")){
+            LoginBean.ResultBean result = data.getResult();
+            int age = result.getAge();
+            int weight = result.getWeight();
+            int height = result.getHeight();
+            int userId = result.getId();
+            int sex = result.getSex();
+            String sessionId = result.getSessionId();
+            String userName = result.getUserName();
+            String nickName = result.getNickName();
+            String jiGuangPwd = result.getJiGuangPwd();
+            String email = result.getEmail();
+            String headPic = result.getHeadPic();
             ARouter.getInstance().build("/home/view/HomeActivity")
-
+                    .withInt("age",age)
+                    .withInt("weight",weight)
+                    .withInt("height",height)
+                    .withInt("userId",userId)
+                    .withInt("sex",sex)
+                    .withString("sessionId",sessionId)
+                    .withString("userName",userName)
+                    .withString("jiGuangPwd",jiGuangPwd)
+                    .withString("nickName",nickName)
+                    .withString("email",email)
+                    .withString("headPic",headPic)
                     .navigation();
         }
     }

@@ -15,7 +15,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
-
+/**
+ *@describe(描述)：JMessageRegisterActivity
+ *@data（日期）: 2019/12/31
+ *@time（时间）: 14:08
+ *@author（作者）: xin
+ **/
 public class JMessageRegisterActivity extends AppCompatActivity {
 
     @BindView(R2.id.editText)

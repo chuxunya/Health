@@ -50,12 +50,11 @@ import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.api.BasicCallback;
 
 /**
- * @describe(描述)：jgActivity
- * @data（日期）: 2019/12/20
- * @time（时间）: 19:46
- * @author（作者）: 李泽楷
+ *@describe(描述)：JgActivity
+ *@data（日期）: 2019/12/31
+ *@time（时间）: 14:08
+ *@author（作者）: xin
  **/
-
 public class JgActivity extends BaseActivity<IRecordContractPresenter> implements IRecordContract.IRecordView {
 
     @BindView(R2.id.emotion_voice)
@@ -203,7 +202,7 @@ public class JgActivity extends BaseActivity<IRecordContractPresenter> implement
                     list.add(result.get(i));
                 }
 
-                        adapter = new RecordAdapter(list, JgActivity.this);
+                adapter = new RecordAdapter(list, JgActivity.this);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(JgActivity.this);
                 linearLayoutManager.setStackFromEnd(true);
                 recyRecord.setLayoutManager(linearLayoutManager);

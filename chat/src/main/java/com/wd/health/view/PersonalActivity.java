@@ -314,9 +314,8 @@ public class PersonalActivity extends BaseActivity<InquiryPresenter> implements 
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         mPresenter.ConsultDoctorP(userId+"",sesssionId,doctorId);
-
+                        alertDialog.cancel();
                     }
                 });
 

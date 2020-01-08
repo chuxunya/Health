@@ -88,4 +88,6 @@ dependencies {
     api rootProject.ext.dependencies["xbanner"]
     api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["design"]
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

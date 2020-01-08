@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bawei.lizekai.mylibrary.base.BaseActivity;
 
@@ -29,6 +30,28 @@ import java.util.ArrayList;
 @Route(path = "/home/view/HomeActivity")
 public class HomeActivity extends BaseActivity {
 
+    @Autowired(name = "age")
+    public int age;
+    @Autowired(name = "weight")
+    public int weight;
+    @Autowired(name = "height")
+    public int height;
+    @Autowired(name = "userId")
+    public int userId;
+    @Autowired(name = "sex")
+    public int sex;
+    @Autowired(name = "sessionId")
+    public String sessionId;
+    @Autowired(name = "userName")
+    public String userName;
+    @Autowired(name = "jiGuangPwd")
+    public String jiGuangPwd;
+    @Autowired(name = "nickName")
+    public String nickName;
+    @Autowired(name = "email")
+    public String email;
+    @Autowired(name = "headPic")
+    public String headPic;
 
     private ArrayList<Fragment> list;
     private PageAdapter pageAdapter;

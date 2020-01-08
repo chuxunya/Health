@@ -15,6 +15,5 @@ public class App extends BaseApp {
     public void onCreate() {
         super.onCreate();
         JMessageClient.init(this,true);
-        
     }
 }
